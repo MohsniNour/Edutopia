@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Display_Student_FXMLController">
+    <stylesheets>
+        <URL value="@display_student_fxml.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane fx:id="AnchorPane" prefHeight="400.0" prefWidth="600.0" />
+   </children>
+</AnchorPane>

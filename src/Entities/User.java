@@ -5,6 +5,7 @@
  */
 package Entities;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author Sabrina
  */
-public class User  implements Serializable{
+public class User extends RecursiveTreeObject<User>  implements Serializable{
 
   
 
