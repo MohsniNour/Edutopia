@@ -22,8 +22,9 @@ public class Activity {
     File work_done;
     String id_course;
     List<Comment> comment;
+    String status;
     String created_by;
-    Date ceated_date;
+    Date created_date;
     String last_updated_by;
     Date last_updated_Date;
     String archived_by;
@@ -31,14 +32,17 @@ public class Activity {
     String Uploated_by;
     Date Uploated_date;
 
-    public Activity(String name, Date deadline, File work_todo, File work_done, String id_course, String created_by, Date ceated_date) {
+    public Activity() {
+    }
+    
+
+    public Activity(String name, Date deadline, File work_todo, String id_course, String created_by) {
         this.name = name;
         this.deadline = deadline;
         this.work_todo = work_todo;
-        this.work_done = work_done;
         this.id_course = id_course;
         this.created_by = created_by;
-        this.ceated_date = ceated_date;
+        this.status = "active";
     }
 
     public String getId() {
@@ -97,12 +101,12 @@ public class Activity {
         this.created_by = created_by;
     }
 
-    public Date getCeated_date() {
-        return ceated_date;
+    public Date getCreated_date() {
+        return created_date;
     }
 
-    public void setCeated_date(Date ceated_date) {
-        this.ceated_date = ceated_date;
+    public void setCreated_date(Date ceated_date) {
+        this.created_date = ceated_date;
     }
 
     public String getLast_updated_by() {
@@ -137,12 +141,42 @@ public class Activity {
         this.archived_Date = archived_Date;
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", created_by=" + created_by + ", ceated_date=" + ceated_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + '}';
+    public String getId_course() {
+        return id_course;
     }
 
+    public void setId_course(String id_course) {
+        this.id_course = id_course;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUploated_by() {
+        return Uploated_by;
+    }
+
+    public void setUploated_by(String Uploated_by) {
+        this.Uploated_by = Uploated_by;
+    }
+
+    public Date getUploated_date() {
+        return Uploated_date;
+    }
+
+    public void setUploated_date(Date Uploated_date) {
+        this.Uploated_date = Uploated_date;
+    }
     
-    
+    @Override
+    public String toString() {
+        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", created_by=" + created_by + ", ceated_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + '}';
+    }
+
     
 }

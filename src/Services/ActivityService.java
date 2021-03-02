@@ -8,7 +8,6 @@ package Services;
 import Entities.Activity;
 import IServices.IActivity;
 import Utils.DataBaseConnection;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -44,7 +43,7 @@ public class ActivityService implements IActivity{
             pst.setCharacterStream(3, reader);
             pst.setString(4, activity.getId_Course());
             pst.setString(5, activity.getCreated_by());
-            pst.setDate(6, (Date) activity.getCeated_date());
+            pst.setDate(6, (Date) activity.getCreated_date());
             pst.executeUpdate();
             
         } catch (SQLException excep) {
@@ -57,12 +56,37 @@ public class ActivityService implements IActivity{
 
     @Override
     public void delete(Activity activity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//       try {
+//            String requete = "DELETE FROM user WHERE id=? and role='Student'";
+//
+//            PreparedStatement pst = cnx.prepareStatement(requete);
+//            pst.setInt(1, p.getId());
+//            pst.executeUpdate();
+//            System.out.println("Etudiant supprimé avec succées");
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
     }
 
     @Override
     public void edit(int id, Activity new_activity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//         try {
+//            String requete = "UPDATE user SET ? = ? WHERE id = ? and role = 'Student'";
+//            PreparedStatement pst = cnx.prepareStatement(requete);
+//            pst.setString(1, object);
+//            pst.setObject(2, obj);
+//            pst.setInt(3, id);
+//            String ch = pst.toString().replaceFirst("\'", "");
+//            String ch2 = ch.replaceFirst("\'", "");
+//            int pos = ch2.indexOf("UPDATE");
+//            String ch3 = ch2.substring(pos, ch2.length());
+//            pst = cnx.prepareStatement(ch3);
+//            pst.executeUpdate();
+//            System.out.println("Etudiant modifié avec succées");
+//
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
     }
 
     @Override
