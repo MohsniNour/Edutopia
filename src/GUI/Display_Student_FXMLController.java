@@ -225,7 +225,7 @@ public class Display_Student_FXMLController implements Initializable {
         birth_date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<User, String> param) {
-                return new SimpleStringProperty(String.valueOf(param.getValue().getValue().getBirth_date()));
+                return new SimpleStringProperty(String.valueOf(param.getValue().getValue().getBirth_date())) ;
             }
         });
 
