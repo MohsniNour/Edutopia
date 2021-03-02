@@ -90,7 +90,7 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public void edit(String id, Activity new_activity) {
+    public void update(String id, Activity new_activity) {
 //         try {
 //            String requete = "UPDATE user SET ? = ? WHERE id = ? and role = 'Student'";
 //            PreparedStatement pst = cnx.prepareStatement(requete);
