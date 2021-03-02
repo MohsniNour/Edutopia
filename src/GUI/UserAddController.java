@@ -72,7 +72,7 @@ public class UserAddController implements Initializable {
             ss.addUser(u);
             
         } catch (ParseException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(); 
         }
     }
 }
