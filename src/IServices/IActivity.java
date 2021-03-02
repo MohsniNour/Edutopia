@@ -17,8 +17,8 @@ public interface IActivity {
     public String getId(Activity act); 
     public void add(Activity activity);
     public void delete(Activity activity);
-    public void edit(int id, Activity new_activity);
-    public void details(int id);
+    public void edit(String id, Activity new_activity);
+    public Activity details(String id);
     public List<Activity> listAll();
     
 }

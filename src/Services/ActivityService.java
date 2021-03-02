@@ -90,7 +90,7 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public void edit(int id, Activity new_activity) {
+    public void edit(String id, Activity new_activity) {
 //         try {
 //            String requete = "UPDATE user SET ? = ? WHERE id = ? and role = 'Student'";
 //            PreparedStatement pst = cnx.prepareStatement(requete);
@@ -111,8 +111,31 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public void details(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Activity details(String id) {
+        Activity act = new Activity();
+        boolean check = false;
+        try {
+            String query = "select * from activity where id= ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if(!"archived".equals(rs.getString("status"))) {
+                    check = true;
+                    act.setId(rs.getString("id"));
+                    act.setName(rs.getString("name"));
+                    act.setDeadline(rs.getDate("deadline"));
+                    act.setStatus(rs.getString("status"));
+                }
+            }
+        } catch (SQLException ex) { 
+            ex.printStackTrace();
+        }
+        if (check == true) {
+                return act;
+            }
+            else
+                return null;
     }
 
     @Override

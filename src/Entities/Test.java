@@ -28,6 +28,6 @@ public class Test {
 //        a2.setCreated_date(java.sql.Date.valueOf(java.time.LocalDate.now()));
 //        ActivityService service = new ActivityService();
 //        System.out.println(service.getId(a2));
-//        service.delete(a2);
+//        System.out.println(service.details("1"));
     }
 }
