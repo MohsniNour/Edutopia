@@ -12,6 +12,6 @@ import Entities.User;
  * @author Sabrina
  */
 public interface IUser {
-    public void addUser (User u);
+    public void addUser(User u);
    
 }

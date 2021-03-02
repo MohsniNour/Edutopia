@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+
 /**
  * FXML Controller class
  *
@@ -44,16 +45,14 @@ public class UserAddController implements Initializable {
     @FXML
     private TextField email;
     @FXML
-    private TextField phone;
-    @FXML
     private TextField birth_date;
     @FXML
-    private Button add_btn;
+    private Button add_button;
+    @FXML
+    private TextField phone_number;
 
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,8 +68,9 @@ public class UserAddController implements Initializable {
             java.util.Date date = sdf.parse(birth_date.getText());
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             System.out.println(sqlDate);
-            User p = new User(role.getValue().toString(), name.getText(), last_name.getText(), Integer.parseInt(cin.getText()), email.getText(), Integer.parseInt(phone.getText()), sqlDate);
-            ss.addUser(p);
+            User u = new User(role.getValue().toString(), name.getText(), last_name.getText(), Integer.parseInt(cin.getText()), email.getText(), Integer.parseInt(phone_number.getText()), sqlDate);
+            ss.addUser(u);
+            
         } catch (ParseException ex) {
             ex.printStackTrace();
         }

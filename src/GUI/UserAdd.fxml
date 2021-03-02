@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="GUI.UserAddController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.UserAddController">
     <stylesheets>
         <URL value="@useradd.css" />
     </stylesheets>
@@ -20,6 +20,6 @@
       <TextField fx:id="cin" layoutX="74.0" layoutY="117.0" promptText="CIN" />
       <TextField fx:id="birth_date" layoutX="74.0" layoutY="165.0" promptText="Birthdate" />
       <ComboBox fx:id="role" layoutX="74.0" layoutY="294.0" prefWidth="150.0" promptText="Role" />
-      <Button fx:id="add_btn" layoutX="274.0" layoutY="353.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="add_button" layoutX="274.0" layoutY="353.0" mnemonicParsing="false" onAction="#add_button_action" text="Add" />
    </children>
 </AnchorPane>
