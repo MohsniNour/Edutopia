@@ -5,6 +5,9 @@
  */
 package Entities;
 
+import Services.ActivityService;
+import java.io.File;
+
 /**
  *
  * @author ADMIN
@@ -18,12 +21,13 @@ public class Test {
 //        
 //        Activity a2 = new Activity();
 //        a2.setName("td1");
-//        a2.setDeadline();
+//        a2.setDeadline(java.sql.Date.valueOf(java.time.LocalDate.now()));
 //        a2.setWork_todo(f);
 //        a2.setId_Course("1");
 //        a2.setCreated_by("2");
 //        a2.setCreated_date(java.sql.Date.valueOf(java.time.LocalDate.now()));
 //        ActivityService service = new ActivityService();
-//        service.add(a2);
+//        System.out.println(service.getId(a2));
+//        service.delete(a2);
     }
 }

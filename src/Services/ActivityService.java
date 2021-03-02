@@ -74,17 +74,19 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public void delete(Activity activity) {
-//       try {
-//            String requete = "DELETE FROM user WHERE id=? and role='Student'";
-//
-//            PreparedStatement pst = cnx.prepareStatement(requete);
-//            pst.setInt(1, p.getId());
-//            pst.executeUpdate();
-//            System.out.println("Etudiant supprimé avec succées");
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
+    public void delete(Activity act) {
+        try {
+            String req ="UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(req);
+            ps.setString(1,"nour");
+            ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            ps.setString(3, "archived");
+            ps.setString(4, act.getId());
+            ps.executeUpdate();
+            System.out.println("removed succesfully");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
