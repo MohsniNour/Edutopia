@@ -26,18 +26,18 @@ public class UserService implements IUser {
     }
 
     @Override
-    public void addUser(User p) {
+    public void addUser(User u) {
         try {
             String requete = "INSERT INTO user (role,name,last_name,cin,email,phone_number,birth_date) VALUES(?,?,?,?,?,?,?)";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setString(1, p.getRole());
-            pst.setString(2, p.getName());
-            pst.setString(3, p.getLast_name());
-            pst.setInt(4, p.getCin());
-            pst.setString(5, p.getEmail());
-            pst.setInt(6, p.getPhone_number());
-            pst.setDate(7, (Date) p.getBirth_date());
+            pst.setString(1, u.getRole());
+            pst.setString(2, u.getName());
+            pst.setString(3, u.getLast_name());
+            pst.setInt(4, u.getCin());
+            pst.setString(5, u.getEmail());
+            pst.setInt(6, u.getPhone_number());
+            pst.setDate(7, (Date) u.getBirth_date());
             pst.executeUpdate();
 
            
