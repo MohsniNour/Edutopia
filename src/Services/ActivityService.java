@@ -9,11 +9,15 @@ import Entities.Activity;
 import IServices.IActivity;
 import Utils.DataBaseConnection;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,16 +36,21 @@ public class ActivityService implements IActivity{
     public void add(Activity activity) {
          try {
             String requete = "INSERT INTO activity (name,deadline,work_todo,id_course,created_by,ceated_date) VALUES(?,?,?,?,?,?)";
-
+            FileReader reader = new FileReader(activity.getWork_todo());
+ 
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, activity.getName());
             pst.setDate(2, (Date) activity.getDeadline());
-            pst.setString(6, activity.getId_Course());
-            pst.setDate(7, (Date) activity.getCeated_date());
+            pst.setCharacterStream(3, reader);
+            pst.setString(4, activity.getId_Course());
+            pst.setString(5, activity.getCreated_by());
+            pst.setDate(6, (Date) activity.getCeated_date());
             pst.executeUpdate();
             
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+        } catch (SQLException excep) {
+            System.err.println(excep.getMessage());
+        } catch (FileNotFoundException excep) {
+            Logger.getLogger(ActivityService.class.getName()).log(Level.SEVERE, null, excep);
         }
 
     }
