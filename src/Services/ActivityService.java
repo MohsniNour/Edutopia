@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +31,25 @@ public class ActivityService implements IActivity{
         conn = DataBaseConnection.getInstance().getConnection();
     }
     
-
+    @Override
+    public String getId(Activity act) {
+        String id="";
+        try {
+            String query="SELECT * FROM `activity` WHERE name=? and id_Course=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, act.getName());
+            ps.setString(2, act.getId_Course());
+            ResultSet rs;
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                id=rs.getString("id");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return id;
+    }
+    
     @Override
     public void add(Activity activity) {
          try {

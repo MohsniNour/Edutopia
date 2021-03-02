@@ -13,7 +13,8 @@ import java.util.List;
  * @author ADMIN
  */
 public interface IActivity {
-    
+   
+    public String getId(Activity act); 
     public void add(Activity activity);
     public void delete(Activity activity);
     public void edit(int id, Activity new_activity);
