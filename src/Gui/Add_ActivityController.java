@@ -9,10 +9,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 
 /**
@@ -23,23 +26,37 @@ import javafx.scene.control.TextField;
 public class Add_ActivityController implements Initializable {
 
     @FXML
-    private TextField name;
-    @FXML
     private Button  btnDeadlineChooser;
     @FXML
-    private TextField cin;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField phone;
-    @FXML
-    private TextField birth_date;
-    @FXML
     private Button add_button;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private TextField txtName;
+    @FXML
+    private SplitMenuButton txtCours;
+    @FXML
+    private DatePicker pkDeadline;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void cancelAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void addAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ImportButtonAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ListAllCoursAction(ActionEvent event) {
+    }
     
 }

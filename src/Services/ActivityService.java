@@ -91,23 +91,21 @@ public class ActivityService implements IActivity{
 
     @Override
     public void update(String id, Activity new_activity) {
-//         try {
-//            String requete = "UPDATE user SET ? = ? WHERE id = ? and role = 'Student'";
-//            PreparedStatement pst = cnx.prepareStatement(requete);
-//            pst.setString(1, object);
-//            pst.setObject(2, obj);
-//            pst.setInt(3, id);
-//            String ch = pst.toString().replaceFirst("\'", "");
-//            String ch2 = ch.replaceFirst("\'", "");
-//            int pos = ch2.indexOf("UPDATE");
-//            String ch3 = ch2.substring(pos, ch2.length());
-//            pst = cnx.prepareStatement(ch3);
-//            pst.executeUpdate();
-//            System.out.println("Etudiant modifié avec succées");
-//
+//        try {
+//            String query="UPDATE `activity` SET `name`=?,`owner_id`=?,`admin_number`=?,`last_updated_by`=?,`last_updated_date`=?, `specialties`=? WHERE id=?";
+//            PreparedStatement pr = cnx.prepareStatement(query);
+//            pr.setString(1, dep.getName());
+//            pr.setInt(2, dep.getOwner_id());
+//            pr.setInt(3, dep.getAdmin_number());
+//            pr.setString(4, dep.getLast_updated_by());
+//            pr.setDate(5, dep.getLast_update_date());
+//            pr.setString(6, dep.getStringSpecialties());
+//            pr.setInt(7, dep.getId());
+//            pr.executeUpdate();
+//            System.out.println("dep updated succesfully");
 //        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
+//            ex.printStackTrace();
+//        }    
     }
 
     @Override
