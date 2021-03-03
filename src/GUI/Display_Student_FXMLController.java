@@ -68,8 +68,6 @@ public class Display_Student_FXMLController implements Initializable {
                 return new SimpleStringProperty(param.getValue().getValue().getRole());
             }
         });
-        //making new editable name text field
-        JFXTreeTableColumn<User, Button> Delete = new JFXTreeTableColumn<>("Delete");
 
         //making new editable role text field
         role.setCellFactory((TreeTableColumn<User, String> param) -> {
@@ -87,8 +85,6 @@ public class Display_Student_FXMLController implements Initializable {
                     .getValue().setRole(t.getNewValue());
             ps.editStudent(id, "role", newValue);
         });
-        
-        
 
         // name table view
         JFXTreeTableColumn<User, String> name = new JFXTreeTableColumn<>("name");
@@ -225,7 +221,7 @@ public class Display_Student_FXMLController implements Initializable {
         birth_date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<User, String> param) {
-                return new SimpleStringProperty(String.valueOf(param.getValue().getValue().getBirth_date())) ;
+                return new SimpleStringProperty(String.valueOf(param.getValue().getValue().getBirth_date()));
             }
         });
 
@@ -257,7 +253,6 @@ public class Display_Student_FXMLController implements Initializable {
             }
         });
 
-        
         List<Student> myLst;
         myLst = ps.listStudent();
         ObservableList<User> students = FXCollections.observableArrayList();
@@ -269,13 +264,12 @@ public class Display_Student_FXMLController implements Initializable {
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
-        
-        
+
         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
         DltBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
+
             //eventHandler de la button supprimer
             @Override
             public void handle(ActionEvent event) {
@@ -286,7 +280,7 @@ public class Display_Student_FXMLController implements Initializable {
                 confirmation.setTitle("Confirmation de suppression!");
                 confirmation.getDialogPane().setContent(grid2);
                 ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
-                ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Ann  = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
                 confirmation.getDialogPane().getButtonTypes().add(Confi);
                 confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
                 confirmation.setResultConverter(new Callback<ButtonType, User>() {
@@ -306,7 +300,7 @@ public class Display_Student_FXMLController implements Initializable {
                 confirmation.showAndWait();
             }
         });
-        
+
         //affichage dans AnchorPane en passant la résultat de tableview et la button de suppression
         AnchorPane.getChildren().addAll(treeview, DltBtn);
 
