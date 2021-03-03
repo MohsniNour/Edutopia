@@ -31,7 +31,8 @@ public class Add_ActivityController implements Initializable {
 
     @FXML
     private Button  btnDeadlineChooser;
-     private Label importLabel;
+    @FXML
+    private Label importLabel;
     @FXML
     private Button add_button;
     @FXML
@@ -63,7 +64,7 @@ public class Add_ActivityController implements Initializable {
         File f = fc.showOpenDialog(null);
         if (f !=null)
         {
-            importLabel.setText("Selected File" + f.getAbsolutePath());
+            importLabel.setText(f.getAbsolutePath());
         }
     }
 
