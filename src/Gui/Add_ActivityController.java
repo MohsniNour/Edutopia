@@ -5,6 +5,7 @@
  */
 package Gui;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -15,8 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
  * FXML Controller class
@@ -27,6 +31,7 @@ public class Add_ActivityController implements Initializable {
 
     @FXML
     private Button  btnDeadlineChooser;
+     private Label importLabel;
     @FXML
     private Button add_button;
     @FXML
@@ -53,6 +58,13 @@ public class Add_ActivityController implements Initializable {
 
     @FXML
     private void ImportButtonAction(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("PDF Files", "*.pdf"));
+        File f = fc.showOpenDialog(null);
+        if (f !=null)
+        {
+            importLabel.setText("Selected File" + f.getAbsolutePath());
+        }
     }
 
     @FXML
