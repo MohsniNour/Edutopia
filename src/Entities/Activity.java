@@ -36,12 +36,12 @@ public class Activity {
     public Activity() {
         this.status = "Available";
     }
-//    public Activity(String name, String id_course, String created_by) {
-//        this.name = name;
-//        this.id_course = id_course;
-//        this.created_by = created_by;
-//        this.status = "active";
-//    }
+    public Activity(String name, String id_course, String created_by) {
+        this.name = name;
+        this.id_course = id_course;
+        this.created_by = created_by;
+        this.status = "active";
+    }
 //    public Activity(String name, File work_todo, String id_course, String created_by) {
 //        this.name = name;
 //        this.work_todo = work_todo;
