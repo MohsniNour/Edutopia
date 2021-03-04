@@ -34,6 +34,7 @@ public class Activity {
     Date Uploated_date;
 
     public Activity() {
+        this.status = "Available";
     }
 //    public Activity(String name, String id_course, String created_by) {
 //        this.name = name;
@@ -55,7 +56,7 @@ public class Activity {
         this.work_todo = work_todo;
         this.id_course = id_course;
         this.created_by = created_by;
-        this.status = "active";
+        
     }
 
     public String getId() {

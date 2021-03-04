@@ -16,21 +16,21 @@ public class Test {
     
     public static void main(String[]args){
 //        File f = new File("c:\\filetest.txt");
-//        //String d1 = new Date(03-02-2021);
-//        //Date d2 = new Date(2021-02-02);
-//        
-//        Activity a2 = new Activity();
-//        a2.setName("td1");
-//        a2.setDeadline(java.sql.Date.valueOf(java.time.LocalDate.now()));
-//        a2.setWork_todo(f);
-//        a2.setId_Course("1");
-//        a2.setCreated_by("2");
-//        a2.setCreated_date(java.sql.Date.valueOf(java.time.LocalDate.now()));
+//        Activity a3 = new Activity();
+//        a3.setName("td3");
+//        a3.setDeadline(java.sql.Date.valueOf(java.time.LocalDate.now()));
+//        a3.setWork_todo(f);
+//        a3.setId_Course("5");
+//        a3.setStatus(a3.getStatus());
+//        a3.setCreated_by("8");
+//        a3.setCreated_date(java.sql.Date.valueOf(java.time.LocalDate.now()));
 //        ActivityService service = new ActivityService();
-//        System.out.println(service.getId(a2));
-//        System.out.println(service.details("1"));
-          ActivityService service = new ActivityService();
-          //System.out.println(service.details("1"));
-          service.delete("1");
+//        service.add(a3);
+        //System.out.println(service.getId(a2));
+       // System.out.println(service.details("1"));
+//          ActivityService service = new ActivityService();
+//          System.out.println(service.details("1"));
+//          service.delete("1");
+
     }
 }
