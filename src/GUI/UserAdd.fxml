@@ -12,14 +12,14 @@
         <URL value="@useradd.css" />
     </stylesheets>
    <children>
-      <TextField fx:id="name" layoutX="74.0" layoutY="72.0" promptText="First name" />
-      <Label layoutX="244.0" layoutY="21.0" prefHeight="17.0" prefWidth="56.0" text="Uder Add" />
-      <TextField fx:id="last_name" layoutX="257.0" layoutY="72.0" promptText="Last name" />
-      <TextField fx:id="phone_number" layoutX="74.0" layoutY="253.0" promptText="Phone" />
-      <TextField fx:id="email" layoutX="74.0" layoutY="213.0" promptText="e_mail" />
-      <TextField fx:id="cin" layoutX="74.0" layoutY="117.0" promptText="CIN" />
-      <TextField fx:id="birth_date" layoutX="74.0" layoutY="165.0" promptText="Birthdate" />
-      <ComboBox fx:id="role" layoutX="74.0" layoutY="294.0" prefWidth="150.0" promptText="Role" />
-      <Button fx:id="add_button" layoutX="274.0" layoutY="353.0" mnemonicParsing="false" onAction="#add_button_action" text="Add" />
+      <TextField fx:id="name" layoutX="123.0" layoutY="66.0" promptText="First name" />
+      <Label layoutX="272.0" layoutY="21.0" prefHeight="17.0" prefWidth="56.0" text="User Add" />
+      <TextField fx:id="last_name" layoutX="328.0" layoutY="66.0" promptText="Last name" />
+      <TextField fx:id="cin" layoutX="227.0" layoutY="116.0" promptText="CIN" />
+      <TextField fx:id="birth_date" layoutX="227.0" layoutY="161.0" promptText="Birthdate" />
+      <TextField fx:id="phone_number" layoutX="228.0" layoutY="208.0" promptText="Phone" />
+      <TextField fx:id="email" layoutX="228.0" layoutY="253.0" promptText="E-mail" />
+      <ComboBox fx:id="role" layoutX="228.0" layoutY="298.0" prefHeight="25.0" prefWidth="149.0" promptText="Role" />
+      <Button fx:id="add_button" layoutX="247.0" layoutY="354.0" mnemonicParsing="false" onAction="#add_button_action" prefHeight="25.0" prefWidth="106.0" text="Add" />
    </children>
 </AnchorPane>

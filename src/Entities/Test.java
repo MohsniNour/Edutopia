@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Entities;
-
 import Services.ActivityService;
 import java.io.File;
 

@@ -5,6 +5,7 @@
  */
 package Entities;
 
+import IServices.ICo_Studying;
 import java.io.File;
 
 /**
@@ -12,13 +13,20 @@ import java.io.File;
  * @author rayen
  */
 public class Co_Studying {
-    
+
     private int id;
     private String description;
     private File file;
     private String type;
     private String level;
     private int id_student;
+
+    public Co_Studying(String description, String type, String level) {
+        this.description = description;
+        this.type = type;
+        this.level = level;
+ 
+    }
 
     public int getId() {
         return id;
@@ -68,8 +76,7 @@ public class Co_Studying {
         this.id_student = id_student;
     }
 
-    public Co_Studying(int id, String description, File file, String type, String level, int id_student) {
-        this.id = id;
+    public Co_Studying(String description, File file, String type, String level, int id_student) {
         this.description = description;
         this.file = file;
         this.type = type;
@@ -79,5 +86,5 @@ public class Co_Studying {
 
     public Co_Studying() {
     }
-    
+
 }

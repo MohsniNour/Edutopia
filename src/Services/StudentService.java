@@ -53,7 +53,7 @@ public class StudentService implements IStudent {
     @Override
     public void deleteStudent(Student p) {
         try {
-            String requete = "DELETE FROM user WHERE id=?";
+            String requete = "DELETE FROM user WHERE id=? and role='Student'";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, p.getId());
@@ -67,7 +67,7 @@ public class StudentService implements IStudent {
     @Override
     public void editStudent(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE user SET ? = ? WHERE id = ?";
+            String requete = "UPDATE user SET ? = ? WHERE id = ? and role='Student'";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);
@@ -92,7 +92,7 @@ public class StudentService implements IStudent {
         List<Student> myList = new ArrayList<>();
         try {
             Statement pst = cnx.createStatement();
-            ResultSet rs = pst.executeQuery("SELECT * from user");
+            ResultSet rs = pst.executeQuery("SELECT * from user where role='Student'");
             while (rs.next()) {
                 String role = rs.getString("role");
                 String name = rs.getString("name");
