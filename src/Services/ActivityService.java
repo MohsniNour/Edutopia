@@ -15,6 +15,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,9 +55,8 @@ public class ActivityService implements IActivity{
     @Override
     public void add(Activity activity) {
          try {
-            String requete = "INSERT INTO activity (name,deadline,work_todo,id_course,created_by,ceated_date) VALUES(?,?,?,?,?,?)";
+            String requete = "INSERT INTO activity (name,work_todo,id_course,created_by,ceated_date) VALUES(?,?,?,?,?,?)";
             FileReader reader = new FileReader(activity.getWork_todo());
- 
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, activity.getName());
             pst.setDate(2, (Date) activity.getDeadline());
@@ -74,14 +75,14 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public void delete(Activity act) {
+    public void delete(String id) {
         try {
             String req ="UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"nour");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "archived");
-            ps.setString(4, act.getId());
+            ps.setString(4, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
         } catch (SQLException ex) {

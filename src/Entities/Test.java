@@ -29,5 +29,8 @@ public class Test {
 //        ActivityService service = new ActivityService();
 //        System.out.println(service.getId(a2));
 //        System.out.println(service.details("1"));
+          ActivityService service = new ActivityService();
+          //System.out.println(service.details("1"));
+          service.delete("1");
     }
 }

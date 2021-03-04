@@ -5,8 +5,13 @@
  */
 package GUI;
 
+import Entities.Activity;
+import Services.ActivityService;
 import java.io.File;
 import java.net.URL;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +24,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -40,13 +46,17 @@ public class Add_ActivityController implements Initializable {
     @FXML
     private TextField txtName;
     @FXML
-    private SplitMenuButton txtCours;
-    @FXML
     private DatePicker pkDeadline;
-
+    @FXML
+    private ComboBox<String> selectedCours= new ComboBox();
+    ObservableList<String> options = FXCollections.observableArrayList(
+            "GL",
+            "TLA",
+            "PIDEV"
+    );
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        selectedCours.setItems(options);
     }    
 
     @FXML
@@ -55,10 +65,18 @@ public class Add_ActivityController implements Initializable {
 
     @FXML
     private void addAction(ActionEvent event) {
+//        ActivityService as = new ActivityService();
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+////            Date date;
+//////            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//////            System.out.println(sqlDate);
+////            date = (Date)pkDeadline.getValue();
+//        Activity act= new Activity(txtName.getText(), selectedCours.getValue(), "nour");
+//        as.add(act);
     }
 
     @FXML
-    private void ImportButtonAction(ActionEvent event) {
+    private FileChooser ImportButtonAction(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new ExtensionFilter("PDF Files", "*.pdf"));
         File f = fc.showOpenDialog(null);
@@ -66,10 +84,8 @@ public class Add_ActivityController implements Initializable {
         {
             importLabel.setText(f.getAbsolutePath());
         }
+        return fc;
     }
 
-    @FXML
-    private void ListAllCoursAction(ActionEvent event) {
-    }
     
 }
