@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="GUI.CoStudyingAddController">
+    <stylesheets>
+        <URL value="@costudyingadd.css" />
+    </stylesheets>
+   <children>
+      <ComboBox fx:id="type" layoutX="225.0" layoutY="56.0" prefWidth="150.0" promptText="Type" />
+      <TextArea fx:id="description" layoutX="155.0" layoutY="171.0" prefHeight="95.0" prefWidth="291.0" promptText="Description" />
+      <Button fx:id="import_button" layoutX="225.0" layoutY="131.0" mnemonicParsing="false" onAction="#on_import_action" prefHeight="25.0" prefWidth="150.0" text="Import Content" />
+      <Button fx:id="add_btn" layoutX="265.0" layoutY="328.0" mnemonicParsing="false" onAction="#on_add_btn" prefHeight="25.0" prefWidth="70.0" text="Add" />
+      <ComboBox fx:id="level" layoutX="225.0" layoutY="92.0" prefWidth="150.0" promptText="Level" />
+   </children>
+</AnchorPane>

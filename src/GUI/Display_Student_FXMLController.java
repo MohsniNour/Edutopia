@@ -111,6 +111,7 @@ public class Display_Student_FXMLController implements Initializable {
                     .getValue().setName(t.getNewValue());
             ps.editStudent(id, "name", newValue);
         });
+        
 
         // last_name table view
         JFXTreeTableColumn<User, String> last_name = new JFXTreeTableColumn<>("last_name");
@@ -203,6 +204,8 @@ public class Display_Student_FXMLController implements Initializable {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
+        
+        
         //setting the new value for editable phone num text field
         phone_number.setOnEditCommit((CellEditEvent<User, String> t) -> {
             int id = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
@@ -277,19 +280,19 @@ public class Display_Student_FXMLController implements Initializable {
                 GridPane grid2 = new GridPane();
                 Label l1 = new Label("Delete Student?");
                 grid2.add(l1, 2, 2);
-                confirmation.setTitle("Confirmation de suppression!");
+                confirmation.setTitle("Detele confirmation!");
                 confirmation.getDialogPane().setContent(grid2);
                 ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
-                ButtonType Ann  = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
                 confirmation.getDialogPane().getButtonTypes().add(Confi);
-                confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+                confirmation.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
                 confirmation.setResultConverter(new Callback<ButtonType, User>() {
                     @Override
                     public User call(ButtonType param) {
                         if (param == Confi) {
                             User p = treeview.getSelectionModel().getSelectedItem().getValue();
                             ps.deleteStudent((Student) p);
-                            Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
+                            Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CANCEL);
                             cancelButton.fire();
                             initialize(url, rb);
                         }
