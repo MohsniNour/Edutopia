@@ -6,6 +6,8 @@
 package Entities;
 import Services.ActivityService;
 import java.io.File;
+import static java.lang.System.in;
+import java.util.List;
 
 /**
  *
@@ -28,9 +30,9 @@ public class Test {
 //        service.add(a3);
 //        System.out.println(service.getId(a2));
 //        System.out.println(service.details("1"));
-//          ActivityService service = new ActivityService();
-//          System.out.println(service.details("1"));
-//          service.delete("1");
+          ActivityService service = new ActivityService();
+//          System.out.println(service.display(service.listArchived()));
+          service.activate("1");
 
     }
 }

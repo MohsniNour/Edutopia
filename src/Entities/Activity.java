@@ -186,12 +186,11 @@ public class Activity {
     public void setUploated_date(Date Uploated_date) {
         this.Uploated_date = Uploated_date;
     }
-    
+
     @Override
     public String toString() {
-        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", created_by=" + created_by + ", ceated_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + '}';
+        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", comment=" + comment + ", status=" + status + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + ", Uploated_by=" + Uploated_by + ", Uploated_date=" + Uploated_date + '}'+"\n";
     }
-
 
     
 }

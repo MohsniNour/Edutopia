@@ -10,6 +10,7 @@ import IServices.IActivity;
 import Utils.DataBaseConnection;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import static java.lang.System.in;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +78,7 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public void delete(String id) {
+    public void remove(String id) {
         try {
             String req ="UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
@@ -86,6 +88,22 @@ public class ActivityService implements IActivity{
             ps.setString(4, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    @Override
+    public void activate(String id) {
+        try {
+            String req ="UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(req);
+            ps.setString(1,"nour");
+            ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            ps.setString(3, "Available");
+            ps.setString(4, id);
+            ps.executeUpdate();
+            System.out.println("activated succesfully");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -139,8 +157,56 @@ public class ActivityService implements IActivity{
     }
 
     @Override
-    public List<Activity> listAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Activity> listAvailable() {
+        
+        List<Activity> acts = new ArrayList();
+        try {
+            String query = "select name,deadline,status from activity";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if(!"Archived".equals(rs.getString("status"))) {
+                    Activity act = new Activity();
+                    act.setName(rs.getString("name"));
+                    act.setDeadline(rs.getDate("deadline"));
+                    act.setStatus(rs.getString("status"));
+                    acts.add(act);
+                }
+            } 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return acts;    
     }
-    
+
+    @Override
+    public List<Activity> listArchived() {
+        List<Activity> acts = new ArrayList();
+        try {
+            String query = "select name,deadline,status from activity";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if(!"Available".equals(rs.getString("status"))) {
+                    Activity act = new Activity();
+                    act.setName(rs.getString("name"));
+                    act.setDeadline(rs.getDate("deadline"));
+                    act.setStatus(rs.getString("status"));
+                    acts.add(act);
+                }
+            } 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return acts; 
+    }
+
+    @Override
+    public String display(List<Activity> acts) {
+        String listActivities ="";
+        for (Activity act : acts){
+            listActivities+="Activity{" + "name=" + act.getName() + ", deadline=" + act.getDeadline() + ", status=" + act.getStatus()+"\n";
+        }
+        return listActivities;
+    }
 }
