@@ -6,6 +6,7 @@
 package Entities;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +34,21 @@ public class Activity {
     Date Uploated_date;
 
     public Activity() {
+        this.status = "Available";
     }
-    
+//    public Activity(String name, String id_course, String created_by) {
+//        this.name = name;
+//        this.id_course = id_course;
+//        this.created_by = created_by;
+//        this.status = "active";
+//    }
+//    public Activity(String name, File work_todo, String id_course, String created_by) {
+//        this.name = name;
+//        this.work_todo = work_todo;
+//        this.id_course = id_course;
+//        this.created_by = created_by;
+//        this.status = "active";
+//    }
 
     public Activity(String name, Date deadline, File work_todo, String id_course, String created_by) {
         this.name = name;
@@ -42,7 +56,7 @@ public class Activity {
         this.work_todo = work_todo;
         this.id_course = id_course;
         this.created_by = created_by;
-        this.status = "active";
+        
     }
 
     public String getId() {
@@ -178,9 +192,6 @@ public class Activity {
         return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", created_by=" + created_by + ", ceated_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + '}';
     }
 
-    public void setDate(java.sql.Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     
 }

@@ -22,6 +22,7 @@ public class Start_Interface extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("CoStudyingAdd.fxml"));
+
             Scene scene = new Scene(root);
             primaryStage.setTitle("Edutpia");
             primaryStage.setScene(scene);
@@ -29,7 +30,7 @@ public class Start_Interface extends Application {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
         
     }
 

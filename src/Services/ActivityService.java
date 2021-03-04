@@ -15,6 +15,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,35 +55,35 @@ public class ActivityService implements IActivity{
     @Override
     public void add(Activity activity) {
          try {
-            String requete = "INSERT INTO activity (name,deadline,work_todo,id_course,created_by,ceated_date) VALUES(?,?,?,?,?,?)";
+            String requete = "INSERT INTO activity (name,deadline,work_todo,id_course,status,created_by,ceated_date) VALUES(?,?,?,?,?,?,?)";
             FileReader reader = new FileReader(activity.getWork_todo());
- 
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, activity.getName());
             pst.setDate(2, (Date) activity.getDeadline());
             pst.setCharacterStream(3, reader);
             pst.setString(4, activity.getId_Course());
-            pst.setString(5, activity.getCreated_by());
-            pst.setDate(6, (Date) activity.getCreated_date());
+            pst.setString(5, activity.getStatus());
+            pst.setString(6, activity.getCreated_by());
+            pst.setDate(7, (Date) activity.getCreated_date());
             pst.executeUpdate();
-            
+            System.out.println("Added succesfully");
         } catch (SQLException excep) {
             System.err.println(excep.getMessage());
         } catch (FileNotFoundException excep) {
-            Logger.getLogger(ActivityService.class.getName()).log(Level.SEVERE, null, excep);
+            excep.printStackTrace();
         }
 
     }
 
     @Override
-    public void delete(Activity act) {
+    public void delete(String id) {
         try {
             String req ="UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"nour");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "archived");
-            ps.setString(4, act.getId());
+            ps.setString(4, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
         } catch (SQLException ex) {
@@ -118,13 +120,11 @@ public class ActivityService implements IActivity{
             ps.setString(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                if(!"archived".equals(rs.getString("status"))) {
                     check = true;
                     act.setId(rs.getString("id"));
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
-                }
             }
         } catch (SQLException ex) { 
             ex.printStackTrace();
