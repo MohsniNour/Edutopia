@@ -82,7 +82,7 @@ public class ActivityService implements IActivity{
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"nour");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            ps.setString(3, "archived");
+            ps.setString(3, "Archived");
             ps.setString(4, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
@@ -93,21 +93,23 @@ public class ActivityService implements IActivity{
 
     @Override
     public void update(String id, Activity new_activity) {
-//        try {
-//            String query="UPDATE `activity` SET `name`=?,`owner_id`=?,`admin_number`=?,`last_updated_by`=?,`last_updated_date`=?, `specialties`=? WHERE id=?";
-//            PreparedStatement pr = cnx.prepareStatement(query);
-//            pr.setString(1, dep.getName());
-//            pr.setInt(2, dep.getOwner_id());
-//            pr.setInt(3, dep.getAdmin_number());
-//            pr.setString(4, dep.getLast_updated_by());
-//            pr.setDate(5, dep.getLast_update_date());
-//            pr.setString(6, dep.getStringSpecialties());
-//            pr.setInt(7, dep.getId());
-//            pr.executeUpdate();
-//            System.out.println("dep updated succesfully");
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }    
+        try {
+            String query="UPDATE `activity` SET `name`=?,`deadline`=?,`work_todo`=?,`last_updated_by`=?,`last_updated_date`=? WHERE id=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            FileReader reader = new FileReader(new_activity.getWork_todo());
+            ps.setString(1, new_activity.getName());
+            ps.setDate(2, (Date) new_activity.getDeadline());
+            ps.setCharacterStream(3, reader);
+            ps.setString(4, new_activity.getLast_updated_by());
+            ps.setDate(5, (Date)new_activity.getLast_updated_Date());
+            ps.setString(6, id);
+            ps.executeUpdate();
+            System.out.println("Updated succesfully");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ActivityService.class.getName()).log(Level.SEVERE, null, ex);
+        }    
     }
 
     @Override
