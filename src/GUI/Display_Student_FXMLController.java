@@ -36,9 +36,16 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import Services.StudentService;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -50,6 +57,14 @@ public class Display_Student_FXMLController implements Initializable {
     @FXML
     private AnchorPane AnchorPane;
     StudentService ps;
+    @FXML
+    private StackPane StackPane;
+    @FXML
+    private Button retun;
+    @FXML
+    private StackPane StackPane1;
+    @FXML
+    private Button email;
 
     /**
      * Initializes the controller class.
@@ -111,7 +126,6 @@ public class Display_Student_FXMLController implements Initializable {
                     .getValue().setName(t.getNewValue());
             ps.editStudent(id, "name", newValue);
         });
-        
 
         // last_name table view
         JFXTreeTableColumn<User, String> last_name = new JFXTreeTableColumn<>("last_name");
@@ -204,8 +218,7 @@ public class Display_Student_FXMLController implements Initializable {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
-        
-        
+
         //setting the new value for editable phone num text field
         phone_number.setOnEditCommit((CellEditEvent<User, String> t) -> {
             int id = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
@@ -305,8 +318,27 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         //affichage dans AnchorPane en passant la résultat de tableview et la button de suppression
-        AnchorPane.getChildren().addAll(treeview, DltBtn);
+        StackPane.getChildren().addAll(DltBtn);
+        StackPane1.getChildren().addAll(treeview);
 
+    }
+
+    @FXML
+    private void on_return_button(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Add_Student_FXML.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void on_email_button(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("SendMail.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
 }

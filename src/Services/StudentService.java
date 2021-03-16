@@ -32,16 +32,15 @@ public class StudentService implements IStudent {
     @Override
     public void addStudent(Student p) {
         try {
-            String requete = "INSERT INTO user (role,name,last_name,cin,email,phone_number,birth_date) VALUES(?,?,?,?,?,?,?)";
-
+            String requete = "INSERT INTO user (role,name,last_name,cin,email,phone_number,birth_date) VALUES('Student',?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setString(1, p.getRole());
-            pst.setString(2, p.getName());
-            pst.setString(3, p.getLast_name());
-            pst.setInt(4, p.getCin());
-            pst.setString(5, p.getEmail());
-            pst.setInt(6, p.getPhone_number());
-            pst.setDate(7, (Date) p.getBirth_date());
+
+            pst.setString(1, p.getName());
+            pst.setString(2, p.getLast_name());
+            pst.setInt(3, p.getCin());
+            pst.setString(4, p.getEmail());
+            pst.setInt(5, p.getPhone_number());
+            pst.setDate(6, (Date) p.getBirth_date());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -92,7 +91,7 @@ public class StudentService implements IStudent {
         List<Student> myList = new ArrayList<>();
         try {
             Statement pst = cnx.createStatement();
-            ResultSet rs = pst.executeQuery("SELECT * from user where role='Student'");
+            ResultSet rs = pst.executeQuery("SELECT * FROM user WHERE role='Student'");
             while (rs.next()) {
                 String role = rs.getString("role");
                 String name = rs.getString("name");

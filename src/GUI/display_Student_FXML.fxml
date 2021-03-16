@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Display_Student_FXMLController">
-    <stylesheets>
-        <URL value="@display_student_fxml.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Display_Student_FXMLController">
    <children>
-      <AnchorPane fx:id="AnchorPane" prefHeight="400.0" prefWidth="600.0" />
+      <StackPane fx:id="StackPane" layoutX="954.0" layoutY="588.0" prefHeight="71.0" prefWidth="200.0" styleClass="search-button" stylesheets="@style.css" />
+      <Button fx:id="retun" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#on_return_button" prefHeight="35.0" prefWidth="124.0" styleClass="search-button" stylesheets="@style.css" text="Return" textFill="WHITE" />
+      <StackPane fx:id="StackPane1" layoutX="103.0" layoutY="101.0" prefHeight="469.0" prefWidth="1051.0" stylesheets="@style.css" />
+      <Label layoutX="83.0" layoutY="607.0" styleClass="search-box" stylesheets="@style.css" text="PS :Double Click to edit any information" textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Italic" size="19.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
+      <HBox alignment="CENTER" layoutX="443.0" layoutY="6.0" prefHeight="79.0" prefWidth="394.0">
+         <children>
+            <Label prefHeight="49.0" prefWidth="156.0" text="Manage">
+               <font>
+                  <Font name="Cambria Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label text="Students">
+               <font>
+                  <Font name="Cambria" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button fx:id="email" layoutX="675.0" layoutY="588.0" mnemonicParsing="false" onAction="#on_email_button" prefHeight="71.0" prefWidth="206.0" styleClass="search-button" stylesheets="@style.css" text="Send E-mail" textFill="WHITE" />
    </children>
 </AnchorPane>

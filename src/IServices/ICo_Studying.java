@@ -7,6 +7,7 @@ package IServices;
 
 import Entities.Co_Studying;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,6 +16,8 @@ import java.util.List;
 public interface ICo_Studying {
     public void addCostudying(Co_Studying p);
     public void deleteCostudying(Co_Studying p);
-    public void editCostudying(int id, String object, Object obj);
-    public List<Co_Studying> listStudent();
+    public void editCostudying(int id, String object, Object obj) ;
+    public ObservableList<Co_Studying> getCostudyings();
+    public List<Co_Studying> getListCo_studying();
+    public Co_Studying FindCo_Studying(int id);
 }

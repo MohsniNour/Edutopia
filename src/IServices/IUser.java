@@ -13,5 +13,5 @@ import Entities.User;
  */
 public interface IUser {
     public void addUser(User u);
-   
+    public User getUser(int id);
 }

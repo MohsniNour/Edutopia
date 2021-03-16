@@ -17,21 +17,20 @@ import javafx.stage.Stage;
  * @author Sabrina
  */
 public class Start_Interface extends Application {
-
+    
+    public static final String CURRENCY = "$";
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("CoStudyingAdd.fxml"));
-
+            Parent root = FXMLLoader.load(getClass().getResource("CoStudyingFront.fxml"));
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Edutpia");
+            primaryStage.setTitle("Edutopia Desktop App");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        
     }
 
     /* @param
