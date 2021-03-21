@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="471.0" prefWidth="784.0" style="-fx-background-color: FEE1B4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumController">
+    <stylesheets>
+        <URL value="@forum.css" />
+    </stylesheets>
+   <children>
+      <Label alignment="CENTER" layoutX="45.0" layoutY="36.0" prefHeight="36.0" prefWidth="285.0" style="-fx-background-color: E46C56;" styleClass="chosen-fruit-card" stylesheets="@style.css" text="Gestion des Forum">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="135.0" text="Sujet Forum" />
+      <TextField fx:id="txtSubject" layoutX="126.0" layoutY="131.0" prefHeight="25.0" prefWidth="200.0" styleClass="add-btn" stylesheets="@style.css" />
+      <Label layoutX="48.0" layoutY="92.0" text="Cours" />
+      <TableView fx:id="TableView" layoutX="84.0" layoutY="236.0" prefHeight="197.0" prefWidth="617.0" styleClass="transparent" stylesheets="@style.css">
+        <columns>
+          <TableColumn fx:id="idSubject" prefWidth="620.0" text="Sujet Forum" />
+            <TableColumn fx:id="id" prefWidth="76.0" text="Id" />
+        </columns>
+      </TableView>
+      <Button fx:id="add_button" layoutX="66.0" layoutY="176.0" mnemonicParsing="false" onAction="#addAction" prefHeight="36.0" prefWidth="83.0" styleClass="add-btn" stylesheets="@style.css" text="Ajouter" textFill="#04ae43" />
+      <Button fx:id="cancelButton" layoutX="176.0" layoutY="176.0" mnemonicParsing="false" onAction="#updateAction" prefHeight="36.0" prefWidth="83.0" styleClass="add-btn" stylesheets="@style.css" text="Modifier" textFill="#ffaa00" />
+      <Button layoutX="285.0" layoutY="176.0" mnemonicParsing="false" onAction="#removeButton" prefHeight="36.0" prefWidth="83.0" styleClass="add-btn" stylesheets="@style.css" text="Supprimer" textFill="#fc0202" />
+      <Button layoutX="493.0" layoutY="170.0" mnemonicParsing="false" onAction="#showComment" prefHeight="36.0" prefWidth="271.0" styleClass="add-btn" stylesheets="@style.css" text=" Consulter la liste des commentaires disponibles" />
+      <Label fx:id="CourseName" layoutX="192.0" layoutY="92.0" />
+      <Button fx:id="backButton" layoutX="669.0" layoutY="24.0" mnemonicParsing="false" onAction="#BackAction" prefHeight="36.0" prefWidth="83.0" styleClass="add-btn" stylesheets="@style.css" text="Retourner" />
+      <Button layoutX="493.0" layoutY="113.0" mnemonicParsing="false" onAction="#ArchivedListCommentAction" prefHeight="36.0" prefWidth="271.0" styleClass="add-btn" stylesheets="@style.css" text="Consulter la liste des commentaires archivés" />
+   </children>
+</AnchorPane>

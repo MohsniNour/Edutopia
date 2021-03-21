@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #161616 #161616;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.List_ActivityController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #161616 #161616;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.List_Activity_UserController">
    <children>
       <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" prefHeight="520.0" prefWidth="256.0" style="-fx-background-color: #161616;">
          <children>
@@ -46,42 +46,6 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DepartmentAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Departement" textFill="#e7e5e5">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/baseline_account_balance_white_18dp.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Classe" textFill="#e7e5e5">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/baseline_groups_white_18dp.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -203,11 +167,6 @@
          <children>
             <Pane fx:id="pnl_abonnement" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Button fx:id="btn_ajout" layoutX="599.0" layoutY="478.0" mnemonicParsing="false" onAction="#ajouter_Cours" prefHeight="32.0" prefWidth="150.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Ajouter une activité" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="CourseName" layoutX="46.0" layoutY="61.0" prefHeight="32.0" prefWidth="482.0" textFill="#ee4545">
                      <font>
                         <Font name="System Bold" size="22.0" />
@@ -230,17 +189,12 @@
                       <TableColumn fx:id="Deadline" minWidth="0.0" prefWidth="226.0" text="Date limite" />
                     </columns>
                   </TableView>
-                  <Button layoutX="46.0" layoutY="478.0" mnemonicParsing="false" onAction="#DetailsAction" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: EE4545;" text="Consulter l'activité" textFill="WHITE">
+                  <Button layoutX="331.0" layoutY="478.0" mnemonicParsing="false" onAction="#DetailsAction" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: EE4545;" text="Consulter l'activité" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="217.0" layoutY="478.0" mnemonicParsing="false" onAction="#ListWork_DoneAction" prefHeight="32.0" prefWidth="230.0" style="-fx-background-color: EE4545;" text="Consulter la liste des travails rendus" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="463.0" layoutY="478.0" mnemonicParsing="false" onAction="#removeAction" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Terminer" textFill="WHITE">
+                  <Button layoutX="516.0" layoutY="478.0" mnemonicParsing="false" onAction="#ListWork_DoneAction" prefHeight="32.0" prefWidth="230.0" style="-fx-background-color: EE4545;" text="Consulter la liste des travails rendus" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
@@ -249,13 +203,6 @@
                      <font>
                         <Font size="13.0" />
                      </font>
-                     <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Icons/baseline_search_off_black_36dp.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
                   </Button>
                   <Button layoutX="32.0" layoutY="14.0" mnemonicParsing="false" onAction="#BackAction" prefHeight="17.0" prefWidth="30.0" style="-fx-background-color: transparent;" styleClass="button4" textFill="WHITE">
                      <font>
@@ -270,6 +217,11 @@
                      </graphic>
                   </Button>
                   <TextField fx:id="txtSearch" layoutX="267.0" layoutY="132.0" prefHeight="29.0" prefWidth="381.0" promptText="rechercher" style="-fx-border-color: #161616;" />
+                  <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="705.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_search_off_black_36dp.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>

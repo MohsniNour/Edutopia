@@ -11,10 +11,7 @@ import Services.ActivityService;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +41,7 @@ import javafx.stage.Stage;
  *
  * @author ADMIN
  */
-public class List_ActivityController implements Initializable {
+public class List_Activity_UserController implements Initializable {
 
     @FXML
     private VBox vboxdrawer;
@@ -57,23 +54,21 @@ public class List_ActivityController implements Initializable {
     @FXML
     private Pane pnl_abonnement;
     @FXML
-    private Button btn_ajout;
+    private Label CourseName;
     @FXML
     private TableView<Activity> TableView;
     @FXML
-    private Label CourseName;
+    private TableColumn<Activity, String> Name;
+    @FXML
+    private TableColumn<Activity, String> Deadline;
+    @FXML
+    private TextField txtSearch;
     private Path to;
     private Path from;
     private Path fromUpdated;
     private Path removePath;
     File file = null;
     String id_Course;
-    @FXML
-    private TableColumn<Activity, String> Name;
-    @FXML
-    private TableColumn<Activity, Date> Deadline;
-    @FXML
-    private TextField txtSearch;
 
     /**
      * Initializes the controller class.
@@ -81,8 +76,8 @@ public class List_ActivityController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
-
+    }   
+    
     void initData(Course c) {
         CourseName.setText(c.getName());
         UserName.setText(c.getName());
@@ -100,50 +95,9 @@ public class List_ActivityController implements Initializable {
     }
 
     @FXML
-    private void ajouter_Cours(ActionEvent event) {
-    }
-
-    @FXML
-    private void DetailsAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void ListWork_DoneAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void removeAction(ActionEvent event) throws IOException {
-        if (TableView.getSelectionModel().getSelectedItems().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Attention !");
-            alert.setHeaderText(null);
-            alert.setContentText("selectionnez une activité ");
-            alert.showAndWait();
-        } else {
-            Activity act = TableView.getSelectionModel().getSelectedItem();
-            ActivityService as = new ActivityService();
-            System.out.println(act.getId());
-            from = Paths.get(act.getWork_todo());
-            File f = new File(from.toString());
-            removePath = Paths.get("src/RemovedFiles/" + f.getName());
-            Files.copy(from, removePath);
-            Files.delete(from);
-            as.remove(act.getId(), removePath.toString());
-            showActivities();
-        }
-    }
-
-    @FXML
     private void HomeAction(ActionEvent event) {
     }
 
-    @FXML
-    private void DepartmentAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void ClassAction(ActionEvent event) {
-    }
 
     @FXML
     private void CourseAction(ActionEvent event) {
@@ -151,9 +105,8 @@ public class List_ActivityController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course_User.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Liste des cours");
             List_CourseController controller = loader.getController();
             stage.show();
         } catch (IOException e) {
@@ -185,6 +138,7 @@ public class List_ActivityController implements Initializable {
     private void DisconnectionAction(ActionEvent event) {
     }
 
+
     @FXML
     private void SearchAction(ActionEvent event) throws SQLException {
         if (txtSearch.getText().isEmpty()) {
@@ -205,6 +159,15 @@ public class List_ActivityController implements Initializable {
     }
 
     @FXML
+    private void DetailsAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ListWork_DoneAction(ActionEvent event) {
+    }
+
+
+    @FXML
     private void RefreshAction(ActionEvent event) {
         showActivities();
     }
@@ -215,14 +178,13 @@ public class List_ActivityController implements Initializable {
         Stage oldStage = (Stage) node.getScene().getWindow();
         oldStage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course_User.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Liste des cours");
             stage.show();
         } catch (IOException e) {
             System.err.println(String.format("Error: %s", e.getMessage()));
         }
     }
-
+    
 }

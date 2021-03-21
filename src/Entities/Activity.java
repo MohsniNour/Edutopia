@@ -7,7 +7,7 @@ package Entities;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -19,10 +19,10 @@ public class Activity {
     String id;
     String name;
     Date deadline;
-    File work_todo;
-    File work_done;
+    String work_todo;
+    String work_done;
     String id_course;
-    List<Comment> comment;
+    List<Commentt> comment;
     String status;
     String created_by;
     Date created_date;
@@ -50,12 +50,14 @@ public class Activity {
 //        this.status = "active";
 //    }
 
-    public Activity(String name, Date deadline, File work_todo, String id_course, String created_by) {
+    public Activity(String name, Date deadline, String work_todo, String id_course, String created_by, Date created_date) {
         this.name = name;
         this.deadline = deadline;
         this.work_todo = work_todo;
         this.id_course = id_course;
         this.created_by = created_by;
+        this.created_date = created_date;
+        this.status = "Available";
         
     }
 
@@ -83,21 +85,39 @@ public class Activity {
         this.deadline = deadline;
     }
 
-    public File getWork_todo() {
+    public String getWork_todo() {
         return work_todo;
     }
 
-    public void setWork_todo(File work_todo) {
+    public void setWork_todo(String work_todo) {
         this.work_todo = work_todo;
     }
 
-    public File getWork_done() {
+    public String getWork_done() {
         return work_done;
     }
 
-    public void setWork_done(File work_done) {
+    public void setWork_done(String work_done) {
         this.work_done = work_done;
     }
+
+    public String getId_course() {
+        return id_course;
+    }
+
+    public void setId_course(String id_course) {
+        this.id_course = id_course;
+    }
+
+    public List<Commentt> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Commentt> comment) {
+        this.comment = comment;
+    }
+
+    
 
     public String getId_Course() {
         return id_course;
@@ -155,14 +175,6 @@ public class Activity {
         this.archived_Date = archived_Date;
     }
 
-    public String getId_course() {
-        return id_course;
-    }
-
-    public void setId_course(String id_course) {
-        this.id_course = id_course;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -175,16 +187,8 @@ public class Activity {
         return Uploated_by;
     }
 
-    public void setUploated_by(String Uploated_by) {
-        this.Uploated_by = Uploated_by;
-    }
-
     public Date getUploated_date() {
         return Uploated_date;
-    }
-
-    public void setUploated_date(Date Uploated_date) {
-        this.Uploated_date = Uploated_date;
     }
 
     @Override
@@ -194,3 +198,4 @@ public class Activity {
 
     
 }
+

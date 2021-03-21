@@ -21,16 +21,14 @@ public class Start_Interface extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("CoStudyingAdd.fxml"));
-
+            Parent root = FXMLLoader.load(getClass().getResource("List_Course_User.fxml"));
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Edutpia");
+            primaryStage.setTitle("Liste des cours");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
         
     }
 

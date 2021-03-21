@@ -17,21 +17,35 @@ public class Forum {
     
     String id;
     String subject;
+    List<Commentt> comment;
+    String status;
     String id_course;
-    List<Comment> comment;
     String created_by;
-    Date ceated_date;
+    Date created_date;
     String last_updated_by;
     Date last_updated_Date;
     String archived_by;
     Date archived_Date;
 
-    public Forum(String subject, String id_course, List<Comment> comment, String created_by, Date ceated_date, String last_updated_by, Date last_updated_Date, String archived_by, Date archived_Date) {
+    public Forum() {
+        this.status = "Available" ;
+    }
+
+    public Forum(String subject, String id_course, String created_by, Date created_date) {
+        this.subject = subject;
+        this.id_course = id_course;
+        this.created_by = created_by;
+        this.created_date = created_date;
+        this.status = "Available" ;
+    }
+    
+
+    public Forum(String subject, String id_course, List<Commentt> comment, String created_by, Date created_date, String last_updated_by, Date last_updated_Date, String archived_by, Date archived_Date) {
         this.subject = subject;
         this.id_course = id_course;
         this.comment = comment;
         this.created_by = created_by;
-        this.ceated_date = ceated_date;
+        this.created_date = created_date;
         this.last_updated_by = last_updated_by;
         this.last_updated_Date = last_updated_Date;
         this.archived_by = archived_by;
@@ -62,12 +76,20 @@ public class Forum {
         this.id_course = id_course;
     }
 
-    public List<Comment> getComment() {
+    public List<Commentt> getComment() {
         return comment;
     }
 
-    public void setComment(List<Comment> comment) {
+    public void setComment(List<Commentt> comment) {
         this.comment = comment;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getCreated_by() {
@@ -78,13 +100,15 @@ public class Forum {
         this.created_by = created_by;
     }
 
-    public Date getCeated_date() {
-        return ceated_date;
+    public Date getCreated_date() {
+        return created_date;
     }
 
-    public void setCeated_date(Date ceated_date) {
-        this.ceated_date = ceated_date;
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
     }
+
+    
 
     public String getLast_updated_by() {
         return last_updated_by;
@@ -120,7 +144,7 @@ public class Forum {
 
     @Override
     public String toString() {
-        return "Forum{" + "subject=" + subject + ", id_course=" + id_course + ", comment=" + comment + ", created_by=" + created_by + ", ceated_date=" + ceated_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + '}';
+        return "Forum{" + "subject=" + subject + ", id_course=" + id_course + ", comment=" + comment + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + '}'+"\n";
     }
     
     

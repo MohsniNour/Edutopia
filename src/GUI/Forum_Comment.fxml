@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="dislikeButton" onMouseClicked="#ClickedOnTable" prefHeight="463.0" prefWidth="614.0" style="-fx-background-color: FEE1B4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Forum_CommentController">
+    <stylesheets>
+        <URL value="@forum_comment.css" />
+    </stylesheets>
+   <children>
+      <Label alignment="CENTER" layoutX="127.0" layoutY="20.0" prefHeight="34.0" prefWidth="335.0" style="-fx-background-color: E46C56;" styleClass="chosen-fruit-card" stylesheets="@style.css" text="La liste des commentaires">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="80.0" text="Sujet Forum : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="subjectForum" layoutX="175.0" layoutY="81.0" prefHeight="17.0" prefWidth="370.0" />
+      <TableView fx:id="TableView" layoutX="10.0" layoutY="132.0" prefHeight="200.0" prefWidth="591.0" styleClass="transparent" stylesheets="@style.css">
+        <columns>
+          <TableColumn fx:id="contentComment" prefWidth="450.0" style="-fx-background-color: E46C56;" text="Commentaire" />
+            <TableColumn fx:id="likesComment" maxWidth="448.0" prefWidth="64.0" style="-fx-background-color: E46C56;" text="J'aime" />
+            <TableColumn fx:id="dislikesComment" maxWidth="448.0" prefWidth="77.0" style="-fx-background-color: E46C56;" text="J'aime pas" />
+            <TableColumn fx:id="idComment" maxWidth="448.0" prefWidth="132.0" text="id" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtContent" layoutX="9.0" layoutY="349.0" prefHeight="25.0" prefWidth="451.0" />
+      <Button layoutX="474.0" layoutY="349.0" mnemonicParsing="false" onAction="#addComment" prefHeight="25.0" prefWidth="130.0" styleClass="add-btn" stylesheets="@style.css" text="Ajouter Commentaire" />
+      <Button fx:id="updateButton" layoutX="42.0" layoutY="397.0" mnemonicParsing="false" onAction="#updateComment" prefHeight="34.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@style.css" text="Modifier" />
+      <Button fx:id="deleteButton" layoutX="160.0" layoutY="397.0" mnemonicParsing="false" onAction="#removeComment" prefHeight="34.0" prefWidth="75.0" styleClass="add-btn" text="Archiver">
+         <stylesheets>
+            <URL value="@list_archived_forum.css" />
+            <URL value="@style.css" />
+         </stylesheets></Button>
+      <Button layoutX="519.0" layoutY="20.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="34.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@style.css" text="Retourner" />
+      <Button fx:id="LikeButton" layoutX="405.0" layoutY="397.0" mnemonicParsing="false" onAction="#LikeButton" prefHeight="34.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@style.css" text="J'aime" />
+      <Button layoutX="508.0" layoutY="397.0" mnemonicParsing="false" onAction="#dislikeAction" prefHeight="34.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@style.css" text="J'aime pas" />
+      <Label layoutX="389.0" layoutY="80.0" text="Nombre commentaires">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="nbrComment" layoutX="554.0" layoutY="82.0" />
+   </children>
+</AnchorPane>

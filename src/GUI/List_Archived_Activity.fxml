@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="391.0" prefWidth="682.0" style="-fx-background-color: FEE1B4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.List_Archived_ActivityController">
+    <stylesheets>
+        <URL value="@list_archived_activity.css" />
+    </stylesheets>
+   <children>
+      <Label alignment="CENTER" layoutX="109.0" layoutY="25.0" prefHeight="43.0" prefWidth="422.0" style="-fx-background-color: E46C56;" styleClass="chosen-fruit-card" stylesheets="@style.css" text="Liste des activités terminées">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="29.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TableView" layoutX="51.0" layoutY="131.0" prefHeight="238.0" prefWidth="593.0" styleClass="transparent" stylesheets="@style.css">
+         <columns>
+            <TableColumn fx:id="idName" prefWidth="458.0" text="Nom activité" />
+            <TableColumn fx:id="idDeadline" prefWidth="134.0" text="date limite" />
+         </columns>
+      </TableView>
+      <Button layoutX="584.0" layoutY="34.0" mnemonicParsing="false" onAction="#backAction" prefHeight="25.0" prefWidth="72.0" styleClass="add-btn" stylesheets="@style.css" text="Retourner" />
+      <Button layoutX="548.0" layoutY="92.0" mnemonicParsing="false" onAction="#ActivateAction" prefHeight="25.0" prefWidth="72.0" styleClass="add-btn" stylesheets="@style.css" text="Activer" textFill="#3bc66b" />
+      <Label layoutX="51.0" layoutY="96.0" text="Cours" />
+      <Label fx:id="CourseName" layoutX="128.0" layoutY="96.0" prefHeight="17.0" prefWidth="266.0" />
+   </children>
+</AnchorPane>
