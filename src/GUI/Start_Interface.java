@@ -17,7 +17,8 @@ import javafx.stage.Stage;
  * @author Sabrina
  */
 public class Start_Interface extends Application {
-
+    
+    public static final String CURRENCY = "$";
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -29,7 +30,6 @@ public class Start_Interface extends Application {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
     }
 
     /* @param

@@ -11,7 +11,9 @@ import Utils.DataBaseConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -40,11 +42,40 @@ public class UserService implements IUser {
             pst.setDate(7, (Date) u.getBirth_date());
             pst.executeUpdate();
 
-           
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
 
+    }
+
+    @Override
+    public User getUser(int id) {
+        User p = new User();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from user WHERE id=" + id + "");
+
+            while (rs.next()) {
+                int cin = rs.getInt("cin");
+                String first_name = rs.getString("name");
+                String last_name = rs.getString("last_name");
+                String role = rs.getString("role");
+                String email = rs.getString("email");
+                p.setId(id);
+                p.setCin(cin);
+                p.setName(first_name);
+                p.setLast_name(last_name);
+                p.setRole(role);
+                p.setEmail(email);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return p;
     }
 
 }
