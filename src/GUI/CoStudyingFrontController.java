@@ -10,7 +10,8 @@ import Entities.Rating;
 import Services.Co_StudyingService;
 import static GUI.CoStudyingItemController.id_item;
 import Services.RatingService;
-import java.io.File;
+import Utils.Config;
+import Utils.Helpers;
 import java.io.FileNotFoundException;
 import javafx.geometry.Insets;
 import java.io.IOException;
@@ -25,6 +26,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -37,6 +41,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -68,6 +73,12 @@ public class CoStudyingFrontController implements Initializable {
     @FXML
     private HBox hbox_data;
     @FXML
+    private Button download_btn;
+    @FXML
+    private Button rate_btn;
+    @FXML
+    private Label owner;
+    @FXML
     private ComboBox<String> rating = new ComboBox();
     ObservableList<String> option = FXCollections.observableArrayList(
             "1",
@@ -80,10 +91,6 @@ public class CoStudyingFrontController implements Initializable {
             "8",
             "9"
     );
-    @FXML
-    private Button rate_btn;
-    @FXML
-    private Label owner;
 
     Co_StudyingService cs = new Co_StudyingService();
     Co_Studying co = new Co_Studying();
@@ -184,7 +191,7 @@ public class CoStudyingFrontController implements Initializable {
             description.setText(co.getDescription());
             type.setText(co.getType());
             level.setText(co.getLevel());
-            owner.setText(co.getId_student().getName()+" "+co.getId_student().getLast_name());
+            owner.setText(co.getId_student().getName() + " " + co.getId_student().getLast_name());
         }
 
     }
@@ -239,10 +246,12 @@ public class CoStudyingFrontController implements Initializable {
         int rate = Integer.parseInt(rating.getValue());
         Rating r = new Rating(id_item, Integer.parseInt(rating.getValue()));
         rs.addRating(r);
-        Co_Studying co = cs.FindCo_Studying(id_item);
-        int rate2 = co.getRating() + rate;
-        int new_rate = rate2 / 2;
-        cs.editCostudying(id_item, "rating", new_rate);
+        int avg = rs.getAvgRating(id_item);
+//        Co_Studying co = cs.FindCo_Studying(id_item);
+//        int rate2 = co.getRating() + rate;
+//        int new_rate = rate2 / 2;
+//        cs.editCostudying(id_item, "rating", new_rate);
+        cs.editCostudying(id_item, "rating", avg);
         load();
 
     }
@@ -282,6 +291,35 @@ public class CoStudyingFrontController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void download_action(MouseEvent event) {
+        if (id_item != 0) {
+            Co_StudyingService p = new Co_StudyingService();
+            Co_Studying co = new Co_Studying();
+            co = p.FindCo_Studying(id_item);
+            String fileName = co.getFile();
+            Helpers.openWebpage(Config.BASE_URL2 + fileName);
+        }
+    }
+
+    @FXML
+    private void back_action(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("CoStudyingAdd.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void main_menu_clicked(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Forum.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
 }

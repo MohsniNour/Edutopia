@@ -7,6 +7,7 @@ package GUI;
 
 import Entities.Co_Studying;
 import Services.Co_StudyingService;
+import Utils.Helpers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -112,19 +113,22 @@ public class CoStudyingAddController implements Initializable {
         fileChooser.addChoosableFileFilter(filter);
         int result = fileChooser.showSaveDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-
-            s = path;
+            this.selectedFile = fileChooser.getSelectedFile();
+            //String path = selectedFile.getAbsolutePath();
+            //s = path;
         } else if (result == JFileChooser.CANCEL_OPTION) {
             System.out.println("Insert a file please");
         }
     }
 
+    File selectedFile = null;
+
     @FXML
     private void on_add_btn(ActionEvent event) {
         Co_StudyingService ss = new Co_StudyingService();
-        Co_Studying p = new Co_Studying(description.getText(), type.getValue().toString(), level.getValue().toString());
+        String fileName = "";
+        fileName = Helpers.uploadFile(selectedFile);
+        Co_Studying p = new Co_Studying(description.getText(), fileName, type.getValue().toString(), level.getValue().toString());
         ss.addCostudying(p);
         showCostudying();
 

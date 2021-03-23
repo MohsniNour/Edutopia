@@ -9,20 +9,14 @@ import Entities.Co_Studying;
 import Entities.User;
 import IServices.ICo_Studying;
 import Utils.DataBaseConnection;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import GUI.CoStudyingAddController;
-import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -45,18 +39,15 @@ public class Co_StudyingService implements ICo_Studying {
         try {
             String requete = "INSERT INTO co_studying (description,file,type,niveau) VALUES(?,?,?,?)";
             String s = CoStudyingAddController.s;
-            InputStream is = new FileInputStream(new File(s));
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, p.getDescription());
-            pst.setBlob(2, is);
+            pst.setString(2, p.getFile());
             pst.setString(3, p.getType());
             pst.setString(4, p.getLevel());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Co_StudyingService.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -128,23 +119,23 @@ public class Co_StudyingService implements ICo_Studying {
     public List<Co_Studying> getListCo_studying() {
         List<Co_Studying> myList = new ArrayList<>();
         try {
+           
             Statement pst = cnx.createStatement();
-            ResultSet rs = pst.executeQuery("SELECT * from co_studying");
-
+            ResultSet rs;
+            rs = pst.executeQuery("SELECT *FROM co_studying");
             while (rs.next()) {
                 String type = rs.getString("type");
                 String description = rs.getString("description");
                 String level = rs.getString("niveau");
-                //User student = (User) rs.getObject("id_student");
                 int rating = rs.getInt("rating");
-
+                String file = rs.getString("file");
                 User u = new User();
                 UserService us = new UserService();
                 u.setId(rs.getInt("id_student"));
                 User u1 = us.getUser(u.getId());
 
                 u.setId(rs.getInt("id"));
-                Co_Studying p = new Co_Studying(description, type, level, u1, rating);
+                Co_Studying p = new Co_Studying(description, type, file, level, u1, rating);
                 p.setId(rs.getInt("id"));
                 myList.add(p);
             }
@@ -163,7 +154,7 @@ public class Co_StudyingService implements ICo_Studying {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from co_studying WHERE id=" + id + "");
+            ResultSet rs = pst.executeQuery("SELECT * FROM co_studying WHERE id=" + id + "");
 
             while (rs.next()) {
 
@@ -171,9 +162,11 @@ public class Co_StudyingService implements ICo_Studying {
                 UserService us = new UserService();
                 u.setId(rs.getInt("id_student"));
                 User u1 = us.getUser(u.getId());
+
                 String type = rs.getString("type");
                 String description = rs.getString("description");
                 String level = rs.getString("niveau");
+                String file = rs.getString("file");
                 int rating = rs.getInt("rating");
                 p.setId_student(u1);
                 p.setId(id);
@@ -181,6 +174,7 @@ public class Co_StudyingService implements ICo_Studying {
                 p.setDescription(description);
                 p.setLevel(level);
                 p.setRating(rating);
+                p.setFile(file);
 
             }
         } catch (SQLException ex) {

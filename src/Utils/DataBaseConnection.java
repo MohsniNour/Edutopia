@@ -14,12 +14,12 @@ import java.sql.SQLException;
  * @author ADMIN
  */
 public class DataBaseConnection {
-    
+
     private Connection connection;
     private static DataBaseConnection database;
 
     public DataBaseConnection() {
-         try {
+        try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/edutopia", "root", "");
             System.out.println("Connexion établie!");
         } catch (SQLException ex) {
@@ -28,9 +28,12 @@ public class DataBaseConnection {
     }
 
     public Connection getConnection() {
-        return connection;
+        if (connection != null) {
+            return connection;
+        }
+        return null;
     }
-    
+
     public static DataBaseConnection getInstance() {
         if (database == null) {
             database = new DataBaseConnection();
@@ -38,8 +41,4 @@ public class DataBaseConnection {
         return database;
     }
 
-    
-    
-    
-    
 }

@@ -17,40 +17,11 @@ public class Co_Studying extends RecursiveTreeObject<Co_Studying> implements Ser
 
     private int id;
     private String description;
-    private File file;
+    private String file;
     private String type;
     private String level;
     private int rating;
     private User id_student;
-
-    public Co_Studying(String description, String type, String level) {
-        this.description = description;
-        this.type = type;
-        this.level = level;
-
-    }
-
-    public Co_Studying(String description, String type, String level, User student) {
-        this.description = description;
-        this.type = type;
-        this.level = level;
-        this.id_student = student;
-    }
-
-    public Co_Studying(String description, String type, String level, int rating) {
-        this.description = description;
-        this.type = type;
-        this.level = level;
-        this.rating = rating;
-    }
-
-    public Co_Studying(String description, String type, String level, User u, int rating) {
-        this.description = description;
-        this.type = type;
-        this.level = level;
-        this.id_student = u;
-        this.rating = rating;
-    }
 
     public int getId() {
         return id;
@@ -68,11 +39,11 @@ public class Co_Studying extends RecursiveTreeObject<Co_Studying> implements Ser
         this.description = description;
     }
 
-    public File getFile() {
+    public String getFile() {
         return file;
     }
 
-    public void setFile(File file) {
+    public void setFile(String file) {
         this.file = file;
     }
 
@@ -108,7 +79,19 @@ public class Co_Studying extends RecursiveTreeObject<Co_Studying> implements Ser
         this.id_student = id_student;
     }
 
-    public Co_Studying(String description, File file, String type, String level, User id_student) {
+    public Co_Studying() {
+    }
+
+    public Co_Studying(String description, String type, String file, String level, User u, int rating) {
+        this.description = description;
+        this.type = type;
+        this.file = file;
+        this.level = level;
+        this.id_student = u;
+        this.rating = rating;
+    }
+
+    public Co_Studying(String description, String file, String type, String level, User id_student) {
         this.description = description;
         this.file = file;
         this.type = type;
@@ -116,10 +99,35 @@ public class Co_Studying extends RecursiveTreeObject<Co_Studying> implements Ser
         this.id_student = id_student;
     }
 
-    public Co_Studying() {
+    public Co_Studying(String description, String type, String level, User student) {
+        this.description = description;
+        this.type = type;
+        this.level = level;
+        this.id_student = student;
+    }
+
+    public Co_Studying(String description, String file, String type, String level) {
+        this.description = description;
+        this.type = type;
+        this.file = file;
+        this.level = level;
+    }
+
+    public Co_Studying(String description, String type, String level, int rating) {
+        this.description = description;
+        this.type = type;
+        this.level = level;
+        this.rating = rating;
     }
 
     public Co_Studying(int id, String description, String type, String level) {
+        this.description = description;
+        this.type = type;
+        this.level = level;
+
+    }
+
+    public Co_Studying(String description, String type, String level) {
         this.description = description;
         this.type = type;
         this.level = level;
