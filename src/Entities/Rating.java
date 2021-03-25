@@ -65,7 +65,10 @@ public class Rating {
         this.id_item = id_item;
         this.rate = rate;
     }
-    
+
+    public Rating() {
+    }
+     
     
 
 }

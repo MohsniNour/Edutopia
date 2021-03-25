@@ -6,9 +6,8 @@
 package GUI;
 
 import Entities.Student;
+import Entities.classe;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,12 +19,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import Services.StudentService;
 import java.io.IOException;
+import java.sql.Date;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 /**
@@ -46,7 +45,7 @@ public class Add_Student_FXMLController implements Initializable {
     @FXML
     private TextField phone;
     @FXML
-    private TextField birth_date;
+    private DatePicker birth_date;
     @FXML
     private Button add_button;
     @FXML
@@ -59,9 +58,9 @@ public class Add_Student_FXMLController implements Initializable {
             "3B"
     );
     @FXML
-    private VBox vbox;
+    private TextField mdp;
     @FXML
-    private Button goto_list;
+    private Button update_btn;
 
     /**
      * Initializes the controller class.
@@ -76,45 +75,47 @@ public class Add_Student_FXMLController implements Initializable {
 
     @FXML
     private void add_button_action(ActionEvent event) {
-        if (name.getText() == "") {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Warning !");
-            alert.setHeaderText(null);
-            alert.setContentText("Fill the name please ");
-            alert.showAndWait();
-        } else if (last_name.getText() == "") {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Warning !");
-            alert.setHeaderText(null);
-            alert.setContentText("Fill the last name please ");
-            alert.showAndWait();
+//        if (name.getText() == "") {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Warning !");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Fill the name please ");
+//            alert.showAndWait();
+//        } else if (last_name.getText() == "") {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Warning !");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Fill the last name please ");
+//            alert.showAndWait();
+//
+//        } else if (Integer.parseInt(cin.getText()) == 0) {
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Warning !");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Cin must be a positive number");
+//            alert.showAndWait();
+//
+//        } else {
 
-        } else if (Integer.parseInt(cin.getText()) == 0) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Warning !");
-            alert.setHeaderText(null);
-            alert.setContentText("Cin must be a positive number");
-            alert.showAndWait();
+        try {
 
-        } else {
-
-            try {
-
-                StudentService ss = new StudentService();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
-                java.util.Date date = sdf.parse(birth_date.getText());
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                System.out.println(sqlDate);
-                Student p = new Student("Student", name.getText(), last_name.getText(), Integer.parseInt(cin.getText()), email.getText(), Integer.parseInt(phone.getText()), sqlDate);
-                ss.addStudent(p);
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-            }
+            StudentService ss = new StudentService();
+//                SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+//                java.util.Date date = sdf.parse(birth_date.getText());
+//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//                System.out.println(sqlDate);
+            Student p;
+            classe c = new classe();
+            c.setName(classe.getValue().toString());
+            p = new Student("Student", name.getText(), last_name.getText(), Integer.parseInt(cin.getText()), email.getText(), Integer.parseInt(phone.getText()), Date.valueOf(birth_date.getValue()), c);
+            ss.addStudent(p);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
     @FXML
-    private void on_goto_list(ActionEvent event) throws IOException {
+    private void on_update_btn(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("display_Student_FXML.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

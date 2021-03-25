@@ -90,7 +90,7 @@ public class Co_StudyingService implements ICo_Studying {
     @Override
     public ObservableList<Co_Studying> getCostudyings() {
         try {
-            String query = "select * from co_studying";
+            String query = "SELECT * FROM co_studying";
             Statement ps = cnx.createStatement();
             ResultSet rs = ps.executeQuery(query);
             while (rs.next()) {

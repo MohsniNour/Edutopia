@@ -17,12 +17,15 @@ import javafx.stage.Stage;
  * @author Sabrina
  */
 public class Start_Interface extends Application {
-    
+
     public static final String CURRENCY = "$";
+
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("List_Course.fxml"));
+//         Parent root = FXMLLoader.load(getClass().getResource("Add_Student_FXML.fxml"));
+//         Parent root = FXMLLoader.load(getClass().getResource("CoStudyingAdd.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("List_CoStudying.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Edutopia");
             primaryStage.setScene(scene);

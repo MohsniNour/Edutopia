@@ -7,6 +7,7 @@ package Services;
 
 import IServices.IStudent;
 import Entities.Student;
+import Entities.classe;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -32,7 +33,7 @@ public class StudentService implements IStudent {
     @Override
     public void addStudent(Student p) {
         try {
-            String requete = "INSERT INTO user (role,name,last_name,cin,email,phone_number,birth_date) VALUES('Student',?,?,?,?,?,?)";
+            String requete = "INSERT INTO user (role,name,last_name,cin,email,phone_number,birth_date,classe) VALUES('Student',?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(requete);
 
             pst.setString(1, p.getName());
@@ -41,6 +42,7 @@ public class StudentService implements IStudent {
             pst.setString(4, p.getEmail());
             pst.setInt(5, p.getPhone_number());
             pst.setDate(6, (Date) p.getBirth_date());
+            pst.setInt(7, p.getClasse().getId());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -71,10 +73,12 @@ public class StudentService implements IStudent {
             pst.setString(1, object);
             pst.setObject(2, obj);
             pst.setInt(3, id);
+           
             String ch = pst.toString().replaceFirst("\'", "");
             String ch2 = ch.replaceFirst("\'", "");
             int pos = ch2.indexOf("UPDATE");
             String ch3 = ch2.substring(pos, ch2.length());
+            
             pst = cnx.prepareStatement(ch3);
             System.out.println(pst);
             pst.executeUpdate();
@@ -100,7 +104,13 @@ public class StudentService implements IStudent {
                 String email = rs.getString("email");
                 int phone_number = rs.getInt("phone_number");
                 Date birth_date = rs.getDate("birth_date");
-                Student p = new Student(role, name, last_name, cin, email, phone_number, birth_date);
+                int id_classe = rs.getInt("classe");
+                classe c = new classe(id_classe);
+//                ClasseService cs = new ClasseService();
+//                c.setId(rs.getInt("classe"));
+//                classe c1 = cs.getUser(c.getId());
+                
+                Student p = new Student(role, name, last_name, cin, email, phone_number, birth_date,c);
                 p.setId(rs.getInt("id"));
                 myList.add(p);
 
@@ -112,8 +122,6 @@ public class StudentService implements IStudent {
         return myList;
     }
 
-    public void addUser(Student p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 
 }

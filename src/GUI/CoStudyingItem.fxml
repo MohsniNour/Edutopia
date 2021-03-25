@@ -4,6 +4,9 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,7 +18,7 @@
       <URL value="@style.css" />
     </stylesheets>
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+      <VBox fx:id="vbox_id" alignment="TOP_CENTER" onMouseEntered="#on_hover" onMouseExited="#off_hover" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
          <children>
             <Label fx:id="id_co" prefHeight="0.0" prefWidth="0.0" visible="false" />
             <HBox alignment="CENTER" prefHeight="41.0" prefWidth="200.0">
@@ -37,7 +40,7 @@
             </HBox>
             <VBox alignment="TOP_CENTER" prefHeight="113.0" prefWidth="200.0" stylesheets="@style.css">
                <children>
-                  <Label fx:id="description" alignment="CENTER" prefHeight="132.0" prefWidth="200.0" text="Description">
+                  <Label fx:id="description" alignment="CENTER" prefHeight="132.0" prefWidth="200.0" text="Description" textAlignment="CENTER">
                      <font>
                         <Font name="Cambria" size="14.0" />
                      </font>
@@ -54,6 +57,14 @@
                         <Font name="Cambria Bold" size="12.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="fruitImg" fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/peach.png" />
+                     </image>
+                     <effect>
+                        <Bloom threshold="0.7" />
+                     </effect>
+                  </ImageView>
                </children>
                <padding>
                   <Insets right="20.0" />

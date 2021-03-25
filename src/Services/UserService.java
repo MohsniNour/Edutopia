@@ -63,6 +63,7 @@ public class UserService implements IUser {
                 String last_name = rs.getString("last_name");
                 String role = rs.getString("role");
                 String email = rs.getString("email");
+                
                 p.setId(id);
                 p.setCin(cin);
                 p.setName(first_name);

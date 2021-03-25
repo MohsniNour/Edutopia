@@ -1,6 +1,5 @@
 package Entities;
 
-
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -9,12 +8,12 @@ import java.util.ArrayList;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Lenovo
  */
 public class classe {
+
     private int id;
     private String name;
     private int classe_size;
@@ -25,7 +24,7 @@ public class classe {
     private String archived_by;
     private Date archived_date;
 
-    public classe( int id ,String name, int classe_size, String created_by, Date created_date, String last_update_by, Date last_update_date, String archived_by, Date archived_date) {
+    public classe(int id, String name, int classe_size, String created_by, Date created_date, String last_update_by, Date last_update_date, String archived_by, Date archived_date) {
         this.name = name;
         this.id = id;
         this.classe_size = classe_size;
@@ -35,6 +34,10 @@ public class classe {
         this.last_update_date = last_update_date;
         this.archived_by = archived_by;
         this.archived_date = archived_date;
+    }
+
+    public classe(int id_classe) {
+        this.id = id_classe;
     }
 
     public int getId() {
@@ -108,15 +111,13 @@ public class classe {
     public void setArchived_date(Date archived_date) {
         this.archived_date = archived_date;
     }
-    
-    
 
-   
-    
+    public classe() {
+    }
 
     @Override
     public String toString() {
         return "classe" + "id=" + id + ", name=" + name + ", classe_size=" + classe_size + ", created_by=" + created_by + ", created_date=" + created_date + ", last_update_by=" + last_update_by + ", last_update_date=" + last_update_date + ", archived_by=" + archived_by + ", archived_date=" + archived_date + '}';
     }
-    
+
 }

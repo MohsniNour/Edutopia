@@ -13,9 +13,7 @@ import java.util.Date;
  *
  * @author Sabrina
  */
-public class User extends RecursiveTreeObject<User> implements Serializable{
-
-  
+public class User extends RecursiveTreeObject<User> implements Serializable {
 
     private int id;
     private String role;
@@ -24,7 +22,7 @@ public class User extends RecursiveTreeObject<User> implements Serializable{
     private int cin;
     private String email;
     private int phone_number;
-    private Date birth_date; 
+    private Date birth_date;
 
     public int getId() {
         return id;
@@ -105,9 +103,17 @@ public class User extends RecursiveTreeObject<User> implements Serializable{
         this.birth_date = birth_date;
     }
 
+    public User(String role, String name, String last_name, int cin, String email, int phone_number) {
+        this.role = role;
+        this.name = name;
+        this.last_name = last_name;
+        this.cin = cin;
+        this.email = email;
+        this.phone_number = phone_number;
+
+    }
+
     public User() {
     }
-    
-    }
 
-
+}

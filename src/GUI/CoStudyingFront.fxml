@@ -4,10 +4,10 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,26 +25,26 @@
          <left>
             <VBox alignment="CENTER" prefHeight="810.0" prefWidth="505.0" styleClass="right-bar" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="505.0">
+                  <HBox alignment="CENTER" prefHeight="63.0" prefWidth="505.0">
                      <children>
                         <Label prefHeight="49.0" prefWidth="271.0" text="CO-STUDYING">
                            <font>
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label text="Space">
+                        <Label style="-fx-alignment: EE4545;" text="Space" textFill="#ff6363">
                            <font>
                               <Font name="Cambria" size="40.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="68.0" prefWidth="445.0" stylesheets="@../values/style.css" VBox.vgrow="NEVER">
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="445.0" stylesheets="@../values/style.css" VBox.vgrow="NEVER">
                      <VBox.margin>
                         <Insets left="30.0" right="30.0" />
                      </VBox.margin>
                      <children>
-                        <TextField fx:id="toCompare" onKeyPressed="#on_search_btn" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@../values/style.css">
+                        <TextField fx:id="toCompare" onKeyPressed="#search_too" onMouseEntered="#type_hover" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@../values/style.css">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -52,7 +52,7 @@
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="search_btn" mnemonicParsing="false" onAction="#on_search_btn" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" text="Search" textFill="WHITE">
+                        <Button fx:id="search_btn" mnemonicParsing="false" onAction="#on_search_btn" onMouseEntered="#search_hover" onMouseExited="#search_offhover" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" text="Search" textFill="WHITE">
                            <stylesheets>
                               <URL value="@../values/style.css" />
                               <URL value="@style.css" />
@@ -63,20 +63,29 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </HBox>
-                  <Pane prefHeight="26.0" prefWidth="505.0" VBox.vgrow="ALWAYS" />
-                  <VBox fx:id="chosenCoCard" alignment="CENTER" prefHeight="548.0" prefWidth="405.0" style="-fx-background-color: EE4545;" stylesheets="@../values/style.css">
+                  <Pane prefHeight="16.0" prefWidth="505.0" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="chosenCoCard" alignment="CENTER" prefHeight="538.0" prefWidth="478.0" style="-fx-background-color: EE4545;" stylesheets="@../values/style.css">
                      <VBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </VBox.margin>
                      <children>
-                        <HBox prefHeight="1.0" prefWidth="385.0">
+                        <HBox alignment="CENTER" prefHeight="44.0" prefWidth="352.0">
                            <children>
-                              <Label fx:id="type" prefHeight="44.0" prefWidth="296.0" text="Type" textFill="WHITE">
+                              <Label fx:id="rate" prefHeight="35.0" prefWidth="21.0" text="Stars" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="28.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="level" prefHeight="44.0" prefWidth="96.0" text="Level" textFill="WHITE">
+                              <ImageView fx:id="fruitImg" fitHeight="31.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/peach.png" />
+                                 </image>
+                                 <effect>
+                                    <Bloom threshold="0.7" />
+                                 </effect>
+                              </ImageView>
+                              <Pane prefHeight="44.0" prefWidth="230.0" />
+                              <Label fx:id="level" prefHeight="44.0" prefWidth="85.0" text="Level" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="36.0" />
                                  </font>
@@ -86,17 +95,14 @@
                               <Insets left="20.0" top="30.0" />
                            </VBox.margin>
                         </HBox>
-                        <ImageView fx:id="fruitImg" fitHeight="50.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/peach.png" />
-                           </image>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </ImageView>
+                        <Label fx:id="type" alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="296.0" text="Type" textFill="WHITE">
+                           <font>
+                              <Font name="Cambria" size="28.0" />
+                           </font>
+                        </Label>
                         <VBox alignment="CENTER" prefHeight="372.0" prefWidth="405.0">
                            <children>
-                              <Label fx:id="description" alignment="CENTER" prefHeight="275.0" prefWidth="405.0" text="Description" textFill="WHITE">
+                              <Label fx:id="description" alignment="CENTER" prefHeight="303.0" prefWidth="405.0" text="Description" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria" size="24.0" />
                                  </font>
@@ -119,8 +125,31 @@
                         <Pane prefHeight="0.0" prefWidth="405.0" />
                         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="405.0" spacing="10.0">
                            <children>
-                              <ComboBox fx:id="rating" prefHeight="29.0" prefWidth="162.0" promptText="Rate the content" />
-                              <Button fx:id="rate_btn" mnemonicParsing="false" onMouseClicked="#rate_action" prefHeight="32.0" prefWidth="128.0" styleClass="search-button" text="Submit" />
+                              <ImageView fx:id="rate1" fitHeight="33.0" fitWidth="44.0" onMouseClicked="#rate1_action" onMouseEntered="#on_hover1" onMouseExited="#off_hover1" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/1024px-Empty_Star.svg.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rate2" fitHeight="33.0" fitWidth="44.0" onMouseClicked="#rate2_action" onMouseEntered="#on_hover2" onMouseExited="#off_hover2" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/1024px-Empty_Star.svg.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rate3" fitHeight="96.0" fitWidth="33.0" onMouseClicked="#rate3_action" onMouseEntered="#on_hover3" onMouseExited="#off_hover3" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/1024px-Empty_Star.svg.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rate4" fitHeight="96.0" fitWidth="33.0" onMouseClicked="#rate4_action" onMouseEntered="#on_hover4" onMouseExited="#off_hover4" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/1024px-Empty_Star.svg.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="rate5" fitHeight="96.0" fitWidth="33.0" onMouseClicked="#rate5_action" onMouseEntered="#on_hover5" onMouseExited="#off_hover5" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/1024px-Empty_Star.svg.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </HBox>
                      </children>
@@ -130,7 +159,7 @@
                      </styleClass>
                   </VBox>
                   <Pane prefHeight="14.0" prefWidth="505.0" />
-                  <Button fx:id="download_btn" mnemonicParsing="false" onMouseClicked="#download_action" prefHeight="37.0" prefWidth="79.0" styleClass="search-button" text="Download" />
+                  <Button fx:id="download_btn" mnemonicParsing="false" onMouseClicked="#download_action" onMouseEntered="#download_hover" onMouseExited="#download_offhover" prefHeight="37.0" prefWidth="79.0" styleClass="search-button" text="Download" textFill="WHITE" />
                   <Pane prefHeight="19.0" prefWidth="505.0" VBox.vgrow="ALWAYS" />
                </children>
                <stylesheets>
@@ -147,18 +176,18 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                      <children>
-                        <Label onMouseClicked="#back_action" prefHeight="29.0" prefWidth="111.0" text="Add Content" textFill="#878787">
+                        <Button fx:id="add_btn" mnemonicParsing="false" onMouseClicked="#back_action" onMouseEntered="#add_hover" onMouseExited="#add_offhover" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Add Content" textFill="WHITE">
                            <font>
-                              <Font name="Cambria Bold" size="18.0" />
+                              <Font name="Raleway ExtraBold" size="12.0" />
                            </font>
-                        </Label>
+                        </Button>
                         <Pane prefHeight="65.0" prefWidth="463.0" HBox.hgrow="ALWAYS" />
-                        <Label onMouseClicked="#main_menu_clicked" prefHeight="62.0" prefWidth="100.0" text="Main Menu" textFill="#878787">
+                        <Label fx:id="mainmenu_txt" onMouseClicked="#main_menu_clicked" onMouseEntered="#mm_hover" prefHeight="62.0" prefWidth="87.0" text="Main Menu">
                            <font>
                               <Font name="Cambria" size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="50.0" fitWidth="55.0" onMouseClicked="#main_menu_clicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="mainmenu_icon" fitHeight="50.0" fitWidth="89.0" onMouseClicked="#main_menu_clicked" onMouseEntered="#mm_hover" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/ic_cart.png" />
                            </image>
@@ -168,7 +197,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
                      <children>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
-                        <HBox alignment="CENTER" onMouseClicked="#load_full_list" prefHeight="100.0" prefWidth="380.0" styleClass="free-delivery-card" stylesheets="@../values/style.css">
+                        <HBox fx:id="load_btn" alignment="CENTER" onMouseClicked="#load_full_list" onMouseEntered="#load_list_hover" prefHeight="100.0" prefWidth="380.0" styleClass="free-delivery-card" stylesheets="@../values/style.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
                                  <children>
@@ -187,7 +216,7 @@
                            </children>
                         </HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
-                        <HBox alignment="CENTER" onMouseClicked="#order_rating" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card" stylesheets="@../values/style.css">
+                        <HBox fx:id="order_btn" alignment="CENTER" onMouseClicked="#order_rating" onMouseEntered="#rate_hover" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card" stylesheets="@../values/style.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
                                  <children>
@@ -213,7 +242,7 @@
                   </HBox>
                   <HBox fx:id="hbox_data" alignment="CENTER" onMouseClicked="#eventClicked" prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@style.css">
+                        <ScrollPane fx:id="scroll" prefHeight="535.0" prefWidth="778.0" styleClass="transparent" stylesheets="@style.css">
                            <content>
                               <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                                  <rowConstraints>
@@ -222,7 +251,7 @@
                               </GridPane>
                            </content>
                            <HBox.margin>
-                              <Insets top="10.0" />
+                              <Insets left="40.0" top="10.0" />
                            </HBox.margin>
                         </ScrollPane>
                      </children>
