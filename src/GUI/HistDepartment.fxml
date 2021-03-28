@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edut.HistDepartmentController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="tvid" layoutX="40.0" layoutY="46.0" prefHeight="200.0" prefWidth="528.0" styleClass="transparent" stylesheets="@style.css">
+               <columns>
+                  <TableColumn fx:id="coldep" prefWidth="75.0" text="Department" />
+                  <TableColumn fx:id="colcreatedby" prefWidth="75.0" text="Created by" />
+                  <TableColumn fx:id="colcreateddate" prefWidth="75.0" text="Created date" />
+                  <TableColumn fx:id="colupby" prefWidth="75.0" text="Last update by" />
+                  <TableColumn fx:id="colupdate" prefWidth="75.0" text="Last Update date" />
+                  <TableColumn fx:id="colarchby" prefWidth="75.0" text="Archived by" />
+                  <TableColumn fx:id="colarchdate" prefWidth="75.0" text="Archived date" />
+               </columns>
+            </TableView>
+            <Button fx:id="btngetfile" layoutX="272.0" layoutY="293.0" mnemonicParsing="false" onAction="#getfile" styleClass="search-box" stylesheets="@style.css" text="Get File" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
