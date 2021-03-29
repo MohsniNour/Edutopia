@@ -21,7 +21,7 @@ public class Activity {
     Date deadline;
     String work_todo;
     String work_done;
-    String id_course;
+    int id_course;
     List<Commentt> comment;
     String status;
     String created_by;
@@ -36,7 +36,7 @@ public class Activity {
     public Activity() {
         this.status = "Available";
     }
-    public Activity(String name, String id_course, String created_by) {
+    public Activity(String name, int id_course, String created_by) {
         this.name = name;
         this.id_course = id_course;
         this.created_by = created_by;
@@ -50,7 +50,7 @@ public class Activity {
 //        this.status = "active";
 //    }
 
-    public Activity(String name, Date deadline, String work_todo, String id_course, String created_by, Date created_date) {
+    public Activity(String name, Date deadline, String work_todo, int id_course, String created_by, Date created_date) {
         this.name = name;
         this.deadline = deadline;
         this.work_todo = work_todo;
@@ -101,11 +101,11 @@ public class Activity {
         this.work_done = work_done;
     }
 
-    public String getId_course() {
+    public int getId_course() {
         return id_course;
     }
 
-    public void setId_course(String id_course) {
+    public void setId_course(int id_course) {
         this.id_course = id_course;
     }
 
@@ -119,11 +119,11 @@ public class Activity {
 
     
 
-    public String getId_Course() {
+    public int getId_Course() {
         return id_course;
     }
 
-    public void setId_Course(String id_Course) {
+    public void setId_Course(int id_Course) {
         this.id_course = id_Course;
     }
 

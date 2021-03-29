@@ -51,7 +51,7 @@ public class ForumController implements Initializable {
     private TableColumn<Forum, String> id;
     @FXML
     private Label CourseName;
-    private String id_Course;
+    private int id_Course;
     private String id_Forum;
     @FXML
     private Button backButton;

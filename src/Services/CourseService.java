@@ -1,52 +1,161 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Services;
-
 import Entities.Course;
-import IServices.ICourse;
+import IServices.IService;
 import Utils.DataBaseConnection;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author ADMIN
- */
-public class CourseService implements ICourse{
-    
-    Connection conn;
+public class CourseService implements IService<Course> {
+
+    Connection c;
     ObservableList<Course> oL = FXCollections.observableArrayList();
     ArrayList<Course> la = new ArrayList();
 
     public CourseService() {
-        conn = DataBaseConnection.getInstance().getConnection();;
+
+        c = DataBaseConnection.getInstance().getConnection();
     }
 
-    
     @Override
-    public ArrayList<Course> getCoursesList() {
+    public void Ajouter(Course t) throws SQLException {
         try {
-            String query = "select * from course";
-            PreparedStatement ps = conn.prepareStatement(query);
+            FileReader reader = new FileReader(t.getCourse());
+            String rq = "INSERT INTO course (name,course_file,id_Subject,created_by,Description,created_Date,archived_Date) VALUES(?,?,?,?,?,?,null)";
+            PreparedStatement pre = c.prepareStatement(rq);
+            pre.setString(1, t.getName());
+            pre.setCharacterStream(2, reader);
+            pre.setInt(3, t.getId_subject());
+            pre.setString(4, t.getCreated_by());
+            pre.setString(5, t.getDescription());
+            pre.setDate(6, new java.sql.Date(new Date().getTime()));
+            pre.executeUpdate();
+
+        } catch (SQLException excep) {
+            System.err.println(excep.getMessage());
+        } catch (FileNotFoundException excep) {
+            Logger.getLogger(CourseService.class.getName()).log(Level.SEVERE, null, excep);
+        }
+    }
+
+    @Override
+    public void Supprimer(int t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void Archiver(int id) throws SQLException {
+        PreparedStatement ps;
+        String query = "UPDATE `course` SET `archived_Date`=? WHERE `id`=?";
+        ps = c.prepareStatement(query);
+        ps.setDate(1, new java.sql.Date(new Date().getTime()));
+        ps.setInt(2, id);
+        ps.execute();
+    }
+
+    @Override
+    public void Modifier(Course t, int id) throws SQLException {
+        try {
+            String query = "UPDATE `Course` SET `name`=?,`course_file`=?,`id_Subject`=?,`Description`=? WHERE id=?";
+            PreparedStatement ps = c.prepareStatement(query);
+            FileReader reader = new FileReader(t.getCourse());
+            ps.setString(1, t.getName());
+            ps.setCharacterStream(2, reader);
+            ps.setInt(3, t.getId_subject());
+            ps.setString(4, t.getDescription());
+            ps.setInt(5, id);
+            ps.executeUpdate();
+            System.out.println("Updated succesfully");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CourseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public ObservableList<Course> Affichertout() throws SQLException {
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        String requete = "SELECT * FROM `course` ";
+        try {
+            PreparedStatement ps = c.prepareStatement(requete);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
-                Course c = new Course();
-                c.setId(rs.getString("id"));
-                c.setName(rs.getString("name"));
-                la.add(c);
+                list.add(new Course(rs.getInt("id"), rs.getString("name"), rs.getInt("id_subject"), rs.getString("created_by"), rs.getDate("created_Date"), rs.getDate("archived_Date"), rs.getString("Description")));
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return la;
+        return list;
     }
-    
+
+    public ObservableList<Course> AfficherListCoursMatiere(int id_subject) throws SQLException {
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        String requete = "SELECT * FROM `course` where id_Subject=? ";
+        try {
+            PreparedStatement ps = c.prepareStatement(requete);
+            ps.setInt(1, id_subject);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Course(rs.getInt("id"), rs.getString("name"), rs.getInt("id_subject"), rs.getString("created_by"), rs.getDate("created_Date"), rs.getDate("archived_Date"), rs.getString("Description")));
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+
+    public ObservableList<Course> serach(String cas) throws SQLException {
+        ObservableList<Course> list = FXCollections.observableArrayList();
+        String requete = "SELECT * FROM `course` where name LIKE '%" + cas + "%' or  created_Date LIKE '%" + cas + "%' or  created_by LIKE '%" + cas + "%' or  archived_Date LIKE '%" + cas + "%' or  Description LIKE '%" + cas + "%' ";
+        try {
+            PreparedStatement ps = c.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Course(rs.getInt("id"), rs.getString("name"), rs.getInt("id_subject"), rs.getString("created_by"), rs.getDate("created_Date"), rs.getDate("archived_Date"), rs.getString("Description")));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<Course> AfficherCours() {
+        //  FileReader reader = new FileReader(t.getCourse());
+        //rs.getCharacterStream(2, reader);     
+        List<Course> list = new ArrayList<>();
+        String requete = "SELECT * FROM `course` ";
+        try {
+            PreparedStatement ps = c.prepareStatement(requete);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String fileName = rs.getString("name") + ".txt";
+                InputStream is = rs.getBinaryStream("course_file");
+
+                Course c = new Course(rs.getInt("id"), rs.getString("name"), rs.getInt("id_subject"), rs.getString("created_by"), rs.getDate("created_Date"), rs.getString("Description"), is);
+                list.add(c);
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
 }

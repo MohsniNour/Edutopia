@@ -68,7 +68,7 @@ public class List_Activity_UserController implements Initializable {
     private Path fromUpdated;
     private Path removePath;
     File file = null;
-    String id_Course;
+    int id_Course;
 
     /**
      * Initializes the controller class.
@@ -105,9 +105,9 @@ public class List_Activity_UserController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Course.fxml"));
             stage.setScene(new Scene(loader.load()));
-            List_CourseController controller = loader.getController();
+            home_courseController controller = loader.getController();
             stage.show();
         } catch (IOException e) {
             System.err.println(String.format("Error: %s", e.getMessage()));

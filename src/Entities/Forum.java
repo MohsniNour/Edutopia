@@ -19,7 +19,7 @@ public class Forum {
     String subject;
     List<Commentt> comment;
     String status;
-    String id_course;
+    int id_course;
     String created_by;
     Date created_date;
     String last_updated_by;
@@ -31,7 +31,7 @@ public class Forum {
         this.status = "Available" ;
     }
 
-    public Forum(String subject, String id_course, String created_by, Date created_date) {
+    public Forum(String subject, int id_course, String created_by, Date created_date) {
         this.subject = subject;
         this.id_course = id_course;
         this.created_by = created_by;
@@ -40,7 +40,7 @@ public class Forum {
     }
     
 
-    public Forum(String subject, String id_course, List<Commentt> comment, String created_by, Date created_date, String last_updated_by, Date last_updated_Date, String archived_by, Date archived_Date) {
+    public Forum(String subject, int id_course, List<Commentt> comment, String created_by, Date created_date, String last_updated_by, Date last_updated_Date, String archived_by, Date archived_Date) {
         this.subject = subject;
         this.id_course = id_course;
         this.comment = comment;
@@ -68,11 +68,11 @@ public class Forum {
         this.subject = subject;
     }
 
-    public String getId_course() {
+    public int getId_course() {
         return id_course;
     }
 
-    public void setId_course(String id_course) {
+    public void setId_course(int id_course) {
         this.id_course = id_course;
     }
 

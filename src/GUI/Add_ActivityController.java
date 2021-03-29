@@ -70,7 +70,7 @@ public class Add_ActivityController implements Initializable {
     private TableColumn<Activity, Date> idDeadline;
     @FXML
     private TableColumn<Activity, String> id;
-    private String id_Course;
+    private int id_Course;
     private Path to;
     private Path from;
     private Path fromUpdated;

@@ -58,7 +58,7 @@ public class ActivityService implements IActivity {
             pst.setString(1, activity.getName());
             pst.setDate(2, (Date) activity.getDeadline());
             pst.setString(3, activity.getWork_todo());
-            pst.setString(4, activity.getId_Course());
+            pst.setInt(4, activity.getId_Course());
             pst.setString(5, activity.getStatus());
             pst.setString(6, activity.getCreated_by());
             pst.setDate(7, (Date) activity.getCreated_date());
@@ -112,7 +112,7 @@ public class ActivityService implements IActivity {
             ps.setString(1, new_activity.getName());
             ps.setDate(2, (Date) new_activity.getDeadline());
             ps.setString(3, new_activity.getWork_todo());
-            ps.setString(4, new_activity.getId_Course());
+            ps.setInt(4, new_activity.getId_Course());
             ps.setString(5, new_activity.getLast_updated_by());
             ps.setDate(6, (Date) new_activity.getLast_updated_Date());
             ps.setString(7, id);
@@ -216,7 +216,7 @@ public class ActivityService implements IActivity {
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
-                    act.setId_Course(rs.getString("id_course"));
+                    act.setId_Course(rs.getInt("id_course"));
                     oL.addAll(act);
                 }
             }
@@ -238,7 +238,7 @@ public class ActivityService implements IActivity {
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
-                    act.setId_Course(rs.getString("id_course"));
+                    act.setId_Course(rs.getInt("id_course"));
                     act.setWork_todo(rs.getString("work_todo"));
                     la.add(act);
                 }
@@ -249,11 +249,11 @@ public class ActivityService implements IActivity {
         return la;
     }
 
-    public ArrayList<Activity> getActivitiesListByIdCourse(String id_Course) {
+    public ArrayList<Activity> getActivitiesListByIdCourse(int id_Course) {
         try {
             String query = "select * from activity where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_Course);
+            ps.setInt(1, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (!"Archived".equals(rs.getString("status"))) {
@@ -262,7 +262,7 @@ public class ActivityService implements IActivity {
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
-                    act.setId_Course(rs.getString("id_course"));
+                    act.setId_Course(rs.getInt("id_course"));
                     act.setWork_todo(rs.getString("work_todo"));
                     la.add(act);
                 }
@@ -273,11 +273,11 @@ public class ActivityService implements IActivity {
         return la;
     }
 
-    public ArrayList<Activity> getArchivedActivitiesListByIdCourse(String id_Course) {
+    public ArrayList<Activity> getArchivedActivitiesListByIdCourse(int id_Course) {
         try {
             String query = "select * from activity where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_Course);
+            ps.setInt(1, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (!"Available".equals(rs.getString("status"))) {
@@ -286,7 +286,7 @@ public class ActivityService implements IActivity {
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
-                    act.setId_Course(rs.getString("id_course"));
+                    act.setId_Course(rs.getInt("id_course"));
                     act.setWork_todo(rs.getString("work_todo"));
                     la.add(act);
                 }
@@ -297,11 +297,11 @@ public class ActivityService implements IActivity {
         return la;
     }
     
-    public ArrayList<Activity> getAvailableActivitiesListByIdCourse(String id_Course) {
+    public ArrayList<Activity> getAvailableActivitiesListByIdCourse(int id_Course) {
         try {
             String query = "select * from activity where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_Course);
+            ps.setInt(1, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if (!"Archived".equals(rs.getString("status"))) {
@@ -310,7 +310,7 @@ public class ActivityService implements IActivity {
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
-                    act.setId_Course(rs.getString("id_course"));
+                    act.setId_Course(rs.getInt("id_course"));
                     act.setWork_todo(rs.getString("work_todo"));
                     la.add(act);
                 }
@@ -321,14 +321,14 @@ public class ActivityService implements IActivity {
         return la;
     }
 
-    public List<Activity> searchActivity(String txt, String id_Course) throws SQLException {
+    public List<Activity> searchActivity(String txt, int id_Course) throws SQLException {
 
         List<Activity> listSearch = new ArrayList<>();
         try {
             String query = "select * from activity where name LIKE '%" + txt + "%'and status=? and id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, "Available");
-            ps.setString(2, id_Course);
+            ps.setInt(2, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                     Activity act = FindActivityById(rs.getString("id"));
@@ -354,7 +354,7 @@ public class ActivityService implements IActivity {
                 act.setName(rs.getString("name"));
                 act.setDeadline(rs.getDate("deadline"));
                 act.setStatus(rs.getString("status"));
-                act.setId_Course(rs.getString("id_course"));
+                act.setId_Course(rs.getInt("id_course"));
                 act.setWork_todo(rs.getString("work_todo"));
             }
         } catch (SQLException ex) {
@@ -378,7 +378,7 @@ public class ActivityService implements IActivity {
                 act.setName(rs.getString("name"));
                 act.setDeadline(rs.getDate("deadline"));
                 act.setStatus(rs.getString("status"));
-                act.setId_Course(rs.getString("id_course"));
+                act.setId_Course(rs.getInt("id_course"));
                 act.setWork_todo(rs.getString("work_todo"));
                 listActivity.add(act);
 

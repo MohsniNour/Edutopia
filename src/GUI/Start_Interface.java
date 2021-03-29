@@ -22,9 +22,9 @@ public class Start_Interface extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("List_Course_User.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Front_Subject.fxml"));
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Liste des cours");
+            primaryStage.setTitle("Liste des matières");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

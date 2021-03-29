@@ -73,7 +73,7 @@ public class ForumService implements IForum{
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, forum.getSubject());
             pst.setString(2, forum.getStatus());
-            pst.setString(3, forum.getId_course());
+            pst.setInt(3, forum.getId_course());
             pst.setString(4, forum.getCreated_by());
             pst.setDate(5, (Date) forum.getCreated_date());
             pst.executeUpdate();
@@ -121,7 +121,7 @@ public class ForumService implements IForum{
             String query="UPDATE `forum` SET `subject`=?,`id_course`=?,`last_updated_by`=?,`last_updated_date`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, new_forum.getSubject());
-            ps.setString(2, new_forum.getId_course());
+            ps.setInt(2, new_forum.getId_course());
             ps.setString(3, new_forum.getLast_updated_by());
             ps.setDate(4, (Date)new_forum.getLast_updated_Date());
             ps.setString(5, id);
@@ -220,7 +220,7 @@ public class ForumService implements IForum{
                     frm.setId(rs.getString("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
-                    frm.setId_course(rs.getString("id_course"));
+                    frm.setId_course(rs.getInt("id_course"));
                     oL.addAll(frm);
                 }
             } 
@@ -231,11 +231,11 @@ public class ForumService implements IForum{
     }
     
     @Override
-    public ObservableList<Forum> getForumByIdCourse(String id_Course) {
+    public ObservableList<Forum> getForumByIdCourse(int id_Course) {
         try {
             String query = "select * from forum where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_Course);
+            ps.setInt(1, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if(!"Archived".equals(rs.getString("status"))) {
@@ -243,7 +243,7 @@ public class ForumService implements IForum{
                     frm.setId(rs.getString("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
-                    frm.setId_course(rs.getString("id_course"));
+                    frm.setId_course(rs.getInt("id_course"));
                     oL.addAll(frm);
                 } 
             }
@@ -254,11 +254,11 @@ public class ForumService implements IForum{
     }   
 
     @Override
-    public ObservableList<Forum> getArchivedForumByIdCourse(String id_course) {
+    public ObservableList<Forum> getArchivedForumByIdCourse(int id_course) {
         try {
             String query = "select * from forum where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_course);
+            ps.setInt(1, id_course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if(!"Available".equals(rs.getString("status"))) {
@@ -266,7 +266,7 @@ public class ForumService implements IForum{
                     frm.setId(rs.getString("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
-                    frm.setId_course(rs.getString("id_course"));
+                    frm.setId_course(rs.getInt("id_course"));
                     oL.addAll(frm);
                 } 
             }

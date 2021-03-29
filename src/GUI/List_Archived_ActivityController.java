@@ -46,7 +46,7 @@ public class List_Archived_ActivityController implements Initializable {
     private TableColumn<Activity, Date> idDeadline;
     @FXML
     private Label CourseName;
-    private String id_Course;
+    private int id_Course;
     
     private Path to;
     private Path from;

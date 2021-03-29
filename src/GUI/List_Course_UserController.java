@@ -68,10 +68,10 @@ public class List_Course_UserController implements Initializable {
 
     public void showCourses() {
         CourseService cs = new CourseService();
-        ArrayList<Course> al = cs.getCoursesList();
-        ObservableList<Course> oL = FXCollections.observableArrayList(al);
-        CourseName.setCellValueFactory(new PropertyValueFactory("name"));
-        TableView.setItems(oL);
+        //ArrayList<Course> al = cs.getCoursesList();
+        //ObservableList<Course> oL = FXCollections.observableArrayList(al);
+//        CourseName.setCellValueFactory(new PropertyValueFactory("name"));
+//        TableView.setItems(oL);
     }   
 
     @FXML

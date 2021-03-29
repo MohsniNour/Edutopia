@@ -43,7 +43,7 @@ public class List_Archived_ForumController implements Initializable {
     private Button backButton;
     @FXML
     private Button Activate_button;
-    private String id_Course;
+    private int id_Course;
 
     /**
      * Initializes the controller class.

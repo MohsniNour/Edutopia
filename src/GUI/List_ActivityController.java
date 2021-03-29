@@ -67,7 +67,7 @@ public class List_ActivityController implements Initializable {
     private Path fromUpdated;
     private Path removePath;
     File file = null;
-    String id_Course;
+    int id_Course;
     @FXML
     private TableColumn<Activity, String> Name;
     @FXML
@@ -151,10 +151,10 @@ public class List_ActivityController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course_User.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeCourse.fxml"));
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Liste des cours");
-            List_CourseController controller = loader.getController();
+            home_courseController controller = loader.getController();
             stage.show();
         } catch (IOException e) {
             System.err.println(String.format("Error: %s", e.getMessage()));

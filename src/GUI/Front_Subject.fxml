@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #161616 #161616;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.List_CourseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #161616 #161616;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Front_SubjectController">
    <children>
       <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" prefHeight="535.0" prefWidth="256.0" style="-fx-background-color: #161616;">
          <children>
@@ -203,11 +203,6 @@
          <children>
             <Pane fx:id="pnl_abonnement" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Button layoutX="310.0" layoutY="513.0" mnemonicParsing="false" onAction="#ArchivedForumListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Consulter la liste des forum archivés" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="SubjectName" layoutX="46.0" layoutY="61.0" prefHeight="32.0" prefWidth="482.0" text="Nom de la matiere" textFill="#ee4545">
                      <font>
                         <Font name="System Bold" size="22.0" />
@@ -219,31 +214,16 @@
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Icons/baseline_search_black_18dp.png" />
+                              <Image url="@../../../../../Documents/NetBeansProjects/Edutopia/src/Icons/baseline_search_black_18dp.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                   <TableView fx:id="TableView" layoutX="47.0" layoutY="164.0" prefHeight="281.0" prefWidth="692.0" style="-fx-border-color: #161616;">
                     <columns>
-                      <TableColumn fx:id="CourseName" prefWidth="690.0" text="Cours" />
+                      <TableColumn fx:id="CourseName" prefWidth="690.0" text="Matiere" />
                     </columns>
                   </TableView>
-                  <Button layoutX="46.0" layoutY="466.0" mnemonicParsing="false" onAction="#AvailableActivityListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" text="Consulter la liste des activités diisponibles" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="46.0" layoutY="513.0" mnemonicParsing="false" onAction="#ArchivedActivityListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" text="Consulter la liste des activités terminés" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="310.0" layoutY="466.0" mnemonicParsing="false" onAction="#AvailableForumListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Consulter liste des forum disponibles" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
                   <Button layoutX="696.0" layoutY="111.0" mnemonicParsing="false" onAction="#RefreshAction" prefHeight="37.0" prefWidth="44.0" style="-fx-background-color: transparent;" styleClass="button4" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
@@ -251,7 +231,7 @@
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Icons/baseline_search_off_black_36dp.png" />
+                              <Image url="@../../../../../Documents/NetBeansProjects/Edutopia/src/Icons/baseline_search_off_black_36dp.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -263,18 +243,18 @@
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Icons/baseline_keyboard_backspace_black_18dp.png" />
+                              <Image url="@../../../../../Documents/NetBeansProjects/Edutopia/src/Icons/baseline_keyboard_backspace_black_18dp.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                   <TextField fx:id="txtSearch" layoutX="266.0" layoutY="115.0" prefHeight="29.0" prefWidth="381.0" promptText="rechercher" style="-fx-border-color: #161616;" />
-                  <Button layoutX="576.0" layoutY="466.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Ajouter un nouveau cour" textFill="WHITE">
+                  <Button layoutX="47.0" layoutY="454.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Ajouter un nouveau cour" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="576.0" layoutY="513.0" mnemonicParsing="false" onAction="#RemoveAction" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Supprimer un cour" textFill="WHITE">
+                  <Button layoutX="576.0" layoutY="454.0" mnemonicParsing="false" onAction="#AddExamenAction" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Ajouter un examen" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
