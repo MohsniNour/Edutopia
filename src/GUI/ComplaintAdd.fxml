@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ComplaintAddController">
+    <stylesheets>
+        <URL value="@complaintadd.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane fx:id="add_btn" layoutX="2.0" layoutY="1.0" prefHeight="445.0" prefWidth="637.0">
+         <children>
+            <TableView fx:id="table_v" layoutX="298.0" layoutY="95.0" prefHeight="300.0" prefWidth="327.0">
+              <columns>
+                <TableColumn id="object" fx:id="object_c" prefWidth="110.0" style="-fx-background-color: lightsalmon;" text="Object" />
+                <TableColumn fx:id="status_c" prefWidth="98.0" style="-fx-background-color: lightsalmon;" text="Status" />
+                  <TableColumn fx:id="descri" prefWidth="120.0" style="-fx-background-color: lightsalmon;" text="Description" />
+                  <TableColumn fx:id="id" prefWidth="137.0" text="id" />
+              </columns>
+            </TableView>
+            <Button fx:id="delete" layoutX="480.0" layoutY="399.0" mnemonicParsing="false" onAction="#delete_btn" style="-fx-background-color: IndianRed;" text="Delete" textFill="#f8f7f7" />
+            <Button layoutX="407.0" layoutY="399.0" mnemonicParsing="false" onAction="#modify_btn" style="-fx-background-color: green;" text="Modify" textFill="#fcfafa" />
+            <Button fx:id="send" layoutX="36.0" layoutY="400.0" mnemonicParsing="false" onAction="#btn_click" style="-fx-background-color: navy;" text="send" textFill="#f5f3f3">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font></Button>
+            <ComboBox fx:id="status" layoutX="36.0" layoutY="132.0" prefWidth="150.0" promptText="status" />
+            <TextArea fx:id="description" layoutX="36.0" layoutY="175.0" prefHeight="200.0" prefWidth="200.0" promptText="description" />
+            <TextField fx:id="object" layoutX="37.0" layoutY="95.0" promptText="Object" />
+            <Label layoutX="14.0" layoutY="21.0" prefHeight="43.0" prefWidth="276.0" text=" Complaint details">
+               <font>
+                  <Font name="Cambria" size="34.0" />
+               </font></Label>
+            <Label fx:id="countComplaint" layoutX="468.0" layoutY="65.0" prefHeight="17.0" prefWidth="157.0" />
+            <Label layoutX="298.0" layoutY="65.0" prefHeight="17.0" prefWidth="149.0" text="Complaints number">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

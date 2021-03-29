@@ -20,7 +20,7 @@ public class DataBaseConnection {
 
     public DataBaseConnection() {
          try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/edutopia?useSSL=false", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/edutopia", "root", "");
             System.out.println("Connexion établie!");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

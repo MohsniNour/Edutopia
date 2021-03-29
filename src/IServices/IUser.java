@@ -6,6 +6,8 @@
 package IServices;
 
 import Entities.User;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -13,5 +15,12 @@ import Entities.User;
  */
 public interface IUser {
     public void addUser(User u);
-   
+    public User getUser(int id);
+    public void DeleteUser (User deletedUser);
+    public void UpdateUser (int id, User UpdatedUser);
+    //public int GetIdUser (User u);
+    public ObservableList<User> getUsers();
+//    public void UpdateUser(int id, String object, Object obj);
+    public List<User> getListUser();
+
 }
