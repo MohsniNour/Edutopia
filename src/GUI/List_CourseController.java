@@ -92,7 +92,7 @@ public class List_CourseController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course_User.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Liste des cours");
             List_Course_UserController controller = loader.getController();
@@ -112,6 +112,18 @@ public class List_CourseController implements Initializable {
 
     @FXML
     private void Co_StudyingAction(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CoStudyingFront.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Espace 'CoStudying'");
+            List_CourseController controller = loader.getController();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println(String.format("Error: %s", e.getMessage()));
+        }
     }
 
     @FXML

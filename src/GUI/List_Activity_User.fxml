@@ -189,12 +189,12 @@
                       <TableColumn fx:id="Deadline" minWidth="0.0" prefWidth="226.0" text="Date limite" />
                     </columns>
                   </TableView>
-                  <Button layoutX="331.0" layoutY="478.0" mnemonicParsing="false" onAction="#DetailsAction" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: EE4545;" text="Consulter l'activité" textFill="WHITE">
+                  <Button layoutX="369.0" layoutY="478.0" mnemonicParsing="false" onAction="#AddWorkAction" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: EE4545;" text="Ajouter un travail" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="516.0" layoutY="478.0" mnemonicParsing="false" onAction="#ListWork_DoneAction" prefHeight="32.0" prefWidth="230.0" style="-fx-background-color: EE4545;" text="Consulter la liste des travails rendus" textFill="WHITE">
+                  <Button layoutX="559.0" layoutY="478.0" mnemonicParsing="false" onAction="#DetailsActivityAction" prefHeight="32.0" prefWidth="159.0" style="-fx-background-color: EE4545;" text="Consulter l'activité" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>

@@ -140,35 +140,6 @@ public class List_Course_UserController implements Initializable {
     @FXML
     private void BackAction(ActionEvent event) {
     }
-
-    @FXML
-    private void ArchivedForumListAction(ActionEvent event) {
-        if (TableView.getSelectionModel().getSelectedItems().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Attention !");
-            alert.setHeaderText(null);
-            alert.setContentText("selectionnez un cours ");
-            alert.showAndWait();
-        } else {
-            Course c = TableView.getSelectionModel().getSelectedItem();
-            System.out.println(c.getId());
-            ForumService fs = new ForumService();
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.close();
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Archived_Forum.fxml"));
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Liste des forum archivés");
-                List_Archived_ForumController controller = loader.getController();
-                controller.initData(c);
-                stage.show();
-            } catch (IOException e) {
-                System.err.println(String.format("Error: %s", e.getMessage()));
-            }
-        }
-    }
-
     @FXML
     private void AvailableActivityListAction(ActionEvent event) {
         if (TableView.getSelectionModel().getSelectedItems().isEmpty()) {
@@ -185,38 +156,10 @@ public class List_Course_UserController implements Initializable {
             Stage stage = (Stage) node.getScene().getWindow();
             stage.close();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Activity.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Activity_User.fxml"));
                 stage.setScene(new Scene(loader.load()));
                 stage.setTitle("Liste des activités");
-                List_ActivityController controller = loader.getController();
-                controller.initData(c);
-                stage.show();
-            } catch (IOException e) {
-                System.err.println(String.format("Error: %s", e.getMessage()));
-            }
-        }
-    }
-
-    @FXML
-    private void ArchivedActivityListAction(ActionEvent event) {
-        if (TableView.getSelectionModel().getSelectedItems().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Attention !");
-            alert.setHeaderText(null);
-            alert.setContentText("selectionnez un cours ");
-            alert.showAndWait();
-        } else {
-            Course c = TableView.getSelectionModel().getSelectedItem();
-            System.out.println(c.getId());
-            ForumService fs = new ForumService();
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            stage.close();
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Archived_Activity.fxml"));
-                stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Liste des activités archivés");
-                List_Archived_ActivityController controller = loader.getController();
+                List_Activity_UserController controller = loader.getController();
                 controller.initData(c);
                 stage.show();
             } catch (IOException e) {
@@ -253,12 +196,5 @@ public class List_Course_UserController implements Initializable {
         }
     }
 
-    @FXML
-    private void AddAction(ActionEvent event) {
-    }
-
-    @FXML
-    private void RemoveAction(ActionEvent event) {
-    }
     
 }

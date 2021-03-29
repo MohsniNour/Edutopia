@@ -33,8 +33,8 @@ public class ActivityService implements IActivity {
     }
 
     @Override
-    public String getId(Activity act) {
-        String id = "";
+    public int getId(Activity act) {
+        int id =0;
         try {
             String query = "SELECT * FROM `activity` WHERE name=?";
             PreparedStatement ps = conn.prepareStatement(query);
@@ -42,7 +42,7 @@ public class ActivityService implements IActivity {
             ResultSet rs;
             rs = ps.executeQuery();
             while (rs.next()) {
-                id = rs.getString("id");
+                id = rs.getInt("id");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -71,7 +71,7 @@ public class ActivityService implements IActivity {
     }
 
     @Override
-    public void remove(String id, String path) {
+    public void remove(int id, String path) {
         try {
             String req = "UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=?,`work_todo`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
@@ -79,7 +79,7 @@ public class ActivityService implements IActivity {
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "Archived");
             ps.setString(4, path);
-            ps.setString(5, id);
+            ps.setInt(5, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
         } catch (SQLException ex) {
@@ -88,7 +88,7 @@ public class ActivityService implements IActivity {
     }
 
     @Override
-    public void activate(String id, String path) {
+    public void activate(int id, String path) {
         try {
             String req = "UPDATE `activity` SET `archived_by`=?,`archived_date`=?,`status`=?,`work_todo`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
@@ -96,7 +96,7 @@ public class ActivityService implements IActivity {
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "Available");
             ps.setString(4, path);
-            ps.setString(5, id);
+            ps.setInt(5, id);
             ps.executeUpdate();
             System.out.println("activated succesfully");
         } catch (SQLException ex) {
@@ -105,7 +105,7 @@ public class ActivityService implements IActivity {
     }
 
     @Override
-    public void update(String id, Activity new_activity) {
+    public void update(int id, Activity new_activity) {
         try {
             String query = "UPDATE `activity` SET `name`=?,`deadline`=?,`work_todo`=?,`id_course`=?,`last_updated_by`=?,`last_updated_date`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
@@ -115,7 +115,7 @@ public class ActivityService implements IActivity {
             ps.setString(4, new_activity.getId_Course());
             ps.setString(5, new_activity.getLast_updated_by());
             ps.setDate(6, (Date) new_activity.getLast_updated_Date());
-            ps.setString(7, id);
+            ps.setInt(7, id);
             ps.executeUpdate();
             System.out.println("Updated succesfully");
         } catch (SQLException ex) {
@@ -124,17 +124,17 @@ public class ActivityService implements IActivity {
     }
 
     @Override
-    public Activity details(String id) {
+    public Activity details(int id) {
         Activity act = new Activity();
         boolean check = false;
         try {
             String query = "select * from activity where id= ?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 check = true;
-                act.setId(rs.getString("id"));
+                act.setId(rs.getInt("id"));
                 act.setName(rs.getString("name"));
                 act.setDeadline(rs.getDate("deadline"));
                 act.setStatus(rs.getString("status"));
@@ -212,7 +212,7 @@ public class ActivityService implements IActivity {
             while (rs.next()) {
                 if (!"Archived".equals(rs.getString("status"))) {
                     Activity act = new Activity();
-                    act.setId(rs.getString("id"));
+                    act.setId(rs.getInt("id"));
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
@@ -234,7 +234,7 @@ public class ActivityService implements IActivity {
             while (rs.next()) {
                 if (!"Archived".equals(rs.getString("status"))) {
                     Activity act = new Activity();
-                    act.setId(rs.getString("id"));
+                    act.setId(rs.getInt("id"));
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
@@ -258,7 +258,7 @@ public class ActivityService implements IActivity {
             while (rs.next()) {
                 if (!"Archived".equals(rs.getString("status"))) {
                     Activity act = new Activity();
-                    act.setId(rs.getString("id"));
+                    act.setId(rs.getInt("id"));
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
@@ -282,7 +282,7 @@ public class ActivityService implements IActivity {
             while (rs.next()) {
                 if (!"Available".equals(rs.getString("status"))) {
                     Activity act = new Activity();
-                    act.setId(rs.getString("id"));
+                    act.setId(rs.getInt("id"));
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
@@ -306,7 +306,7 @@ public class ActivityService implements IActivity {
             while (rs.next()) {
                 if (!"Archived".equals(rs.getString("status"))) {
                     Activity act = new Activity();
-                    act.setId(rs.getString("id"));
+                    act.setId(rs.getInt("id"));
                     act.setName(rs.getString("name"));
                     act.setDeadline(rs.getDate("deadline"));
                     act.setStatus(rs.getString("status"));
@@ -331,7 +331,7 @@ public class ActivityService implements IActivity {
             ps.setString(2, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                    Activity act = FindActivityById(rs.getString("id"));
+                    Activity act = FindActivityById(rs.getInt("id"));
                     listSearch.add(act);
                 }
         } catch (SQLException ex) {
@@ -341,16 +341,16 @@ public class ActivityService implements IActivity {
         return listSearch;
     }
 
-    public Activity FindActivityById(String id) {
+    public Activity FindActivityById(int id) {
 
         Activity act = new Activity();
         try {
             String query = "select * from activity where id=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                act.setId(rs.getString("id"));
+                act.setId(rs.getInt("id"));
                 act.setName(rs.getString("name"));
                 act.setDeadline(rs.getDate("deadline"));
                 act.setStatus(rs.getString("status"));
@@ -374,7 +374,7 @@ public class ActivityService implements IActivity {
             ResultSet rs = ps.executeQuery();
             Activity act = new Activity();
             while (rs.next()) {
-                act.setId(rs.getString("id"));
+                act.setId(rs.getInt("id"));
                 act.setName(rs.getString("name"));
                 act.setDeadline(rs.getDate("deadline"));
                 act.setStatus(rs.getString("status"));

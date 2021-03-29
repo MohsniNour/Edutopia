@@ -6,17 +6,16 @@
 package GUI;
 
 import Entities.Activity;
-import Entities.Course;
+import Entities.Work_done;
 import Services.ActivityService;
 import Services.Work_doneService;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,13 +35,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
  *
  * @author ADMIN
  */
-public class List_Activity_UserController implements Initializable {
+public class List_Work_doneController implements Initializable {
 
     @FXML
     private VBox vboxdrawer;
@@ -55,43 +55,41 @@ public class List_Activity_UserController implements Initializable {
     @FXML
     private Pane pnl_abonnement;
     @FXML
-    private Label CourseName;
+    private TableView<Work_done> TableView;
     @FXML
-    private TableView<Activity> TableView;
+    private TableColumn<Work_done, String> work_done;
     @FXML
-    private TableColumn<Activity, String> Name;
-    @FXML
-    private TableColumn<Activity, String> Deadline;
+    private TableColumn<Work_done, String> StudentName;
     @FXML
     private TextField txtSearch;
+    @FXML
+    private Label ActivityName;
+    private int id_Activity;
     private Path to;
     private Path from;
-    private Path fromUpdated;
-    private Path removePath;
+//    private Path fromUpdated;
+//    private Path removePath;
     File file = null;
-    String id_Course;
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }   
-    
-    void initData(Course c) {
-        CourseName.setText(c.getName());
-        UserName.setText(c.getName());
-        id_Course = c.getId();
+    } 
+    void initData(Activity act) {
+        ActivityName.setText(act.getName());
+        UserName.setText(act.getName());
+        id_Activity = act.getId();
         showActivities();
     }
 
     public void showActivities() {
-        ActivityService as = new ActivityService();
-        ArrayList<Activity> al = as.getAvailableActivitiesListByIdCourse(id_Course);
-        ObservableList<Activity> oL = FXCollections.observableArrayList(al);
-        Name.setCellValueFactory(new PropertyValueFactory("name"));
-        Deadline.setCellValueFactory(new PropertyValueFactory("deadline"));
+        Work_doneService as = new Work_doneService();
+        ArrayList<Work_done> al = as.getWorkDoneListByIdActivity(id_Activity);
+        ObservableList<Work_done> oL = FXCollections.observableArrayList(al);
+        work_done.setCellValueFactory(new PropertyValueFactory("work_file"));
+        StudentName.setCellValueFactory(new PropertyValueFactory("uploaded_by"));
         TableView.setItems(oL);
     }
 
@@ -99,6 +97,13 @@ public class List_Activity_UserController implements Initializable {
     private void HomeAction(ActionEvent event) {
     }
 
+    @FXML
+    private void DepartmentAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ClassAction(ActionEvent event) {
+    }
 
     @FXML
     private void CourseAction(ActionEvent event) {
@@ -106,8 +111,9 @@ public class List_Activity_UserController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course_User.fxml"));
             stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Liste des cours");
             List_CourseController controller = loader.getController();
             stage.show();
         } catch (IOException e) {
@@ -141,68 +147,33 @@ public class List_Activity_UserController implements Initializable {
 
 
     @FXML
-    private void SearchAction(ActionEvent event) throws SQLException {
-        if (txtSearch.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Attention !");
-            alert.setHeaderText(null);
-            alert.setContentText("Le nom est vide saisir un nom ");
-            alert.showAndWait();
-        } else {
-            List<Activity> al = new ArrayList();
-            ActivityService as = new ActivityService();
-            al = as.searchActivity(txtSearch.getText(), id_Course);
-            ObservableList<Activity> oL = FXCollections.observableArrayList(al);
-            TableView.setItems(oL);
-            Name.setCellValueFactory(new PropertyValueFactory("name"));
-            Deadline.setCellValueFactory(new PropertyValueFactory("deadline"));
-        }
-    }
-
-
-
-
-    @FXML
-    private void RefreshAction(ActionEvent event) {
-        showActivities();
+    private void SearchAction(ActionEvent event) {
     }
 
     @FXML
-    private void BackAction(ActionEvent event) {
-        Node node = (Node) event.getSource();
-        Stage oldStage = (Stage) node.getScene().getWindow();
-        oldStage.close();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
-        } catch (IOException e) {
-            System.err.println(String.format("Error: %s", e.getMessage()));
-        }
-    }
-
-    @FXML
-    private void AddWorkAction(ActionEvent event) {
+    private void DetailsAction(ActionEvent event) {
         if (TableView.getSelectionModel().getSelectedItems().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Attention !");
             alert.setHeaderText(null);
-            alert.setContentText("selectionnez une activité");
+            alert.setContentText("selectionnez un travail rendu ");
             alert.showAndWait();
         } else {
-            Activity act = TableView.getSelectionModel().getSelectedItem();
-            System.out.println(act.getId());
-            Work_doneService fs = new Work_doneService();
+            Activity act = new Activity();
+            ActivityService as=new ActivityService();
+            act=as.FindActivityById(id_Activity);
+            Work_done work = TableView.getSelectionModel().getSelectedItem();
+            System.out.println(work.getId());
+            Work_doneService ws = new Work_doneService();
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             stage.close();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_WorkDone.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("DetailsWork_done.fxml"));
                 stage.setScene(new Scene(loader.load()));
-                stage.setTitle("Ajouter un travail");
-                Add_WorkDoneController controller = loader.getController();
-                controller.initData(act);
+                stage.setTitle("Details travail rendu");
+                DetailsWork_doneController controller = loader.getController();
+                controller.initData(act,work);
                 stage.show();
             } catch (IOException e) {
                 System.err.println(String.format("Error: %s", e.getMessage()));
@@ -210,8 +181,30 @@ public class List_Activity_UserController implements Initializable {
         }
     }
 
+
     @FXML
-    private void DetailsActivityAction(ActionEvent event) {
+    private void RefreshAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void BackAction(ActionEvent event) {
+        Activity act=new Activity();
+        ActivityService as= new ActivityService();
+        act=as.FindActivityById(id_Activity);
+        System.out.println(act.getId());
+        Work_doneService cs = new Work_doneService();
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Activity.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            List_ActivityController controller = loader.getController();
+            //controller.initData(act);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println(String.format("Error: %s", e.getMessage()));
+        }
     }
     
 }

@@ -203,11 +203,6 @@
          <children>
             <Pane fx:id="pnl_abonnement" prefHeight="554.0" prefWidth="793.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <Button layoutX="310.0" layoutY="513.0" mnemonicParsing="false" onAction="#ArchivedForumListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Consulter la liste des forum archivés" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="SubjectName" layoutX="46.0" layoutY="61.0" prefHeight="32.0" prefWidth="482.0" text="Nom de la matiere" textFill="#ee4545">
                      <font>
                         <Font name="System Bold" size="22.0" />
@@ -229,17 +224,12 @@
                       <TableColumn fx:id="CourseName" prefWidth="690.0" text="Cours" />
                     </columns>
                   </TableView>
-                  <Button layoutX="46.0" layoutY="466.0" mnemonicParsing="false" onAction="#AvailableActivityListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" text="Consulter la liste des activités diisponibles" textFill="WHITE">
+                  <Button layoutX="117.0" layoutY="485.0" mnemonicParsing="false" onAction="#AvailableActivityListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" text="Consulter la liste des activités diisponibles" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="46.0" layoutY="513.0" mnemonicParsing="false" onAction="#ArchivedActivityListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" text="Consulter la liste des activités terminés" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="310.0" layoutY="466.0" mnemonicParsing="false" onAction="#AvailableForumListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Consulter liste des forum disponibles" textFill="WHITE">
+                  <Button layoutX="427.0" layoutY="485.0" mnemonicParsing="false" onAction="#AvailableForumListAction" prefHeight="37.0" prefWidth="240.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Consulter liste des forum disponibles" textFill="WHITE">
                      <font>
                         <Font name="Raleway ExtraBold" size="12.0" />
                      </font>
@@ -269,16 +259,6 @@
                      </graphic>
                   </Button>
                   <TextField fx:id="txtSearch" layoutX="266.0" layoutY="115.0" prefHeight="29.0" prefWidth="381.0" promptText="rechercher" style="-fx-border-color: #161616;" />
-                  <Button layoutX="576.0" layoutY="466.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Ajouter un nouveau cour" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="576.0" layoutY="513.0" mnemonicParsing="false" onAction="#RemoveAction" prefHeight="37.0" prefWidth="164.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Supprimer un cour" textFill="WHITE">
-                     <font>
-                        <Font name="Raleway ExtraBold" size="12.0" />
-                     </font>
-                  </Button>
                </children>
             </Pane>
          </children>

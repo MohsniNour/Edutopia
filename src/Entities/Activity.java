@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class Activity {
     
-    String id;
+    int id;
     String name;
     Date deadline;
     String work_todo;
-    String work_done;
+    List<Work_done> work_done;
     String id_course;
     List<Commentt> comment;
     String status;
@@ -30,8 +30,6 @@ public class Activity {
     Date last_updated_Date;
     String archived_by;
     Date archived_Date;
-    String Uploated_by;
-    Date Uploated_date;
 
     public Activity() {
         this.status = "Available";
@@ -42,13 +40,6 @@ public class Activity {
         this.created_by = created_by;
         this.status = "active";
     }
-//    public Activity(String name, File work_todo, String id_course, String created_by) {
-//        this.name = name;
-//        this.work_todo = work_todo;
-//        this.id_course = id_course;
-//        this.created_by = created_by;
-//        this.status = "active";
-//    }
 
     public Activity(String name, Date deadline, String work_todo, String id_course, String created_by, Date created_date) {
         this.name = name;
@@ -61,11 +52,11 @@ public class Activity {
         
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -93,11 +84,11 @@ public class Activity {
         this.work_todo = work_todo;
     }
 
-    public String getWork_done() {
+    public List<Work_done> getWork_done() {
         return work_done;
     }
 
-    public void setWork_done(String work_done) {
+    public void setWork_done(List<Work_done> work_done) {
         this.work_done = work_done;
     }
 
@@ -183,17 +174,9 @@ public class Activity {
         this.status = status;
     }
 
-    public String getUploated_by() {
-        return Uploated_by;
-    }
-
-    public Date getUploated_date() {
-        return Uploated_date;
-    }
-
     @Override
     public String toString() {
-        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", comment=" + comment + ", status=" + status + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + ", Uploated_by=" + Uploated_by + ", Uploated_date=" + Uploated_date + '}'+"\n";
+        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", comment=" + comment + ", status=" + status + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date +'}'+"\n";
     }
 
     

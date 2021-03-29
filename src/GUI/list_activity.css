@@ -3,5 +3,10 @@
  */
 
 .mainFxmlClass {
-
+.scroll> .viewport {
+   fx-background-color: transparent;
+}
+.scroll {
+   fx-background-color: transparent;
+}
 }
