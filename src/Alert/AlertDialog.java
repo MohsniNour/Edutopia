@@ -1,4 +1,5 @@
 package Alert;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import javafx.geometry.Pos;
@@ -14,8 +15,8 @@ import org.controlsfx.control.Notifications;
 
 public class AlertDialog {
     
-    public static final Image image_checked=new Image("/images/checked.png");
-    public static final Image image_cross=new Image("/images/cross.png");
+    public static final Image image_checked=new Image("/img/checked.png");
+    public static final Image image_cross=new Image("/img/cross.png");
 
     public static void showSimpleAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -85,7 +86,7 @@ public class AlertDialog {
     }
      public static void showNotification(String Title,String Message,Image img)
      {
-                Notifications notify = Notifications.create()
+                Notifications notify=Notifications.create()
                 .darkStyle()
                 .graphic(new ImageView(img))
                 .title(Title)

@@ -61,7 +61,7 @@ public class Front_ConsulterCoursController implements Initializable {
         //images 
         ImageView img=new ImageView();
         
-         Image image = new Image("images/Cours.jpg");
+         Image image = new Image("img/Cours.jpg");
          img.setFitHeight(120);
          img.setFitWidth(120);
 

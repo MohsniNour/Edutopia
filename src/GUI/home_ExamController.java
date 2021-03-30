@@ -229,7 +229,7 @@ public class home_ExamController implements Initializable {
             Exam e = new Exam(combo_type.getSelectionModel().getSelectedItem(), dd, df,id_Subject, (java.sql.Date) dd, (java.sql.Date) dd);
             service.Ajouter(e);
             refreche();
-            AlertDialog.showNotification("Ajout", "Ajouter avec success", AlertDialog.image_checked);
+//            AlertDialog.showNotification("Ajout", "Ajouter avec success", AlertDialog.image_checked);
         }
     }
 

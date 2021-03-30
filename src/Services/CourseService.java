@@ -31,11 +31,11 @@ public class CourseService implements IService<Course> {
     @Override
     public void Ajouter(Course t) throws SQLException {
         try {
-            FileReader reader = new FileReader(t.getCourse());
+         
             String rq = "INSERT INTO course (name,course_file,id_Subject,created_by,Description,created_Date,archived_Date) VALUES(?,?,?,?,?,?,null)";
             PreparedStatement pre = c.prepareStatement(rq);
             pre.setString(1, t.getName());
-            pre.setCharacterStream(2, reader);
+            pre.setString(2, t.getCourse());
             pre.setInt(3, t.getId_subject());
             pre.setString(4, t.getCreated_by());
             pre.setString(5, t.getDescription());
@@ -44,8 +44,6 @@ public class CourseService implements IService<Course> {
 
         } catch (SQLException excep) {
             System.err.println(excep.getMessage());
-        } catch (FileNotFoundException excep) {
-            Logger.getLogger(CourseService.class.getName()).log(Level.SEVERE, null, excep);
         }
     }
 
@@ -68,9 +66,9 @@ public class CourseService implements IService<Course> {
         try {
             String query = "UPDATE `Course` SET `name`=?,`course_file`=?,`id_Subject`=?,`Description`=? WHERE id=?";
             PreparedStatement ps = c.prepareStatement(query);
-            FileReader reader = new FileReader(t.getCourse());
+           
             ps.setString(1, t.getName());
-            ps.setCharacterStream(2, reader);
+            ps.setString(2, t.getCourse());
             ps.setInt(3, t.getId_subject());
             ps.setString(4, t.getDescription());
             ps.setInt(5, id);
@@ -78,8 +76,6 @@ public class CourseService implements IService<Course> {
             System.out.println("Updated succesfully");
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CourseService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

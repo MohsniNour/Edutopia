@@ -17,7 +17,7 @@ public class Course {
 
 private int id ;
 private String name;
-private File course ;
+private String course ;
 private int id_subject;
 private String created_by ;   
 private Date  created_Date;
@@ -74,7 +74,7 @@ private String Description;
         this.Description = Description;
       
     }
-    public Course(String name, File course, int id_subject, String created_by, Date created_Date, String Description) {
+    public Course(String name, String course, int id_subject, String created_by, Date created_Date, String Description) {
         this.name = name;
         this.course = course;
         this.id_subject = id_subject;
@@ -92,7 +92,7 @@ private String Description;
         this.Description = Description;
     }
 
-    public Course(String name, File course, int id_subject, String created_by, Date created_Date, Date archived_Date, String Description) {
+    public Course(String name, String course, int id_subject, String created_by, Date created_Date, Date archived_Date, String Description) {
         this.name = name;
         this.course = course;
         this.id_subject = id_subject;
@@ -102,7 +102,7 @@ private String Description;
         this.Description = Description;
     }
 
-    public Course(String name, File course, int id_subject, String Description) {
+    public Course(String name, String course, int id_subject, String Description) {
         this.name = name;
         this.course = course;
         this.id_subject = id_subject;
@@ -127,11 +127,11 @@ private String Description;
         this.name = name;
     }
 
-    public File getCourse() {
+    public String getCourse() {
         return course;
     }
 
-    public void setCourse(File course) {
+    public void setCourse(String course) {
         this.course = course;
     }
 

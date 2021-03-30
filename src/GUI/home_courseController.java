@@ -6,6 +6,7 @@ import Entities.BadWords;
 import Entities.Course;
 import Entities.Subjectt;
 import Services.CourseService;
+import Utils.Helpers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +38,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class home_courseController implements Initializable {
 
@@ -198,20 +201,28 @@ public class home_courseController implements Initializable {
 
     @FXML
     private FileChooser ImportButtonAction(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("File", "*.txt"));
-        File f = fc.showOpenDialog(null);
-        if (f != null) {
-            file_name.setText(f.getAbsolutePath());
 
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.pdf", "pdf");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            this.selectedFile = fileChooser.getSelectedFile();
+            //String path = selectedFile.getAbsolutePath();
+            //s = path;
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("Insert a file please");
         }
-        return fc;
+        return null;
     }
+
+    File selectedFile = null;
 
     @FXML
     private void ajouter_Cours(ActionEvent event) throws SQLException {
         BadWords.loadConfigs();
-        File f = new File(file_name.getText());
+        
         {
             if (txtName.getText().equals("")) {
                 AlertDialog.showNotification("Error !", "champ vide de nom", AlertDialog.image_cross);
@@ -225,7 +236,9 @@ public class home_courseController implements Initializable {
             } else if (BadWords.filterText(Description.getText())) {
                 AlertDialog.showNotification("Error !", "cette application n'autorise pas ces termes", AlertDialog.image_cross);
             } else {
-                Course c = new Course(txtName.getText(), f, id_Subject, Description.getText());
+                String fileName = "";
+                fileName = Helpers.uploadFile(selectedFile);
+                Course c = new Course(txtName.getText(), fileName, id_Subject, Description.getText());
                 service.Ajouter(c);
                 refrech();
                 AlertDialog.showNotification("Cours", "Cours ajouter", AlertDialog.image_checked);
