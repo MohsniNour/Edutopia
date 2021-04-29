@@ -14,18 +14,18 @@ import javafx.collections.ObservableList;
  */
 public interface IComment {
     public String getId(Commentt comment);
-    public ObservableList<Commentt> getCommentsByIdForum(String id_forum);
+    public ObservableList<Commentt> getCommentsByIdForum(int id_forum);
     public ObservableList<Commentt> getComment();
     public void add(Commentt comment);
-    public void remove(String id);
-    public void activate(String id);
-    public void update(String id, Commentt new_comment);
-    public void addLike(String id, int like);
-    public void addDisLike(String id, int disLike);
-    public Commentt details(String id);
+    public void remove(int id);
+    public void activate(int id);
+    public void update(int id, Commentt new_comment);
+    public void addLike(int id, int like);
+    public void addDisLike(int id, int disLike);
+    public Commentt details(int id);
     public List<Commentt> listAvailable();
     public List<Commentt> listArchived();
     public String display(List<Commentt> cmts);
-    public int countComment(String id_forum);
+    public int countComment(int id_forum);
     
 }

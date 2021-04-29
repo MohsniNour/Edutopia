@@ -70,7 +70,7 @@ public class Add_ActivityController implements Initializable {
     private TableColumn<Activity, Date> idDeadline;
     @FXML
     private TableColumn<Activity, String> id;
-    private String id_Course;
+    private int id_Course;
     private Path to;
     private Path from;
     private Path fromUpdated;
@@ -118,7 +118,7 @@ public class Add_ActivityController implements Initializable {
         } else {
             System.out.println(String.valueOf(file));
             ActivityService sa = new ActivityService();
-            Activity act = new Activity(txtName.getText(), Date.valueOf(pkDeadline.getValue()), String.valueOf(to), id_Course, "nour", java.sql.Date.valueOf(java.time.LocalDate.now()));
+            Activity act = new Activity(txtName.getText(), Date.valueOf(pkDeadline.getValue()), String.valueOf(to), id_Course, 2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             Files.copy(from, to);
             System.out.print(to);
             sa.add(act);
@@ -147,7 +147,7 @@ public class Add_ActivityController implements Initializable {
 
     public void showActivities() {
         ActivityService as = new ActivityService();
-        ArrayList<Activity> al = as.getActivitiesListByIdCourse(id_Course);
+        ArrayList<Activity> al = as.getActivitiesListByIdCourse(String.valueOf(id_Course));
         ObservableList<Activity> oL = FXCollections.observableArrayList(al);
         idName.setCellValueFactory(new PropertyValueFactory("name"));
         idDeadline.setCellValueFactory(new PropertyValueFactory("deadline"));
@@ -165,7 +165,7 @@ public class Add_ActivityController implements Initializable {
         act.setDeadline(Date.valueOf(pkDeadline.getValue()));
         act.setId_Course(id_Course);
         act.setWork_todo(String.valueOf(to));
-        act.setLast_updated_by("hamza");
+        act.setLast_updated_by(1);
         act.setLast_updated_Date(java.sql.Date.valueOf(java.time.LocalDate.now()));
         ActivityService as = new ActivityService();
         System.out.println(act.getId());
@@ -195,7 +195,8 @@ public class Add_ActivityController implements Initializable {
             removePath = Paths.get("src/RemovedFiles/" + f.getName());
             Files.copy(from, removePath);
             Files.delete(from);
-            as.remove(act.getId(), removePath.toString());
+//            as.remove(act.getId(), removePath.toString());
+            as.remove(act.getId());
             showActivities();
         }
     }

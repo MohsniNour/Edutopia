@@ -1,0 +1,16 @@
+.mainFxmlClass {
+
+}
+
+.root{-fx-background-color: #ffffff;}
+.button {-fx-background-color: #44CCC0; -fx-text-fill: #ffffff;}
+
+#titre{-fx-font-size:32px; }
+#GroupBox{-fx-border-color: #44CCC0; -fx-border-width: 5;}
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
+}

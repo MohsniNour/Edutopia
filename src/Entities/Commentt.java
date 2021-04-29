@@ -12,17 +12,17 @@ import java.util.Date;
  * @author ADMIN
  */
 public class Commentt {
-    String id;
+    int id;
     String content;
-    String id_forum;
+    int id_forum;
     String status;
     int likes;
     int disLikes;
-    String created_by;
+    int created_by;
     Date created_date;
-    String last_updated_by;
+    int last_updated_by;
     Date last_updated_Date;
-    String archived_by;
+    int archived_by;
     Date archived_Date;
 
     public Commentt() {
@@ -31,7 +31,7 @@ public class Commentt {
     
     
 
-    public Commentt(String content, String id_forum, String created_by, Date created_date) {
+    public Commentt(String content, int id_forum, int created_by, Date created_date) {
         this.content = content;
         this.id_forum = id_forum;
         this.created_by = created_by;
@@ -41,13 +41,22 @@ public class Commentt {
         
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+    public int getId_forum() {
+        return id_forum;
+    }
+
+    public void setId_forum(int id_forum) {
+        this.id_forum = id_forum;
+    }
+  
 
     public String getContent() {
         return content;
@@ -55,14 +64,6 @@ public class Commentt {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getId_forum() {
-        return id_forum;
-    }
-
-    public void setId_forum(String id_forum) {
-        this.id_forum = id_forum;
     }
 
     public String getStatus() {
@@ -89,14 +90,14 @@ public class Commentt {
         this.disLikes = disLikes;
     }
 
-    
-    public String getCreated_by() {
+    public int getCreated_by() {
         return created_by;
     }
 
-    public void setCreated_by(String created_by) {
+    public void setCreated_by(int created_by) {
         this.created_by = created_by;
     }
+
 
     public Date getCreated_date() {
         return created_date;
@@ -106,11 +107,11 @@ public class Commentt {
         this.created_date = created_date;
     }
 
-    public String getLast_updated_by() {
+    public int getLast_updated_by() {
         return last_updated_by;
     }
 
-    public void setLast_updated_by(String last_updated_by) {
+    public void setLast_updated_by(int last_updated_by) {
         this.last_updated_by = last_updated_by;
     }
 
@@ -122,11 +123,11 @@ public class Commentt {
         this.last_updated_Date = last_updated_Date;
     }
 
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 

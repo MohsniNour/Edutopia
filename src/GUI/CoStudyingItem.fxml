@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="id_clicked" onMouseClicked="#on_mouse_clicked" prefHeight="200.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CoStudyingItemController">
+<AnchorPane id="AnchorPane" fx:id="id_clicked" onMouseClicked="#on_mouse_clicked" onMouseEntered="#on_hover" onMouseExited="#off_hover" prefHeight="200.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CoStudyingItemController">
     <stylesheets>
         <URL value="@costudyingitem.css" />
       <URL value="@style.css" />
     </stylesheets>
    <children>
-      <VBox fx:id="vbox_id" alignment="TOP_CENTER" onMouseEntered="#on_hover" onMouseExited="#off_hover" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
+      <VBox fx:id="vbox_id" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css">
          <children>
             <Label fx:id="id_co" prefHeight="0.0" prefWidth="0.0" visible="false" />
             <HBox alignment="CENTER" prefHeight="41.0" prefWidth="200.0">

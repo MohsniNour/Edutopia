@@ -46,7 +46,7 @@ public class CoStudyingItemController implements Initializable {
     static int id_item;
     private Co_Studying co;
 
-    private static final DropShadow highlight = new DropShadow(15, Color.DARKVIOLET);
+    private static final DropShadow highlight = new DropShadow(15, Color.DARKRED);
     DropShadow shadow = new DropShadow();
 
     /**
@@ -78,13 +78,13 @@ public class CoStudyingItemController implements Initializable {
 
     @FXML
     private void off_hover(MouseEvent event) {
-       vbox_id.setEffect(null);
+       id_clicked.setEffect(null);
     }
 
     @FXML
     private void on_hover(MouseEvent event) {
-        vbox_id.setEffect(highlight);
-        vbox_id.setCursor(Cursor.HAND);
+        id_clicked.setEffect(highlight);
+        id_clicked.setCursor(Cursor.HAND);
     }
 
 }

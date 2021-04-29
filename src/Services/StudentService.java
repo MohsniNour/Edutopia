@@ -42,7 +42,7 @@ public class StudentService implements IStudent {
             pst.setString(4, p.getEmail());
             pst.setInt(5, p.getPhone_number());
             pst.setDate(6, (Date) p.getBirth_date());
-            pst.setInt(7, p.getClasse().getId());
+            pst.setString(7, p.getClasse().getName());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -104,11 +104,9 @@ public class StudentService implements IStudent {
                 String email = rs.getString("email");
                 int phone_number = rs.getInt("phone_number");
                 Date birth_date = rs.getDate("birth_date");
-                int id_classe = rs.getInt("classe");
-                classe c = new classe(id_classe);
-//                ClasseService cs = new ClasseService();
-//                c.setId(rs.getInt("classe"));
-//                classe c1 = cs.getUser(c.getId());
+                String classe_name = rs.getString("classe");
+                classe c = new classe(classe_name);
+
                 
                 Student p = new Student(role, name, last_name, cin, email, phone_number, birth_date,c);
                 p.setId(rs.getInt("id"));

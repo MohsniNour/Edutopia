@@ -122,7 +122,7 @@ public class Co_StudyingService implements ICo_Studying {
            
             Statement pst = cnx.createStatement();
             ResultSet rs;
-            rs = pst.executeQuery("SELECT *FROM co_studying");
+            rs = pst.executeQuery("SELECT * FROM co_studying");
             while (rs.next()) {
                 String type = rs.getString("type");
                 String description = rs.getString("description");

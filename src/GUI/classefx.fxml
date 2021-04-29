@@ -1,14 +1,716 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.classefxController">
-    <stylesheets>
-        <URL value="@classefx.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="691.0" prefWidth="881.0" styleClass="bodybg" stylesheets="@backgorund.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crudclasse.classefxController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <BorderPane layoutX="138.0" prefHeight="4.0" prefWidth="882.0" />
+      <TabPane layoutY="14.0" prefHeight="691.0" prefWidth="1020.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Classe">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="437.0" prefWidth="410.0">
+                     <children>
+                        <VBox layoutX="257.0" layoutY="26.0" prefHeight="418.0" prefWidth="168.0" spacing="15.0">
+                           <children>
+                              <Label text="Nom " />
+                              <TextField fx:id="tfnom" onKeyReleased="#searchkey1" opacity="0.93">
+                                 <effect>
+                                    <Lighting bumpInput="$null">
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                              <Label text="classe_size" />
+                              <TextField fx:id="tfclasse_size" opacity="0.9" prefHeight="26.0" prefWidth="135.0">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                              <Label text="created_date" />
+                              <TextField fx:id="tfcreated_date" opacity="0.94">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                              <Label text="last_update_date" />
+                              <TextField fx:id="tflast_update_date" opacity="0.9">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                              <Label text="archived_date" />
+                              <TextField fx:id="tfarchived_date" opacity="0.91">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnupdate" layoutX="520.0" layoutY="461.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: EE4545;" text="modifier" textFill="#f8f8f8" />
+                        <TextField fx:id="tfid2" layoutX="476.0" layoutY="422.0" />
+                        <TextField fx:id="tfid" layoutX="746.0" layoutY="422.0" />
+                        <Button fx:id="btndelete" layoutX="785.0" layoutY="461.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: EE4545;" text="supprimer" textFill="WHITE" />
+                        <TableView fx:id="tvclasse" layoutX="456.0" layoutY="74.0" onMouseClicked="#handleMouseAction" opacity="0.87" prefHeight="334.0" prefWidth="559.0">
+                          <columns>
+                            <TableColumn fx:id="collid" prefWidth="62.39996337890625" text="id" />
+                            <TableColumn fx:id="collnom" prefWidth="64.79998779296875" text="nom" />
+                              <TableColumn fx:id="collclasse_size" prefWidth="71.20001220703125" text="classe_size" />
+                              <TableColumn fx:id="collcreated_by" prefWidth="72.800048828125" text="created_by" />
+                              <TableColumn fx:id="collcreated_date" prefWidth="108.80001831054688" text="created date" />
+                              <TableColumn fx:id="colllast_update_by" prefWidth="105.5999755859375" text="last_update_by" />
+                              <TableColumn fx:id="colllast_update_date" prefWidth="124.0" text="last_update_date" />
+                              <TableColumn fx:id="collarchived_by" prefWidth="100.0" text="archived_by" />
+                              <TableColumn fx:id="collarchived_date" prefWidth="113.60009765625" text="archived_date" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="rech" layoutX="595.0" layoutY="36.0" onKeyReleased="#searchkey" promptText="Search here " />
+                        <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" layoutX="-21.0" prefHeight="720.0" prefWidth="267.0" style="-fx-background-color: #161616;">
+                           <children>
+                              <ImageView fx:id="imagechange" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Pi/src/Icons/11-user-active-512.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="50.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label fx:id="UserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="230.0" textAlignment="CENTER" textFill="#e7e5e5">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Accueil" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_home_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DepartmentAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Departement" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_account_balance_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Classe" textFill="#ff0b0b">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_groups_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Matière" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_library_books_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="CHargerFrontExman" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Examen" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_description_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_event_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn_Course1" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Co_StudyingAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Co_Studying" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_work_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Mon compte" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_portrait_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Reclamation" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_warning_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DisconnectionAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Deconnexion" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_logout_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnajouter" layoutX="296.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.91" style="-fx-background-color: EE4545;" text="Ajouter" textFill="#f0f0f0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="seance en ligne">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox layoutX="291.0" layoutY="74.0" prefHeight="434.0" prefWidth="120.0" spacing="20.0">
+                           <children>
+                              <Label text="matiere" />
+                              <TextField fx:id="tfmatiere">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                              <Label text="date" />
+                              <DatePicker fx:id="tfdate" />
+                              <Label text="Lien" />
+                              <TextField fx:id="tflien">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                              <Label text="duree" />
+                              <TextField fx:id="tfduree">
+                                 <effect>
+                                    <Lighting bumpInput="$null">
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect></TextField>
+                           </children>
+                        </VBox>
+                        <TableView fx:id="tvseance" layoutX="423.0" layoutY="126.0" opacity="0.75" prefHeight="318.0" prefWidth="562.0">
+                          <columns>
+                            <TableColumn fx:id="colmatiere" prefWidth="133.6000518798828" text="matiere" />
+                            <TableColumn fx:id="coldate" prefWidth="108.79998779296875" text="date" />
+                              <TableColumn fx:id="colduree" prefWidth="84.0" text="duree" />
+                              <TableColumn fx:id="collien" prefWidth="347.20001220703125" text="lien" />
+                              <TableColumn fx:id="colidseance" prefWidth="159.20001220703125" text="id" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="227.0" layoutY="532.0" prefHeight="18.0" prefWidth="575.0" />
+                        <Button fx:id="btnmodifier1" layoutX="729.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: EE4545;" text="modifier" textFill="#fdfdfd" />
+                        <Button fx:id="btnsupprimer1" layoutX="641.0" layoutY="519.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: EE4545;" text="supprimer" textFill="#fdfdfd" />
+                        <TextField fx:id="tfid1" layoutX="641.0" layoutY="546.0" />
+                        <Label layoutX="577.0" layoutY="550.0" />
+                        <VBox fx:id="vboxdrawer1" alignment="TOP_CENTER" layoutX="-12.0" prefHeight="720.0" prefWidth="267.0" style="-fx-background-color: #161616;">
+                           <children>
+                              <ImageView fx:id="imagechange1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Pi/src/Icons/11-user-active-512.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="50.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label fx:id="UserName1" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="230.0" textAlignment="CENTER" textFill="#e7e5e5">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Accueil" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_home_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DepartmentAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Departement" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_account_balance_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Classe" textFill="#fdfdfd">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_groups_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Matière" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_library_books_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ExamAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Examen" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_description_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_event_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn_Course11" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Co_StudyingAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Co_Studying" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_work_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Mon compte" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_portrait_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Reclamation" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_warning_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Button fx:id="meet" layoutX="256.0" layoutY="603.0" mnemonicParsing="false" onAction="#handleButtonAction" onMouseClicked="#start" style="-fx-background-color: #32CD32;" text="Go to google meet" />
+                        <Button fx:id="btnajouter1" layoutX="306.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: EE4545;" text="Ajouter" textFill="#fdfdfd" />
+                        <Button layoutX="539.0" layoutY="591.0" mnemonicParsing="false" onAction="#start2" text="Button" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Listes des etudiants">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvclasses" layoutX="353.0" layoutY="120.0" opacity="0.95" prefHeight="438.0" prefWidth="550.0">
+                           <columns>
+                              <TableColumn fx:id="colnometu" prefWidth="70.4000244140625" text="nom " />
+                              <TableColumn fx:id="colprenometud" prefWidth="95.20001220703125" text="prenom" />
+                              <TableColumn fx:id="colclasseetud" minWidth="6.39996337890625" prefWidth="95.20001220703125" text="classe" />
+                              <TableColumn fx:id="coletat" prefWidth="128.00006103515625" text="Etat" />
+                              <TableColumn fx:id="colnbp" minWidth="6.39996337890625" prefWidth="259.199951171875" text="nbp" />
+                           </columns>
+                        </TableView>
+                        <VBox fx:id="vboxdrawer11" alignment="TOP_CENTER" prefHeight="679.0" prefWidth="267.0" style="-fx-background-color: #161616;">
+                           <children>
+                              <ImageView fx:id="imagechange11" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Pi/src/Icons/11-user-active-512.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="50.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label fx:id="UserName11" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="230.0" textAlignment="CENTER" textFill="#e7e5e5">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DepartmentAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Departement" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_account_balance_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Accueil" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_home_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Classe" textFill="#fdfdfd">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_groups_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Matière" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_library_books_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ExamAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Examen" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_description_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_event_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btn_Course111" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Co_StudyingAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Co_Studying" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_work_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Mon compte" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_portrait_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Reclamation" textFill="#e7e5e5">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Pi/src/Icons/baseline_warning_white_18dp.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Button layoutX="642.0" layoutY="585.0" mnemonicParsing="false" onAction="#newP" text="Button" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+    </children>
 </AnchorPane>

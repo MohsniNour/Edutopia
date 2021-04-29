@@ -1,28 +1,29 @@
-package entities;
-
-
-import java.util.*;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Entities;
+
+import java.util.*;
 
 /**
  *
  * @author Mrad
  */
 public class Specialty {
-    private int id;
-    private int id_resp;
+     private int id;
+    private int idTeacher;
     private String specialty;
+    private String name;
+    private String lastname;
     private List<String> niveaux;
-    private String created_by;
+    private String niveau;
+    private int created_by;
     private java.sql.Date created_date;
-    private String last_updated_by;
+    private int last_updated_by;
     private java.sql.Date last_update_date;
-    private String archived_by;
+    private int archived_by;
     private java.sql.Date archived_date;
     private String status;
     
@@ -33,16 +34,36 @@ public class Specialty {
     public void addNiveau(String s){
         niveaux.add(s);
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
     
     public void removeNiveau(String s){
         niveaux.remove(s);
     }
     public String getStringNiveaux(){
         String list="";
+        
         for (String s : niveaux) {
             list=list+","+s;
         }
         return list;
+    }
+    public String getNiveau(){
+        return this.niveau;
     }
     public List getArrayNiveaux() {
         return niveaux;
@@ -50,20 +71,21 @@ public class Specialty {
     public void setListNiveaux(String s){
         String str[] = s.split(",");
         this.niveaux = Arrays.asList(str);
+        this.niveau=s;
     }
     public void setId(int id) {
         this.id = id;
     }
 
     public void setId_resp(int id_resp) {
-        this.id_resp = id_resp;
+        this.idTeacher = id_resp;
     }
 
     public void setSpecialty(String s) {
         this.specialty = s;
     }
 
-    public void setCreated_by(String created_by) {
+    public void setCreated_by(int created_by) {
         this.created_by = created_by;
     }
 
@@ -71,7 +93,7 @@ public class Specialty {
         this.created_date = created_date;
     }
 
-    public void setLast_updated_by(String last_updated_by) {
+    public void setLast_updated_by(int last_updated_by) {
         this.last_updated_by = last_updated_by;
     }
 
@@ -79,7 +101,7 @@ public class Specialty {
         this.last_update_date = last_update_date;
     }
 
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 
@@ -92,14 +114,14 @@ public class Specialty {
     }
 
     public int getId_resp() {
-        return id_resp;
+        return idTeacher;
     }
 
     public String getSpecialty() {
         return specialty;
     }
 
-    public String getCreated_by() {
+    public int getCreated_by() {
         return created_by;
     }
 
@@ -107,7 +129,7 @@ public class Specialty {
         return created_date;
     }
 
-    public String getLast_updated_by() {
+    public int getLast_updated_by() {
         return last_updated_by;
     }
 
@@ -115,7 +137,7 @@ public class Specialty {
         return last_update_date;
     }
 
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
@@ -130,12 +152,18 @@ public class Specialty {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
-    @Override
-    public String toString() {
-        return "Specialties{" + "id=" + id + ", id_resp=" + id_resp + ", specialty=" + specialty + ", niveaux=" + getStringNiveaux() + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_update_date=" + last_update_date + ", archived_by=" + archived_by + ", archived_date=" + archived_date + ", status=" + status + '}';
+
+    public void setNiveau(String niveau) {
+        this.niveau = niveau;
     }
 
+    @Override
+    public String toString() {
+        return "Specialty{" + "id=" + id + ", idTeacher=" + idTeacher + ", specialty=" + specialty + ", niveaux=" + niveaux + ", niveau=" + niveau + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_update_date=" + last_update_date + ", archived_by=" + archived_by + ", archived_date=" + archived_date + ", status=" + status + '}';
+    }
+
+    
+    
+    
     
 }

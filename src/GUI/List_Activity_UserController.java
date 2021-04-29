@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -68,7 +69,7 @@ public class List_Activity_UserController implements Initializable {
     private Path fromUpdated;
     private Path removePath;
     File file = null;
-    String id_Course;
+    int id_Course;
 
     /**
      * Initializes the controller class.
@@ -105,9 +106,9 @@ public class List_Activity_UserController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("List_Course.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home_Course.fxml"));
             stage.setScene(new Scene(loader.load()));
-            List_CourseController controller = loader.getController();
+            home_courseController controller = loader.getController();
             stage.show();
         } catch (IOException e) {
             System.err.println(String.format("Error: %s", e.getMessage()));
@@ -115,7 +116,12 @@ public class List_Activity_UserController implements Initializable {
     }
 
     @FXML
-    private void ExamAction(ActionEvent event) {
+    private void ExamAction(ActionEvent event) throws IOException {
+              Parent root = FXMLLoader.load(getClass().getResource("Front_ChargerExamen.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML

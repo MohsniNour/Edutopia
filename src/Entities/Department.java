@@ -1,16 +1,14 @@
-package entities;
-
-
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Entities;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -19,16 +17,18 @@ import java.util.List;
 public class Department {
     private int id=0;
     private String name;
-    private int owner_id;
-    private int admin_number;
-    private String created_by;
+    private int ownerId;
+    private String ownername;
+    private String ownerlastname;
+    private int created_by;
     private Date created_date;
-    private String last_updated_by;
+    private int last_updated_by;
     private Date last_update_date;
-    private String archived_by;
+    private int archived_by;
     private Date archived_date;
     private String status;
     private List<String> specialties;
+    private String spec="";
     
     
 
@@ -37,14 +37,26 @@ public class Department {
      */
     public Department() {
         specialties = new ArrayList<>();
-        specialties.add("tronc commun");
+//        specialties.add("tronc commun");
     }
 
-    @Override
-    public String toString() {
-        return "Department{" + "id=" + id + ", name=" + name + ", owner_id=" + owner_id + ", admin_number=" + admin_number + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_update_date=" + last_update_date + ", archived_by=" + archived_by + ", archived_date=" + archived_date + ", status=" + status + ", specialties=" + getStringSpecialties() + '}';
+    public int getOwnerId() {
+        return ownerId;
     }
 
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+
+    public void setSpec(){
+        specialties.forEach((s) -> {
+            spec=spec+s+",";
+        });
+    }
+    public String getSpec(){
+        return spec;
+    }
     public int getId() {
         return id;
     }
@@ -69,47 +81,42 @@ public class Department {
         this.name = name;
     }
 
-    /**
-     * @return the owner_id
-     */
-    public int getOwner_id() {
-        return owner_id;
+    public String getOwnername() {
+        return ownername;
     }
 
-    /**
-     * @param owner_id the owner_id to set
-     */
-    public void setOwner_id(int owner_id) {
-        this.owner_id = owner_id;
+    public String getOwnerlastname() {
+        return ownerlastname;
     }
 
-    /**
-     * @return the admin_number
-     */
-    public int getAdmin_number() {
-        return admin_number;
+    public void setOwnername(String ownername) {
+        this.ownername = ownername;
     }
 
-    /**
-     * @param admin_number the admin_number to set
-     */
-    public void setAdmin_number(int admin_number) {
-        this.admin_number = admin_number;
+    public void setOwnerlastname(String ownerlastname) {
+        this.ownerlastname = ownerlastname;
     }
 
-    /**
-     * @return the created_by
-     */
-    public String getCreated_by() {
+    public void setSpec(String spec) {
+        this.spec = spec;
+    }
+
+    public void setCreated_by(int created_by) {
+        this.created_by = created_by;
+    }
+
+    public void setLast_updated_by(int last_updated_by) {
+        this.last_updated_by = last_updated_by;
+    }
+
+    public int getCreated_by() {
         return created_by;
     }
 
-    /**
-     * @param created_by the created_by to set
-     */
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
+    public int getLast_updated_by() {
+        return last_updated_by;
     }
+
 
     /**
      * @return the created_date
@@ -125,19 +132,7 @@ public class Department {
         this.created_date = created_date;
     }
 
-    /**
-     * @return the last_updated_by
-     */
-    public String getLast_updated_by() {
-        return last_updated_by;
-    }
-
-    /**
-     * @param last_updated_by the last_updated_by to set
-     */
-    public void setLast_updated_by(String last_updated_by) {
-        this.last_updated_by = last_updated_by;
-    }
+  
 
     /**
      * @return the last_update_date
@@ -156,14 +151,14 @@ public class Department {
     /**
      * @return the archived_by
      */
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
     /**
      * @param archived_by the archived_by to set
      */
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 
@@ -195,7 +190,7 @@ public class Department {
     public String getStringSpecialties(){
         String list="";
         for (String s : specialties) {
-            list=list+","+s;
+            list=list+s+",";
         }
         return list;
     }
@@ -205,5 +200,8 @@ public class Department {
     public void setList(String s){
         String str[] = s.split(",");
         this.specialties = Arrays.asList(str);
+    }
+    public void setListSpec(List<String> l) {
+        this.specialties=l;
     }
 }

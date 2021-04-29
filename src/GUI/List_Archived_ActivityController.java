@@ -46,7 +46,7 @@ public class List_Archived_ActivityController implements Initializable {
     private TableColumn<Activity, Date> idDeadline;
     @FXML
     private Label CourseName;
-    private String id_Course;
+    private int id_Course;
     
     private Path to;
     private Path from;
@@ -109,7 +109,8 @@ public class List_Archived_ActivityController implements Initializable {
             removePath = Paths.get("src/Files/" + f.getName());
             Files.copy(from, removePath);
             Files.delete(from);
-            as.activate(act.getId(), removePath.toString());
+//            as.activate(act.getId(), removePath.toString());
+            as.activate(act.getId());
             showActivities();
         }
     }

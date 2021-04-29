@@ -5,13 +5,18 @@
  */
 package GUI;
 
+import CalendarA.FullCalendarView;
 import Entities.Co_Studying;
+import Entities.User;
 import Services.Co_StudyingService;
 import java.io.IOException;
 import java.net.URL;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +27,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.DropShadow;
@@ -32,6 +40,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -39,6 +48,8 @@ import javafx.stage.Stage;
  * @author rayen
  */
 public class List_CoStudyingController implements Initializable {
+
+    User current_user = CoStudyingFrontController.current_user;
 
     @FXML
     private VBox vboxdrawer;
@@ -60,6 +71,7 @@ public class List_CoStudyingController implements Initializable {
     int row = 1;
 
     DropShadow shadow = new DropShadow();
+    private Button add_btn;
 
     /**
      * Initializes the controller class.
@@ -101,49 +113,123 @@ public class List_CoStudyingController implements Initializable {
         }
     }
 
-    @FXML
-    private void HomeAction(ActionEvent event) {
+     @FXML
+    private void HomeAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("AdminHome.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
-    private void DepartmentAction(ActionEvent event) {
+    private void UserAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("UserAddPicker.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
-    private void ClassAction(ActionEvent event) {
+    private void DepartmentAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDepartment.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
-    private void CourseAction(ActionEvent event) {
+    private void ClassAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("AdminClasse.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
-    private void ExamAction(ActionEvent event) {
+    private void CourseAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLSubjectForAdmin.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
-    private void CalendarAction(ActionEvent event) {
+    private void CalendarAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FullCalendar.fxml"));
+        Parent root = loader.load();
+        FullCalendarController controller = loader.getController();
+        VBox f = new FullCalendarView(YearMonth.now()).getView();
+        controller.calendarPane.getChildren().add(f);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
-    private void Co_StudyingAction(ActionEvent event) {
+    private void Co_StudyingAction(ActionEvent event) throws IOException {
+      
     }
 
     @FXML
-    private void AccountAction(ActionEvent event) {
+    private void AccountAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLAdminModify.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
-    private void ClaimAction(ActionEvent event) {
+    private void ClaimAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ComplaintAdd.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     @FXML
     private void DisconnectionAction(ActionEvent event) {
+        Dialog confirmation = new Dialog();
+        GridPane grid2 = new GridPane();
+        Label l1 = new Label("Décnnecter ?");
+        grid2.add(l1, 2, 2);
+        confirmation.setTitle("Confirmation");
+        confirmation.getDialogPane().setContent(grid2);
+        ButtonType Confi = new ButtonType("Oui", ButtonBar.ButtonData.OK_DONE);
+        ButtonType Ann = new ButtonType("Non", ButtonBar.ButtonData.OK_DONE);
+        confirmation.getDialogPane().getButtonTypes().add(Confi);
+        confirmation.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        confirmation.setResultConverter(new Callback<ButtonType, User>() {
+            @Override
+            public User call(ButtonType param) {
+                if (param == Confi) {
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(Add_Student_FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                }
+
+                return null;
+            }
+        });
+        confirmation.showAndWait();
     }
 
     @FXML
     private void ExpandAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("CoStudyingFront.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CoStudyingDisplay.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
@@ -159,6 +245,15 @@ public class List_CoStudyingController implements Initializable {
     private void more_onhover(MouseEvent event) {
         more_btn.setEffect(shadow);
         more_btn.setCursor(Cursor.HAND);
+    }
+
+    private void add_hover(MouseEvent event) {
+        add_btn.setCursor(Cursor.HAND);
+        add_btn.setEffect(shadow);
+    }
+
+    private void add_offhover(MouseEvent event) {
+        add_btn.setEffect(null);
     }
 
 }

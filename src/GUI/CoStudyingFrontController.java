@@ -7,7 +7,6 @@ package GUI;
 
 import Entities.Co_Studying;
 import Entities.Rating;
-import Entities.Student;
 import Entities.User;
 import Services.Co_StudyingService;
 import static GUI.CoStudyingItemController.id_item;
@@ -24,9 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -46,6 +47,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -58,8 +60,6 @@ public class CoStudyingFrontController implements Initializable {
     private ScrollPane scroll;
     @FXML
     private GridPane grid;
-
-    private List<Co_Studying> cos = new ArrayList<>();
     @FXML
     private Label type;
     @FXML
@@ -94,7 +94,6 @@ public class CoStudyingFrontController implements Initializable {
     private Label rate;
     @FXML
     private Button add_btn;
-    @FXML
     private Label mainmenu_txt;
     @FXML
     private ImageView mainmenu_icon;
@@ -102,9 +101,9 @@ public class CoStudyingFrontController implements Initializable {
     private HBox load_btn;
     @FXML
     private HBox order_btn;
-    
-    DropShadow shadow = new DropShadow();
 
+    private List<Co_Studying> cos = new ArrayList<>();
+    DropShadow shadow = new DropShadow();
     Co_StudyingService cs = new Co_StudyingService();
     Co_Studying co = new Co_Studying();
     RatingService rs = new RatingService();
@@ -115,7 +114,9 @@ public class CoStudyingFrontController implements Initializable {
     String path = "C:\\Users\\rayen\\OneDrive\\Documents\\NetBeansProjects\\Edutopia\\src\\img\\Star_.svg.png";
     String path1 = "C:\\Users\\rayen\\OneDrive\\Documents\\NetBeansProjects\\Edutopia\\src\\img\\1024px-Empty_Star.svg.png";
 
-    User current_user = new Student(1, "Admin", "Rayen", "Br", 123, "rrayen@esprit.tn", 12345678);
+//    public static java.sql.Date  d = java.sql.Date.valueOf(java.time.LocalDate.now());
+//    public static User current_user = new Student(1, "Admin", "Rayen", "Br", 123, "rayen@esprit.tn", 12345678 , d, "abcd");
+    public static User current_user = LoginController.CurrentUser;
 
     /**
      * Initializes the controller class.
@@ -125,6 +126,7 @@ public class CoStudyingFrontController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        User current_user = LoginController.CurrentUser;
         description.setWrapText(true);
         type.setWrapText(true);
         // TODO
@@ -150,7 +152,6 @@ public class CoStudyingFrontController implements Initializable {
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
-
                 //set grid height
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -160,7 +161,8 @@ public class CoStudyingFrontController implements Initializable {
 
                 //initializing the chosen card as the first list item
                 co = cs.FindCo_Studying(id_item);
-
+                int defaultRate = rs.TakeUserRating(current_user.getId(), cos.get(0).getId());
+                defaultRating(defaultRate);
                 rate.setText(Integer.toString(cos.get(0).getRating()));
                 description.setText(cos.get(0).getDescription());
                 type.setText(cos.get(0).getType());
@@ -409,7 +411,9 @@ public class CoStudyingFrontController implements Initializable {
             co = p.FindCo_Studying(id_item);
             String fileName = co.getFile();
             Helpers.openWebpage(Config.BASE_URL2 + fileName);
+            notificationShow("Download", fileName + " Downloaded succefully");
         }
+
     }
 
     @FXML
@@ -423,7 +427,7 @@ public class CoStudyingFrontController implements Initializable {
 
     @FXML
     private void main_menu_clicked(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("List_CoStudying.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("List_CoStudying_Front.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
@@ -449,6 +453,7 @@ public class CoStudyingFrontController implements Initializable {
         co = cs.FindCo_Studying(id_item);
         rate.setText(Integer.toString(co.getRating()));
         load();
+        notificationShow("Content Rated", "1 Star assigned");
     }
 
     @FXML
@@ -470,6 +475,7 @@ public class CoStudyingFrontController implements Initializable {
         co = cs.FindCo_Studying(id_item);
         rate.setText(Integer.toString(co.getRating()));
         load();
+        notificationShow("Content Rated", "2 Stars assigned");
 
     }
 
@@ -492,6 +498,7 @@ public class CoStudyingFrontController implements Initializable {
         co = cs.FindCo_Studying(id_item);
         rate.setText(Integer.toString(co.getRating()));
         load();
+        notificationShow("Content Rated", "3 Stars assigned");
     }
 
     @FXML
@@ -514,6 +521,7 @@ public class CoStudyingFrontController implements Initializable {
         co = cs.FindCo_Studying(id_item);
         rate.setText(Integer.toString(co.getRating()));
         load();
+        notificationShow("Content Rated", "4 Stars assigned");
     }
 
     @FXML
@@ -535,6 +543,7 @@ public class CoStudyingFrontController implements Initializable {
         co = cs.FindCo_Studying(id_item);
         rate.setText(Integer.toString(co.getRating()));
         load();
+        notificationShow("Content Rated", "5 Stars assigned");
 
     }
 
@@ -688,7 +697,7 @@ public class CoStudyingFrontController implements Initializable {
         search_btn.setCursor(Cursor.HAND);
         search_btn.setEffect(shadow);
     }
-    
+
     @FXML
     private void search_offhover(MouseEvent event) {
         search_btn.setEffect(null);
@@ -699,7 +708,8 @@ public class CoStudyingFrontController implements Initializable {
         download_btn.setCursor(Cursor.HAND);
         download_btn.setEffect(shadow);
     }
-     @FXML
+
+    @FXML
     private void download_offhover(MouseEvent event) {
         download_btn.setEffect(null);
     }
@@ -709,7 +719,7 @@ public class CoStudyingFrontController implements Initializable {
         add_btn.setCursor(Cursor.HAND);
         add_btn.setEffect(shadow);
     }
-    
+
     @FXML
     private void add_offhover(MouseEvent event) {
         add_btn.setEffect(null);
@@ -717,7 +727,6 @@ public class CoStudyingFrontController implements Initializable {
 
     @FXML
     private void mm_hover(MouseEvent event) {
-        mainmenu_txt.setCursor(Cursor.HAND);
         mainmenu_icon.setCursor(Cursor.HAND);
     }
 
@@ -731,8 +740,17 @@ public class CoStudyingFrontController implements Initializable {
         order_btn.setCursor(Cursor.HAND);
     }
 
-
-   
-
+    public void notificationShow(String title, String message) {
+        Notifications notificationBuilder = Notifications.create()
+                .title(title).text(message).graphic(null).hideAfter(javafx.util.Duration.seconds(7))
+                .position(Pos.BOTTOM_LEFT)
+                .onAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        System.out.println("clicked ON ");
+                    }
+                });
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
+    }
 
 }

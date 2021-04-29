@@ -57,9 +57,11 @@ public class CommentService implements IComment{
             while (rs.next()) {
                 if(!"Archived".equals(rs.getString("status"))) {
                     Commentt cmt= new Commentt();
-                    cmt.setId(rs.getString("id"));
+                    cmt.setId(rs.getInt("id"));
                     cmt.setContent(rs.getString("content"));
-                    cmt.setId_forum(rs.getString("id_forum"));
+                    cmt.setId_forum(rs.getInt("id_forum"));
+                    cmt.setLikes(rs.getInt("likes"));
+                    cmt.setDisLikes(rs.getInt("dislike"));
                     cmt.setStatus(rs.getString("status"));
                     oL.addAll(cmt);
                 }
@@ -77,9 +79,9 @@ public class CommentService implements IComment{
             String requete = "INSERT INTO comment (content,id_forum,status,created_by,created_date) VALUES(?,?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, comment.getContent());
-            pst.setString(2, comment.getId_forum());
+            pst.setInt(2, comment.getId_forum());
             pst.setString(3, comment.getStatus());
-            pst.setString(4, comment.getCreated_by());
+            pst.setInt(4, comment.getCreated_by());
             pst.setDate(5, (Date) comment.getCreated_date());
             pst.executeUpdate();
             System.out.println("Added succesfully");
@@ -89,14 +91,14 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(int id) {
         try {
             String req ="UPDATE `comment` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"nour");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "Archived");
-            ps.setString(4, id);
+            ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
         } catch (SQLException ex) {
@@ -105,14 +107,14 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public void activate(String id) {
+    public void activate(int id) {
         try {
             String req ="UPDATE `comment` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"amine");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "Available");
-            ps.setString(4, id);
+            ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("activated succesfully");
         } catch (SQLException ex) {
@@ -121,14 +123,14 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public void update(String id, Commentt new_comment) {
+    public void update(int id, Commentt new_comment) {
         try {
             String query="UPDATE `comment` SET `content`=?,`last_updated_by`=?,`last_updated_date`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, new_comment.getContent());
-            ps.setString(2, new_comment.getLast_updated_by());
+            ps.setInt(2, new_comment.getLast_updated_by());
             ps.setDate(3, (Date)new_comment.getLast_updated_Date());
-            ps.setString(4, id);
+            ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("Updated succesfully");
         } catch (SQLException ex) {
@@ -137,19 +139,21 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public Commentt details(String id) {
+    public Commentt details(int id) {
         Commentt cmt = new Commentt();
         boolean check = false;
         try {
             String query = "select * from comment where id= ?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                     check = true;
-                    cmt.setId(rs.getString("id"));
+                    cmt.setId(rs.getInt("id"));
                     cmt.setContent(rs.getString("content"));
                     cmt.setStatus(rs.getString("status"));
+                    cmt.setLikes(rs.getInt("likes"));
+                    cmt.setDisLikes(rs.getInt("dislike"));
             }
         } catch (SQLException ex) { 
             ex.printStackTrace();
@@ -173,6 +177,9 @@ public class CommentService implements IComment{
                     Commentt cmt = new Commentt();
                     cmt.setContent(rs.getString("content"));
                     cmt.setStatus(rs.getString("status"));
+                    cmt.setId_forum(rs.getInt("id_forum"));
+                    cmt.setLikes(rs.getInt("likes"));
+                    cmt.setDisLikes(rs.getInt("dislike"));
                     cmts.add(cmt);
                 }
             } 
@@ -194,6 +201,9 @@ public class CommentService implements IComment{
                     Commentt cmt = new Commentt();
                     cmt.setContent(rs.getString("content"));
                     cmt.setStatus(rs.getString("status"));
+                    cmt.setId_forum(rs.getInt("id_forum"));
+                    cmt.setLikes(rs.getInt("likes"));
+                    cmt.setDisLikes(rs.getInt("dislike"));
                     cmts.add(cmt);
                 }
             } 
@@ -213,20 +223,21 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public ObservableList<Commentt> getCommentsByIdForum(String id_forum) {
+    public ObservableList<Commentt> getCommentsByIdForum(int id_forum) {
         try {
             String query = "select * from comment where id_forum=? order by likes desc";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_forum);
+            ps.setInt(1, id_forum);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if(!"Archived".equals(rs.getString("status"))) {
                     Commentt cmt = new Commentt();
-                    cmt.setId(rs.getString("id"));
+                    cmt.setId(rs.getInt("id"));
                     cmt.setContent(rs.getString("content"));
                     cmt.setStatus(rs.getString("status"));
                     cmt.setLikes(rs.getInt("likes"));
                     cmt.setDisLikes(rs.getInt("dislike"));
+                    cmt.setId_forum(rs.getInt("id_forum"));
                     oL.addAll(cmt);
                 }
             } 
@@ -238,13 +249,13 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public void addLike(String id, int like) {
+    public void addLike(int id, int like) {
         
         try {
             String query="UPDATE `comment` SET `likes`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, like);
-            ps.setString(2, id);
+            ps.setInt(2, id);
             ps.executeUpdate();
             System.out.println("liked succesfully");
         } catch (SQLException ex) {
@@ -254,13 +265,13 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public void addDisLike(String id, int disLike) {
+    public void addDisLike(int id, int disLike) {
         
         try {
             String query="UPDATE `comment` SET `dislike`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, disLike);
-            ps.setString(2, id);
+            ps.setInt(2, id);
             ps.executeUpdate();
             System.out.println("disliked succesfully");
         } catch (SQLException ex) {
@@ -269,12 +280,12 @@ public class CommentService implements IComment{
     }
 
     @Override
-    public int countComment(String id_forum) {
+    public int countComment(int id_forum) {
         int count=0;
         try {
             String query = "select count(*) from comment where id_forum=? and status=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_forum); 
+            ps.setInt(1, id_forum); 
             ps.setString(2,"Available" );
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -285,5 +296,6 @@ public class CommentService implements IComment{
         }
         return count;
     }
+
     
 }

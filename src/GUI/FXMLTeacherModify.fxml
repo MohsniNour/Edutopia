@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLTeacherModifyController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="506.0" layoutY="16.0" prefHeight="26.0" prefWidth="505.0">
+               <children>
+                  <Label prefHeight="49.0" prefWidth="157.0" text="Teacher">
+                     <font>
+                        <Font name="Cambria Bold" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label text="Space" textFill="#ee4545">
+                     <font>
+                        <Font name="Cambria" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <AnchorPane layoutX="267.0" layoutY="65.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="642.0" prefWidth="1004.0">
+               <children>
+                  <Button fx:id="btnmodifier" layoutX="437.0" layoutY="373.0" mnemonicParsing="false" onAction="#modfier" prefHeight="32.0" prefWidth="131.0" style="-fx-background-color: EE4545;" text="Modifier" textFill="WHITE" />
+                  <VBox alignment="CENTER" layoutX="302.0" layoutY="34.0" prefHeight="276.0" prefWidth="400.0" spacing="10.0" styleClass="shadow" stylesheets="@../../../../../Downloads/style.css">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="name" prefHeight="25.0" prefWidth="164.0" promptText="Prénom" styleClass="add-btn" stylesheets="@../../../../../Downloads/style.css" />
+                              <Pane prefHeight="25.0" prefWidth="51.0" />
+                              <TextField fx:id="last_name" prefHeight="25.0" prefWidth="163.0" promptText="Nom" styleClass="add-btn" stylesheets="@../../../../../Downloads/style.css" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="cin" prefHeight="25.0" prefWidth="334.0" promptText="CIN" styleClass="add-btn" stylesheets="@../../../../../Downloads/style.css" />
+                        <DatePicker fx:id="birth_date" prefHeight="25.0" prefWidth="387.0" promptText="Date de naissance" stylesheets="@../../../../../Downloads/style.css" />
+                        <TextField fx:id="phone" promptText="Numéro de téléphone" styleClass="add-btn" stylesheets="@../../../../../Downloads/style.css" />
+                        <TextField fx:id="email" promptText="E-mail" styleClass="add-btn" stylesheets="@../../../../../Downloads/style.css" />
+                        <Pane prefHeight="25.0" prefWidth="51.0" />
+                        <PasswordField fx:id="old_pw" promptText="Ancien mot de passe" styleClass="search-box" stylesheets="@../../../../../Downloads/style.css" />
+                        <PasswordField fx:id="mdp" promptText="Nouveau mot de passe" styleClass="search-box" stylesheets="@../../../../../Downloads/style.css" />
+                        <PasswordField fx:id="confirm_pw" promptText="Confirmer nouveau mot de passe" styleClass="search-box" stylesheets="@../../../../../Downloads/style.css" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="267.0" style="-fx-background-color: #161616;">
+               <children>
+                  <ImageView fx:id="imagechange" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/11-user-active-512.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="50.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Label fx:id="UserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="230.0" textAlignment="CENTER" textFill="#e7e5e5">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" text="Accueil" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_home_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" text="Matière" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_library_books_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" text="Seance" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_groups_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#chargerCalendarHandle" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_event_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" text="Mon compte" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_portrait_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" text="Reclamation" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_warning_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DisconnectionAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" text="Deconnexion" textFill="#e7e5e5">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/baseline_logout_white_18dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -74,7 +74,7 @@ public class CommentController implements Initializable {
     @FXML
     private void addAction(ActionEvent event) {
         CommentService cs = new CommentService();
-        Commentt cmt = new Commentt(txtContent.getText(),forumid.getValue().toString(),"nour",java.sql.Date.valueOf(java.time.LocalDate.now()));
+        Commentt cmt = new Commentt(txtContent.getText(),Integer.parseInt(forumid.getValue().toString()),2,java.sql.Date.valueOf(java.time.LocalDate.now()));
         cs.add(cmt);
         showComment();
     }
@@ -83,8 +83,8 @@ public class CommentController implements Initializable {
     private void updateAction(ActionEvent event) {
         Commentt cmt=TableView.getSelectionModel().getSelectedItem();
         cmt.setContent(txtContent.getText());
-        cmt.setId_forum(forumid.getValue().toString());
-        cmt.setLast_updated_by("hamza");
+        cmt.setId_forum(Integer.parseInt(forumid.getValue().toString()));
+        cmt.setLast_updated_by(1);
         cmt.setLast_updated_Date(java.sql.Date.valueOf(java.time.LocalDate.now()));
         CommentService fs = new CommentService();
         System.out.println(cmt.getId());

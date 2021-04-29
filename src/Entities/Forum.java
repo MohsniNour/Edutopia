@@ -15,23 +15,23 @@ import java.util.List;
  */
 public class Forum {
     
-    String id;
+    int id;
     String subject;
     List<Commentt> comment;
     String status;
-    String id_course;
-    String created_by;
+    int id_course;
+    int created_by;
     Date created_date;
-    String last_updated_by;
+    int last_updated_by;
     Date last_updated_Date;
-    String archived_by;
+    int archived_by;
     Date archived_Date;
 
     public Forum() {
         this.status = "Available" ;
     }
 
-    public Forum(String subject, String id_course, String created_by, Date created_date) {
+    public Forum(String subject, int id_course, int created_by, Date created_date) {
         this.subject = subject;
         this.id_course = id_course;
         this.created_by = created_by;
@@ -40,7 +40,7 @@ public class Forum {
     }
     
 
-    public Forum(String subject, String id_course, List<Commentt> comment, String created_by, Date created_date, String last_updated_by, Date last_updated_Date, String archived_by, Date archived_Date) {
+    public Forum(String subject, int id_course, List<Commentt> comment, int created_by, Date created_date, int last_updated_by, Date last_updated_Date, int archived_by, Date archived_Date) {
         this.subject = subject;
         this.id_course = id_course;
         this.comment = comment;
@@ -52,11 +52,11 @@ public class Forum {
         this.archived_Date = archived_Date;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,11 +68,11 @@ public class Forum {
         this.subject = subject;
     }
 
-    public String getId_course() {
+    public int getId_course() {
         return id_course;
     }
 
-    public void setId_course(String id_course) {
+    public void setId_course(int id_course) {
         this.id_course = id_course;
     }
 
@@ -92,11 +92,11 @@ public class Forum {
         this.status = status;
     }
 
-    public String getCreated_by() {
+    public int getCreated_by() {
         return created_by;
     }
 
-    public void setCreated_by(String created_by) {
+    public void setCreated_by(int created_by) {
         this.created_by = created_by;
     }
 
@@ -110,11 +110,11 @@ public class Forum {
 
     
 
-    public String getLast_updated_by() {
+    public int getLast_updated_by() {
         return last_updated_by;
     }
 
-    public void setLast_updated_by(String last_updated_by) {
+    public void setLast_updated_by(int last_updated_by) {
         this.last_updated_by = last_updated_by;
     }
 
@@ -126,11 +126,11 @@ public class Forum {
         this.last_updated_Date = last_updated_Date;
     }
 
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 

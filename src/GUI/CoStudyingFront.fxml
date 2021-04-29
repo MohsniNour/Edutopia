@@ -32,7 +32,7 @@
                               <Font name="Cambria Bold" size="40.0" />
                            </font>
                         </Label>
-                        <Label style="-fx-alignment: EE4545;" text="Space" textFill="#ff6363">
+                        <Label style="-fx-alignment: EE4545;" text="Space" textFill="#ee4545">
                            <font>
                               <Font name="Cambria" size="40.0" />
                            </font>
@@ -176,22 +176,19 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                      <children>
-                        <Button fx:id="add_btn" mnemonicParsing="false" onMouseClicked="#back_action" onMouseEntered="#add_hover" onMouseExited="#add_offhover" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Add Content" textFill="WHITE">
-                           <font>
-                              <Font name="Raleway ExtraBold" size="12.0" />
-                           </font>
-                        </Button>
-                        <Pane prefHeight="65.0" prefWidth="463.0" HBox.hgrow="ALWAYS" />
-                        <Label fx:id="mainmenu_txt" onMouseClicked="#main_menu_clicked" onMouseEntered="#mm_hover" prefHeight="62.0" prefWidth="87.0" text="Main Menu">
-                           <font>
-                              <Font name="Cambria" size="18.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="mainmenu_icon" fitHeight="50.0" fitWidth="89.0" onMouseClicked="#main_menu_clicked" onMouseEntered="#mm_hover" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/ic_cart.png" />
-                           </image>
-                        </ImageView>
+                        <Pane prefHeight="46.0" prefWidth="735.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ImageView fx:id="mainmenu_icon" fitHeight="50.0" fitWidth="89.0" layoutX="-11.0" layoutY="8.0" onMouseClicked="#main_menu_clicked" onMouseEntered="#mm_hover" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/ic_cart.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="add_btn" layoutX="631.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#back_action" onMouseEntered="#add_hover" onMouseExited="#add_offhover" prefHeight="32.0" prefWidth="112.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Add Content" textFill="WHITE">
+                                 <font>
+                                    <Font name="Raleway ExtraBold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children></Pane>
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" stylesheets="@style.css">
@@ -220,7 +217,7 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
                                  <children>
-                                    <Label prefHeight="29.0" prefWidth="190.0" text="Order by Rating">
+                                    <Label prefHeight="29.0" prefWidth="161.0" text="Order by Rating">
                                        <font>
                                           <Font name="Cambria Bold" size="18.0" />
                                        </font>

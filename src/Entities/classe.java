@@ -17,16 +17,16 @@ public class classe {
     private int id;
     private String name;
     private int classe_size;
-    private String created_by;
+    private int created_by;
     private Date created_date;
-    private String last_update_by;
+    private int last_update_by;
     private Date last_update_date;
-    private String archived_by;
+    private int archived_by;
     private Date archived_date;
 
-    public classe(int id, String name, int classe_size, String created_by, Date created_date, String last_update_by, Date last_update_date, String archived_by, Date archived_date) {
-        this.name = name;
+    public classe(int id, String name, int classe_size, int created_by, Date created_date, int last_update_by, Date last_update_date, int archived_by, Date archived_date) {
         this.id = id;
+        this.name = name;
         this.classe_size = classe_size;
         this.created_by = created_by;
         this.created_date = created_date;
@@ -36,8 +36,11 @@ public class classe {
         this.archived_date = archived_date;
     }
 
-    public classe(int id_classe) {
-        this.id = id_classe;
+    public classe() {
+    }
+
+    public classe(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -52,7 +55,7 @@ public class classe {
         return classe_size;
     }
 
-    public String getCreated_by() {
+    public int getCreated_by() {
         return created_by;
     }
 
@@ -60,7 +63,7 @@ public class classe {
         return created_date;
     }
 
-    public String getLast_update_by() {
+    public int getLast_update_by() {
         return last_update_by;
     }
 
@@ -68,7 +71,7 @@ public class classe {
         return last_update_date;
     }
 
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
@@ -88,7 +91,7 @@ public class classe {
         this.classe_size = classe_size;
     }
 
-    public void setCreated_by(String created_by) {
+    public void setCreated_by(int created_by) {
         this.created_by = created_by;
     }
 
@@ -96,7 +99,7 @@ public class classe {
         this.created_date = created_date;
     }
 
-    public void setLast_update_by(String last_update_by) {
+    public void setLast_update_by(int last_update_by) {
         this.last_update_by = last_update_by;
     }
 
@@ -104,15 +107,12 @@ public class classe {
         this.last_update_date = last_update_date;
     }
 
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 
     public void setArchived_date(Date archived_date) {
         this.archived_date = archived_date;
-    }
-
-    public classe() {
     }
 
     @Override

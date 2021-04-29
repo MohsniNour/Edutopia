@@ -23,9 +23,7 @@ public class Start_Interface extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-//         Parent root = FXMLLoader.load(getClass().getResource("Add_Student_FXML.fxml"));
-//         Parent root = FXMLLoader.load(getClass().getResource("CoStudyingAdd.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("List_CoStudying.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Edutopia");
             primaryStage.setScene(scene);

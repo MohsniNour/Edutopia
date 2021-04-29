@@ -14,30 +14,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="GUI.List_CoStudyingController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.List_CoStudyingController">
     <stylesheets>
         <URL value="@list_costudying.css" />
     </stylesheets>
    <children>
       <HBox alignment="CENTER" layoutX="506.0" layoutY="16.0" prefHeight="26.0" prefWidth="505.0">
          <children>
-            <Label prefHeight="49.0" prefWidth="271.0" text="CO-STUDYING">
+            <Label prefHeight="49.0" prefWidth="119.0" text="Gérer">
                <font>
                   <Font name="Cambria Bold" size="40.0" />
                </font>
             </Label>
-            <Label text="Space" textFill="#ee4545">
+            <Label text="CO-STUDYING" textFill="#0367b9">
                <font>
                   <Font name="Cambria" size="40.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="267.0" style="-fx-background-color: #161616;">
+      <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="267.0" style="-fx-background-color: #013766;">
          <children>
             <ImageView fx:id="imagechange" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/11-user-active-512.png" />
+                  <Image url="@../Icons/11-user-active-512%20-%20Copy.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="50.0" />
@@ -48,7 +48,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Accueil" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Accueil" textFill="#e7e5e5">
                <graphic>
                   <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -69,7 +69,25 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DepartmentAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Departement" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#UserAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Utilisateurs" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_groups_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DepartmentAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Departement" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -87,7 +105,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Classe" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClassAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Classe" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -105,7 +123,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Matière" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Matière" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -120,22 +138,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ExamAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Examen" textFill="#e7e5e5">
-               <graphic>
-                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Icons/baseline_description_white_18dp.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -150,7 +153,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btn_Course1" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Co_StudyingAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Co_Studying" textFill="#e7e5e5">
+            <Button fx:id="btn_Course1" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Co_StudyingAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Co-Studying" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -165,7 +168,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Mon compte" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Mon compte" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -180,7 +183,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Reclamation" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Reclamation" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -198,7 +201,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DisconnectionAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Deconnexion" textFill="#e7e5e5">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DisconnectionAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #013766;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Deconnexion" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -215,7 +218,7 @@
             </Button>
          </children>
       </VBox>
-      <ScrollPane fx:id="scroll" layoutX="347.0" layoutY="65.0" prefHeight="573.0" prefWidth="863.0" styleClass="transparent" stylesheets="@style.css">
+      <ScrollPane fx:id="scroll" layoutX="356.0" layoutY="103.0" prefHeight="547.0" prefWidth="863.0" styleClass="transparent" stylesheets="@style.css">
          <content>
             <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
                <rowConstraints>
@@ -227,10 +230,18 @@
             <Insets left="40.0" />
          </padding>
       </ScrollPane>
-      <Button fx:id="more_btn" layoutX="1089.0" layoutY="650.0" mnemonicParsing="false" onAction="#ExpandAction" onMouseEntered="#more_onhover" onMouseExited="#more_offhover" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: EE4545;" styleClass="button4" text="Voir tout" textFill="WHITE">
+      <Button fx:id="more_btn" layoutX="1075.0" layoutY="643.0" mnemonicParsing="false" onAction="#ExpandAction" onMouseEntered="#more_onhover" onMouseExited="#more_offhover" prefHeight="32.0" prefWidth="112.0" style="-fx-background-color: #0367b9;" styleClass="button4" text="Gérer Contenus" textFill="WHITE">
          <font>
             <Font name="Raleway ExtraBold" size="12.0" />
          </font>
       </Button>
+      <Label layoutX="330.0" layoutY="72.0" prefHeight="30.0" prefWidth="214.0" styleClass="search-box" stylesheets="@style.css" text="6 Premiers contenus ajoutés " textAlignment="CENTER">
+         <font>
+            <Font name="Cambria Bold" size="15.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </Label>
    </children>
 </AnchorPane>

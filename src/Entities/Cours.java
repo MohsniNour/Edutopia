@@ -14,9 +14,9 @@ private int seen ;
 private int id_Subject;
 private String created_by;
 private Date ceated_date;
-private String last_updated_by;
+private int last_updated_by;
 private Date last_updated_Date;
-private String archived_by;
+private int archived_by;
 private Date archived_Date;
 
     public Cours() {
@@ -72,11 +72,11 @@ private Date archived_Date;
         this.ceated_date = ceated_date;
     }
 
-    public String getLast_updated_by() {
+    public int getLast_updated_by() {
         return last_updated_by;
     }
 
-    public void setLast_updated_by(String last_updated_by) {
+    public void setLast_updated_by(int last_updated_by) {
         this.last_updated_by = last_updated_by;
     }
 
@@ -88,11 +88,11 @@ private Date archived_Date;
         this.last_updated_Date = last_updated_Date;
     }
 
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 

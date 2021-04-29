@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import CalendarA.FullCalendarView;
 import Entities.Student;
 import Entities.User;
 import com.jfoenix.controls.JFXButton;
@@ -37,14 +38,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import Services.StudentService;
 import java.io.IOException;
+import java.time.YearMonth;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -60,11 +69,20 @@ public class Display_Student_FXMLController implements Initializable {
     @FXML
     private StackPane StackPane;
     @FXML
-    private Button retun;
-    @FXML
     private StackPane StackPane1;
     @FXML
     private Button email;
+    @FXML
+    private VBox vboxdrawer;
+    @FXML
+    private ImageView imagechange;
+    @FXML
+    private Label UserName;
+    @FXML
+    private Button btn_Course1;
+    private Label mainmenu_txt;
+    @FXML
+    private ImageView mainmenu_icon;
 
     /**
      * Initializes the controller class.
@@ -75,7 +93,7 @@ public class Display_Student_FXMLController implements Initializable {
         ps = new StudentService();
 
         // role table view
-        JFXTreeTableColumn<User, String> role = new JFXTreeTableColumn<>("role");
+        JFXTreeTableColumn<User, String> role = new JFXTreeTableColumn<>("Role");
         role.setPrefWidth(150);
         role.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -102,7 +120,7 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         // name table view
-        JFXTreeTableColumn<User, String> name = new JFXTreeTableColumn<>("name");
+        JFXTreeTableColumn<User, String> name = new JFXTreeTableColumn<>("Prénom");
         name.setPrefWidth(150);
         name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -128,7 +146,7 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         // last_name table view
-        JFXTreeTableColumn<User, String> last_name = new JFXTreeTableColumn<>("last_name");
+        JFXTreeTableColumn<User, String> last_name = new JFXTreeTableColumn<>("Nom");
         last_name.setPrefWidth(150);
         last_name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -154,7 +172,7 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         // cin table view
-        JFXTreeTableColumn<User, String> cin = new JFXTreeTableColumn<>("cin");
+        JFXTreeTableColumn<User, String> cin = new JFXTreeTableColumn<>("CIN");
         cin.setPrefWidth(150);
         cin.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -180,7 +198,7 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         // email table view
-        JFXTreeTableColumn<User, String> email = new JFXTreeTableColumn<>("email");
+        JFXTreeTableColumn<User, String> email = new JFXTreeTableColumn<>("E-Mail");
         email.setPrefWidth(150);
         email.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -205,7 +223,7 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         // phone_number table view
-        JFXTreeTableColumn<User, String> phone_number = new JFXTreeTableColumn<>("phone_number");
+        JFXTreeTableColumn<User, String> phone_number = new JFXTreeTableColumn<>("Numéro de Télephone");
         phone_number.setPrefWidth(150);
         phone_number.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -232,7 +250,7 @@ public class Display_Student_FXMLController implements Initializable {
         });
 
         //  birth_date table view
-        JFXTreeTableColumn<User, String> birth_date = new JFXTreeTableColumn<>("birth_date");
+        JFXTreeTableColumn<User, String> birth_date = new JFXTreeTableColumn<>("Date de naissance");
         birth_date.setPrefWidth(150);
         birth_date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
             @Override
@@ -282,8 +300,12 @@ public class Display_Student_FXMLController implements Initializable {
         treeview.setEditable(true);
 
         //declarer la button supprimer
-        JFXButton DltBtn = new JFXButton("Remove");
+        JFXButton DltBtn = new JFXButton("Supprimer");
         DltBtn.setLayoutY(410D);
+        DltBtn.setTextFill(Paint.valueOf("#FFFFFF"));
+        DltBtn.setStyle("-fx-background-color: #0367b9");
+        DltBtn.setRipplerFill(Paint.valueOf("#FFFFFF"));
+        DltBtn.setButtonType(JFXButton.ButtonType.RAISED);
         DltBtn.setOnAction(new EventHandler<ActionEvent>() {
 
             //eventHandler de la button supprimer
@@ -291,12 +313,12 @@ public class Display_Student_FXMLController implements Initializable {
             public void handle(ActionEvent event) {
                 Dialog confirmation = new Dialog();
                 GridPane grid2 = new GridPane();
-                Label l1 = new Label("Delete Student?");
+                Label l1 = new Label("Supprimer étudiant?");
                 grid2.add(l1, 2, 2);
-                confirmation.setTitle("Detele confirmation!");
+                confirmation.setTitle("Confirmation de suppression!");
                 confirmation.getDialogPane().setContent(grid2);
-                ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
-                ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Confi = new ButtonType("Oui", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Ann = new ButtonType("Non", ButtonBar.ButtonData.OK_DONE);
                 confirmation.getDialogPane().getButtonTypes().add(Confi);
                 confirmation.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
                 confirmation.setResultConverter(new Callback<ButtonType, User>() {
@@ -309,7 +331,6 @@ public class Display_Student_FXMLController implements Initializable {
                             cancelButton.fire();
                             initialize(url, rb);
                         }
-
                         return null;
                     }
                 });
@@ -323,7 +344,6 @@ public class Display_Student_FXMLController implements Initializable {
 
     }
 
-    @FXML
     private void on_return_button(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Add_Student_FXML.fxml"));
         Scene scene = new Scene(root);
@@ -339,6 +359,140 @@ public class Display_Student_FXMLController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+    }
+
+  
+    @FXML
+    private void HomeAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("AdminHome.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void UserAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("UserAddPicker.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void DepartmentAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDepartment.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void ClassAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("AdminClasse.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void CourseAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLSubjectForAdmin.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void CalendarAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FullCalendar.fxml"));
+        Parent root = loader.load();
+        FullCalendarController controller = loader.getController();
+        VBox f = new FullCalendarView(YearMonth.now()).getView();
+        controller.calendarPane.getChildren().add(f);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void Co_StudyingAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("List_CoStudying.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void AccountAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLAdminModify.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void ClaimAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("ComplaintAdd.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    private void DisconnectionAction(ActionEvent event) {
+        Dialog confirmation = new Dialog();
+        GridPane grid2 = new GridPane();
+        Label l1 = new Label("Décnnecter ?");
+        grid2.add(l1, 2, 2);
+        confirmation.setTitle("Confirmation");
+        confirmation.getDialogPane().setContent(grid2);
+        ButtonType Confi = new ButtonType("Oui", ButtonBar.ButtonData.OK_DONE);
+        ButtonType Ann = new ButtonType("Non", ButtonBar.ButtonData.OK_DONE);
+        confirmation.getDialogPane().getButtonTypes().add(Confi);
+        confirmation.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        confirmation.setResultConverter(new Callback<ButtonType, User>() {
+            @Override
+            public User call(ButtonType param) {
+                if (param == Confi) {
+                    Parent root = null;
+                    try {
+                        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(Add_Student_FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(root);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+                }
+
+                return null;
+            }
+        });
+        confirmation.showAndWait();
+    }
+
+    @FXML
+    private void mm_hover(MouseEvent event) {
+        mainmenu_icon.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    private void main_menu_clicked(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("UserAddPicker.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+
     }
 
 }

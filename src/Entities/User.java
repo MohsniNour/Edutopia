@@ -7,7 +7,7 @@ package Entities;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -22,7 +22,25 @@ public class User extends RecursiveTreeObject<User> implements Serializable {
     private int cin;
     private String email;
     private int phone_number;
-    private Date birth_date;
+    private java.sql.Date birth_date;
+    private String password;
+    private int CreatedBy;
+
+    public int getCreatedBy() {
+        return CreatedBy;
+    }
+
+    public void setCreatedBy(int CreatedBy) {
+        this.CreatedBy = CreatedBy;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -80,20 +98,43 @@ public class User extends RecursiveTreeObject<User> implements Serializable {
         this.phone_number = phone_number;
     }
 
-    public Date getBirth_date() {
+    public java.sql.Date getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(Date birth_date) {
+    public void setBirth_date(java.sql.Date birth_date) {
         this.birth_date = birth_date;
     }
 
     @Override
     public String toString() {
-        return "user{" + "id=" + id + ", role=" + role + ", name=" + name + ", last_name=" + last_name + ", cin=" + cin + ", email=" + email + ", phone_number=" + phone_number + ", birth_date=" + birth_date + '}';
+        return "User{" + "id=" + id + ", role=" + role + ", name=" + name + ", last_name=" + last_name + ", cin=" + cin + ", email=" + email + ", phone_number=" + phone_number + ", birth_date=" + birth_date + ", password=" + password + '}';
     }
 
-    public User(String role, String name, String last_name, int cin, String email, int phone_number, Date birth_date) {
+    public User(int id, String role, String name, String last_name, int cin, String email, int phone_number, java.sql.Date birth_date, String password) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.last_name = last_name;
+        this.cin = cin;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.birth_date = birth_date;
+        this.password = password;
+    }
+
+    public User(String role, String name, String last_name, int cin, String email, int phone_number, java.sql.Date birth_date, String password) {
+        this.role = role;
+        this.name = name;
+        this.last_name = last_name;
+        this.cin = cin;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.birth_date = birth_date;
+        this.password = password;
+    }
+
+    public User(String role, String name, String last_name, int cin, String email, int phone_number, java.sql.Date birth_date) {
         this.role = role;
         this.name = name;
         this.last_name = last_name;
@@ -112,6 +153,69 @@ public class User extends RecursiveTreeObject<User> implements Serializable {
         this.phone_number = phone_number;
 
     }
+
+    public User(int id, String role, String name, String last_name, int cin, String email, int phone_number, String password) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.last_name = last_name;
+        this.cin = cin;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.password = password;
+    }
+
+    User(int id, String name, String last_name) {
+        this.id = id;
+        this.name = name;
+        this.last_name = last_name;
+    }
+
+    public User(int id, String role, String name, String last_name) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.last_name = last_name;
+    }
+
+    public User(int id, int cin, String first_name, String last_name, Date birth_date, int phone_number, String email, String password, String role, int CreatedBy) {
+        this.id = id;
+        this.cin = cin;
+        this.name = first_name;
+        this.last_name = last_name;
+        this.birth_date = birth_date;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.CreatedBy = CreatedBy;
+    }
+    
+        public User(int cin, String first_name, String last_name, Date birth_date, int phone_number, String email, String password, String role, int CreatedBy) {
+        this.cin = cin;
+        this.name = first_name;
+        this.last_name = last_name;
+        this.birth_date = birth_date;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.CreatedBy = CreatedBy;
+    }
+
+   
+    public User(int id, int cin, String first_name, String last_name, Date birth_date, int phone_number, String email, String password, String role) {
+        this.id = id;
+        this.cin = cin;
+        this.name = first_name;
+        this.last_name = last_name;
+        this.birth_date = birth_date;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
 
     public User() {
     }

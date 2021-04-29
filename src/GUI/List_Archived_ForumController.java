@@ -43,7 +43,7 @@ public class List_Archived_ForumController implements Initializable {
     private Button backButton;
     @FXML
     private Button Activate_button;
-    private String id_Course;
+    private int id_Course;
 
     /**
      * Initializes the controller class.
@@ -61,7 +61,7 @@ public class List_Archived_ForumController implements Initializable {
 
     public void showArchivedForum(){
         ForumService fs = new ForumService();
-        TableView.setItems((ObservableList<Forum>) fs.getForumByIdCourse(id_Course));
+       // TableView.setItems((ObservableList<Forum>) fs.getForumByIdCourse(id_Course));
         idSubject.setCellValueFactory(new PropertyValueFactory("subject"));
         id.setCellValueFactory(new PropertyValueFactory("id"));
     }

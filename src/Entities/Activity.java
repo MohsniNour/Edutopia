@@ -5,8 +5,6 @@
  */
 package Entities;
 
-import java.io.File;
-import java.time.LocalDate;
 import java.sql.Date;
 import java.util.List;
 
@@ -16,41 +14,32 @@ import java.util.List;
  */
 public class Activity {
     
-    String id;
+    int id;
     String name;
     Date deadline;
     String work_todo;
-    String work_done;
-    String id_course;
+    List<Work_done> work_done;
+    int id_course;
     List<Commentt> comment;
     String status;
-    String created_by;
+    int created_by;
     Date created_date;
-    String last_updated_by;
+    int last_updated_by;
     Date last_updated_Date;
-    String archived_by;
+    int archived_by;
     Date archived_Date;
-    String Uploated_by;
-    Date Uploated_date;
 
     public Activity() {
         this.status = "Available";
     }
-    public Activity(String name, String id_course, String created_by) {
+    public Activity(String name, int id_course, int created_by) {
         this.name = name;
         this.id_course = id_course;
         this.created_by = created_by;
         this.status = "active";
     }
-//    public Activity(String name, File work_todo, String id_course, String created_by) {
-//        this.name = name;
-//        this.work_todo = work_todo;
-//        this.id_course = id_course;
-//        this.created_by = created_by;
-//        this.status = "active";
-//    }
 
-    public Activity(String name, Date deadline, String work_todo, String id_course, String created_by, Date created_date) {
+    public Activity(String name, Date deadline, String work_todo, int id_course, int created_by, Date created_date) {
         this.name = name;
         this.deadline = deadline;
         this.work_todo = work_todo;
@@ -61,11 +50,11 @@ public class Activity {
         
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -93,19 +82,19 @@ public class Activity {
         this.work_todo = work_todo;
     }
 
-    public String getWork_done() {
+    public List<Work_done> getWork_done() {
         return work_done;
     }
 
-    public void setWork_done(String work_done) {
+    public void setWork_done(List<Work_done> work_done) {
         this.work_done = work_done;
     }
 
-    public String getId_course() {
+    public int getId_course() {
         return id_course;
     }
 
-    public void setId_course(String id_course) {
+    public void setId_course(int id_course) {
         this.id_course = id_course;
     }
 
@@ -119,19 +108,19 @@ public class Activity {
 
     
 
-    public String getId_Course() {
+    public int getId_Course() {
         return id_course;
     }
 
-    public void setId_Course(String id_Course) {
+    public void setId_Course(int id_Course) {
         this.id_course = id_Course;
     }
 
-    public String getCreated_by() {
+    public int getCreated_by() {
         return created_by;
     }
 
-    public void setCreated_by(String created_by) {
+    public void setCreated_by(int created_by) {
         this.created_by = created_by;
     }
 
@@ -143,11 +132,11 @@ public class Activity {
         this.created_date = ceated_date;
     }
 
-    public String getLast_updated_by() {
+    public int getLast_updated_by() {
         return last_updated_by;
     }
 
-    public void setLast_updated_by(String last_updated_by) {
+    public void setLast_updated_by(int last_updated_by) {
         this.last_updated_by = last_updated_by;
     }
 
@@ -159,11 +148,11 @@ public class Activity {
         this.last_updated_Date = last_updated_Date;
     }
 
-    public String getArchived_by() {
+    public int getArchived_by() {
         return archived_by;
     }
 
-    public void setArchived_by(String archived_by) {
+    public void setArchived_by(int archived_by) {
         this.archived_by = archived_by;
     }
 
@@ -183,17 +172,9 @@ public class Activity {
         this.status = status;
     }
 
-    public String getUploated_by() {
-        return Uploated_by;
-    }
-
-    public Date getUploated_date() {
-        return Uploated_date;
-    }
-
     @Override
     public String toString() {
-        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", comment=" + comment + ", status=" + status + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date + ", Uploated_by=" + Uploated_by + ", Uploated_date=" + Uploated_date + '}'+"\n";
+        return "Activity{" + "name=" + name + ", deadline=" + deadline + ", work_todo=" + work_todo + ", work_done=" + work_done + ", id_course=" + id_course + ", comment=" + comment + ", status=" + status + ", created_by=" + created_by + ", created_date=" + created_date + ", last_updated_by=" + last_updated_by + ", last_updated_Date=" + last_updated_Date + ", archived_by=" + archived_by + ", archived_Date=" + archived_Date +'}'+"\n";
     }
 
     

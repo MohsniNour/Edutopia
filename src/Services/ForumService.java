@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Activity;
 import Entities.Forum;
 import IServices.IForum;
 import Utils.DataBaseConnection;
@@ -32,8 +33,8 @@ public class ForumService implements IForum{
     }
      
     @Override
-    public String getId(Forum forum) {
-        String id="";
+    public int getId(Forum forum) {
+        int id=0;
         try {
             String query="SELECT * FROM `forum` WHERE subject=?";
             PreparedStatement ps = conn.prepareStatement(query);
@@ -41,7 +42,7 @@ public class ForumService implements IForum{
             ResultSet rs;
             rs = ps.executeQuery();
             while(rs.next()) {
-                id=rs.getString("id");
+                id=rs.getInt("id");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -49,16 +50,16 @@ public class ForumService implements IForum{
         return id;
     }
     
-    public String getIdCourseByIdForum(String id_forum) {
-        String id="";
+    public int getIdCourseByIdForum(int id_forum) {
+        int id=0;
         try {
             String query="SELECT id_course FROM `forum` WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_forum);
+            ps.setInt(1, id_forum);
             ResultSet rs;
             rs = ps.executeQuery();
             while(rs.next()) {
-                id=rs.getString("id");
+                id=rs.getInt("id");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -73,8 +74,8 @@ public class ForumService implements IForum{
             PreparedStatement pst = conn.prepareStatement(requete);
             pst.setString(1, forum.getSubject());
             pst.setString(2, forum.getStatus());
-            pst.setString(3, forum.getId_course());
-            pst.setString(4, forum.getCreated_by());
+            pst.setInt(3, forum.getId_course());
+            pst.setInt(4, forum.getCreated_by());
             pst.setDate(5, (Date) forum.getCreated_date());
             pst.executeUpdate();
             System.out.println("Added succesfully");
@@ -84,14 +85,14 @@ public class ForumService implements IForum{
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(int id) {
         try {
             String req ="UPDATE `forum` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"nour");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "Archived");
-            ps.setString(4, id);
+            ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("removed succesfully");
         } catch (SQLException ex) {
@@ -100,14 +101,14 @@ public class ForumService implements IForum{
     }
 
     @Override
-    public void activate(String id) {
+    public void activate(int id) {
         try {
             String req ="UPDATE `forum` SET `archived_by`=?,`archived_date`=?,`status`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(req);
             ps.setString(1,"amine");
             ps.setDate(2, java.sql.Date.valueOf(java.time.LocalDate.now()));
             ps.setString(3, "Available");
-            ps.setString(4, id);
+            ps.setInt(4, id);
             ps.executeUpdate();
             System.out.println("activated succesfully");
         } catch (SQLException ex) {
@@ -116,15 +117,15 @@ public class ForumService implements IForum{
     }
 
     @Override
-    public void update(String id, Forum new_forum) {
+    public void update(int id, Forum new_forum) {
         try {
             String query="UPDATE `forum` SET `subject`=?,`id_course`=?,`last_updated_by`=?,`last_updated_date`=? WHERE id=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, new_forum.getSubject());
-            ps.setString(2, new_forum.getId_course());
-            ps.setString(3, new_forum.getLast_updated_by());
+            ps.setInt(2, new_forum.getId_course());
+            ps.setInt(3, new_forum.getLast_updated_by());
             ps.setDate(4, (Date)new_forum.getLast_updated_Date());
-            ps.setString(5, id);
+            ps.setInt(5, id);
             ps.executeUpdate();
             System.out.println("Updated succesfully");
         } catch (SQLException ex) {
@@ -133,17 +134,17 @@ public class ForumService implements IForum{
     }
 
     @Override
-    public Forum details(String id) {
+    public Forum details(int id) {
         Forum frm = new Forum();
         boolean check = false;
         try {
             String query = "select * from forum where id= ?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                     check = true;
-                    frm.setId(rs.getString("id"));
+                    frm.setId(rs.getInt("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
             }
@@ -217,10 +218,10 @@ public class ForumService implements IForum{
             while (rs.next()) {
                 if(!"Archived".equals(rs.getString("status"))) {
                     Forum frm = new Forum();
-                    frm.setId(rs.getString("id"));
+                    frm.setId(rs.getInt("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
-                    frm.setId_course(rs.getString("id_course"));
+                    frm.setId_course(rs.getInt("id_course"));
                     oL.addAll(frm);
                 }
             } 
@@ -231,19 +232,19 @@ public class ForumService implements IForum{
     }
     
     @Override
-    public ObservableList<Forum> getForumByIdCourse(String id_Course) {
+    public ObservableList<Forum> getForumByIdCourse(int id_Course) {
         try {
             String query = "select * from forum where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_Course);
+            ps.setInt(1, id_Course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if(!"Archived".equals(rs.getString("status"))) {
                     Forum frm = new Forum();
-                    frm.setId(rs.getString("id"));
+                    frm.setId(rs.getInt("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
-                    frm.setId_course(rs.getString("id_course"));
+                    frm.setId_course(rs.getInt("id_course"));
                     oL.addAll(frm);
                 } 
             }
@@ -254,19 +255,19 @@ public class ForumService implements IForum{
     }   
 
     @Override
-    public ObservableList<Forum> getArchivedForumByIdCourse(String id_course) {
+    public ObservableList<Forum> getArchivedForumByIdCourse(int id_course) {
         try {
             String query = "select * from forum where id_course=?";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, id_course);
+            ps.setInt(1, id_course);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 if(!"Available".equals(rs.getString("status"))) {
                     Forum frm = new Forum();
-                    frm.setId(rs.getString("id"));
+                    frm.setId(rs.getInt("id"));
                     frm.setSubject(rs.getString("subject"));
                     frm.setStatus(rs.getString("status"));
-                    frm.setId_course(rs.getString("id_course"));
+                    frm.setId_course(rs.getInt("id_course"));
                     oL.addAll(frm);
                 } 
             }
@@ -274,5 +275,27 @@ public class ForumService implements IForum{
             ex.printStackTrace();
         }
         return oL;
+    }
+    public Forum FindForumById(int id) {
+
+        Forum f = new Forum();
+        try {
+            String query = "select * from forum where id=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                f.setId(rs.getInt("id"));
+                f.setId_course(rs.getInt("id_course"));
+                f.setStatus(rs.getString("status"));
+                f.setSubject(rs.getString("subject"));
+                f.setCreated_by(rs.getInt("created_by"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return f;
+
     }
 }

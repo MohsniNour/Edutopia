@@ -49,7 +49,7 @@ public class Forum_CommentController implements Initializable {
     @FXML
     private TableColumn<Commentt, String> idComment;
     
-    private String id_Forum;
+    private int id_Forum;
     @FXML
     private Button updateButton;
     @FXML
@@ -101,7 +101,7 @@ public class Forum_CommentController implements Initializable {
         }else
         {
             CommentService cs = new CommentService();
-            Commentt cmt = new Commentt(txtContent.getText(),id_Forum,"nour",java.sql.Date.valueOf(java.time.LocalDate.now()));
+            Commentt cmt = new Commentt(txtContent.getText(),id_Forum,2,java.sql.Date.valueOf(java.time.LocalDate.now()));
             cs.add(cmt);
             showComment();
             nbrComment.setText(String.valueOf(cs.countComment(id_Forum)));
@@ -122,7 +122,7 @@ public class Forum_CommentController implements Initializable {
         {
         Commentt cmt=TableView.getSelectionModel().getSelectedItem();
         cmt.setContent(txtContent.getText());
-        cmt.setLast_updated_by("hamza");
+        cmt.setLast_updated_by(1);
         cmt.setLast_updated_Date(java.sql.Date.valueOf(java.time.LocalDate.now()));
         CommentService fs = new CommentService();
         System.out.println(cmt.getId());
@@ -157,7 +157,7 @@ public class Forum_CommentController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Forum.fxml"));
             ForumController controller = loader.getController();
-            controller.setId(id_Forum);
+            controller.setId(String.valueOf(id_Forum));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.show();

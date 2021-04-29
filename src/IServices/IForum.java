@@ -13,15 +13,15 @@ import javafx.collections.ObservableList;
  * @author ADMIN
  */
 public interface IForum {
-    public String getId(Forum forum); 
+    public int getId(Forum forum); 
     public ObservableList<Forum> getForum();
-    public ObservableList<Forum> getForumByIdCourse(String id_course);
-    public ObservableList<Forum> getArchivedForumByIdCourse(String id_course);
+    public ObservableList<Forum> getForumByIdCourse(int id_course);
+    public ObservableList<Forum> getArchivedForumByIdCourse(int id_course);
     public void add(Forum forum);
-    public void remove(String id);
-    public void activate(String id);
-    public void update(String id, Forum new_forum);
-    public Forum details(String id);
+    public void remove(int id);
+    public void activate(int id);
+    public void update(int id, Forum new_forum);
+    public Forum details(int id);
     public List<Forum> listAvailable();
     public List<Forum> listArchived();
     public String display(List<Forum> acts);

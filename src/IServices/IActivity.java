@@ -15,14 +15,14 @@ import javafx.collections.ObservableList;
  */
 public interface IActivity {
    
-    public String getId(Activity act);
+    public int getId(Activity act);
     public List trierActivitiesID();
     public ObservableList<Activity> getActivities();
     public void add(Activity activity);
-    public void remove(String id, String path);
-    public void activate(String id, String path);
-    public void update(String id, Activity new_activity);
-    public Activity details(String id);
+    public void remove(int id);
+    public void activate(int id);
+    public void update(int id, Activity new_activity);
+    public Activity details(int id);
     public List<Activity> listAvailable();
     public List<Activity> listArchived();
     public String display(List<Activity> acts);

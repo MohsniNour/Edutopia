@@ -51,7 +51,7 @@ public class ForumController implements Initializable {
     private TableColumn<Forum, String> id;
     @FXML
     private Label CourseName;
-    private String id_Course;
+    private int id_Course;
     private String id_Forum;
     @FXML
     private Button backButton;
@@ -85,7 +85,7 @@ public class ForumController implements Initializable {
     }
     public void showForumPage(){
         ForumService fs = new ForumService();
-        fs.getIdCourseByIdForum(id_Forum);
+        fs.getIdCourseByIdForum(Integer.parseInt(id_Forum));
         idSubject.setCellValueFactory(new PropertyValueFactory("subject"));
         id.setCellValueFactory(new PropertyValueFactory("id"));
     }
@@ -93,7 +93,7 @@ public class ForumController implements Initializable {
     @FXML
     private void addAction(ActionEvent event) {
         ForumService fs = new ForumService();
-        Forum frm = new Forum(txtSubject.getText(),id_Course,"nour",java.sql.Date.valueOf(java.time.LocalDate.now()));
+        Forum frm = new Forum(txtSubject.getText(),id_Course,2,java.sql.Date.valueOf(java.time.LocalDate.now()));
         fs.add(frm);
         showForum();
     }
@@ -103,7 +103,7 @@ public class ForumController implements Initializable {
         Forum frm=TableView.getSelectionModel().getSelectedItem();
         frm.setSubject(txtSubject.getText());
         frm.setId_course(id_Course);
-        frm.setLast_updated_by("hamza");
+        frm.setLast_updated_by(1);
         frm.setLast_updated_Date(java.sql.Date.valueOf(java.time.LocalDate.now()));
         ForumService fs = new ForumService();
         System.out.println(frm.getId());

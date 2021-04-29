@@ -9,9 +9,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -21,18 +22,18 @@
       <URL value="@style.css" />
     </stylesheets>
    <children>
-      <VBox alignment="CENTER_LEFT" layoutX="278.0" layoutY="76.0" prefHeight="276.0" prefWidth="400.0" spacing="10.0" styleClass="shadow" stylesheets="@style.css">
+      <VBox alignment="CENTER" layoutX="566.0" layoutY="109.0" prefHeight="276.0" prefWidth="400.0" spacing="10.0" styleClass="shadow" stylesheets="@style.css">
          <children>
-            <ComboBox fx:id="type" prefWidth="150.0" promptText="Type" styleClass="search-button" />
-            <ComboBox fx:id="level" prefWidth="150.0" promptText="Level" styleClass="search-button" stylesheets="@style.css" />
-            <Button fx:id="import_button" mnemonicParsing="false" onAction="#on_import_action" prefHeight="25.0" prefWidth="150.0" styleClass="search-button" stylesheets="@style.css" text="Import Content" textFill="WHITE" />
-            <TextArea fx:id="description" prefHeight="119.0" prefWidth="380.0" promptText="Description" styleClass="shadow" stylesheets="@style.css" />
+            <ComboBox fx:id="type" prefWidth="150.0" promptText="Type" styleClass="search-box" />
+            <ComboBox fx:id="level" prefWidth="150.0" promptText="Level" styleClass="search-box" stylesheets="@style.css" />
+            <Button fx:id="import_button" mnemonicParsing="false" onAction="#on_import_action" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #c4c3d0;" styleClass="search-button" stylesheets="@style.css" text="Import Content" />
+            <TextArea fx:id="description" prefHeight="119.0" prefWidth="380.0" promptText="Description" styleClass="mainFxmlClass" stylesheets="@style.css" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tableview" layoutX="278.0" layoutY="455.0" prefHeight="234.0" prefWidth="767.0" stylesheets="@style.css">
+      <TableView fx:id="tableview" layoutX="403.0" layoutY="464.0" prefHeight="234.0" prefWidth="767.0" stylesheets="@style.css">
         <columns>
           <TableColumn fx:id="type_col" prefWidth="135.0" text="Type" />
           <TableColumn fx:id="level_col" prefWidth="107.0" text="Level" />
@@ -40,27 +41,176 @@
             <TableColumn fx:id="rating_col" prefWidth="119.0" text="Rating" />
         </columns>
       </TableView>
-      <Button fx:id="update_btn" layoutX="278.0" layoutY="419.0" mnemonicParsing="false" onAction="#on_update_btn" prefHeight="25.0" prefWidth="150.0" styleClass="search-button" stylesheets="@style.css" text="Manage Content" textFill="WHITE" />
-      <StackPane layoutX="777.0" layoutY="100.0" prefHeight="150.0" prefWidth="200.0" />
-      <Button fx:id="add_btn" layoutX="597.0" layoutY="340.0" mnemonicParsing="false" onAction="#on_add_btn" prefHeight="25.0" prefWidth="70.0" stylesheets="@style.css" text="Confirm" textFill="WHITE">
+      <Button fx:id="add_btn" layoutX="726.0" layoutY="385.0" mnemonicParsing="false" onAction="#on_add_btn" prefHeight="25.0" prefWidth="80.0" stylesheets="@style.css" text="Confirm" textFill="WHITE">
          <styleClass>
             <String fx:value="search-button" />
             <String fx:value="shadow" />
          </styleClass></Button>
-      <HBox alignment="CENTER" layoutX="316.0" layoutY="14.0" prefHeight="79.0" prefWidth="649.0">
+      <HBox alignment="CENTER" layoutX="441.0" layoutY="23.0" prefHeight="79.0" prefWidth="649.0">
          <children>
-            <Label prefHeight="49.0" prefWidth="89.0" text="Add">
+            <Label prefHeight="49.0" prefWidth="157.0" text="Ajouter">
                <font>
                   <Font name="Cambria Bold" size="40.0" />
                </font>
             </Label>
-            <Label prefHeight="49.0" prefWidth="366.0" text="Co-Studying Content">
+            <Label prefHeight="49.0" prefWidth="156.0" text="Contenu " textFill="RED">
                <font>
                   <Font name="Cambria" size="40.0" />
                </font>
             </Label>
          </children>
       </HBox>
+      <VBox fx:id="vboxdrawer" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="267.0" style="-fx-background-color: #161616;">
+         <children>
+            <ImageView fx:id="imagechange" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/11-user-active-512.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="UserName" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="230.0" textAlignment="CENTER" textFill="#e7e5e5">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#HomeAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Accueil" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView disable="true" fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_home_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CourseAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Matière" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_library_books_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#CalendarAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Agenda" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_event_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ExamAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Exam" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_event_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_Course1" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Co_StudyingAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Co-Studying" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_work_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#AccountAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Mon compte" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_portrait_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#ClaimAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Reclamation" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_warning_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#DisconnectionAction" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #161616;" stylesheets="@../../../../../Downloads/Projet_Exam/Projet_Exam/src/css/style.css" text="Deconnexion" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/baseline_logout_white_18dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <ImageView fx:id="mainmenu_icon" fitHeight="50.0" fitWidth="89.0" layoutX="277.0" layoutY="14.0" onMouseClicked="#main_menu_clicked" onMouseEntered="#mm_hover" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/ic_cart.png" />
+         </image>
+      </ImageView>
    </children>
    <opaqueInsets>
       <Insets />
