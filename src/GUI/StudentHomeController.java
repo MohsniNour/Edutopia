@@ -27,6 +27,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -51,6 +52,8 @@ public class StudentHomeController implements Initializable {
     private Label etud_name;
 
     Student current_user = LoginController.CurrentStudent;
+    @FXML
+    private Button btn_Exam;
 
     /**
      * Initializes the controller class.
@@ -148,12 +151,16 @@ public class StudentHomeController implements Initializable {
     }
 
     @FXML
-    private void ExamAction(ActionEvent event) throws IOException {
-          Parent root = FXMLLoader.load(getClass().getResource("Front_ChargerExamen.fxml"));
+    private void handleClicks(ActionEvent event) throws IOException {
+        if (event.getSource() == btn_Exam) {
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/Front_ChargerExamen.fxml"));
         Scene scene = new Scene(root);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
+        }
     }
+
+
 
 }

@@ -33,7 +33,7 @@ public class Exam_Service implements IService<Exam>{
             pst.setDate(2, t.getStart_date());
             pst.setDate(3, t.getFinish_date());
             pst.setInt(4, t.getId_subject());
-            pst.setString(5, "amine");
+            pst.setInt(5, t.getCreated_by());
             pst.setDate(6,new java.sql.Date(new Date().getTime()));
             pst.execute();
 
@@ -46,7 +46,7 @@ public class Exam_Service implements IService<Exam>{
        try {
             String requete = "INSERT INTO ligne_exam(iduser,idexam,note) VALUES (?,?,?)";
             PreparedStatement pst = c.prepareStatement(requete);
-            pst.setInt(1, iduser);
+            pst.setInt(1, 1);
             pst.setInt(2, idexam);
             pst.setFloat(3, note);
             pst.execute();

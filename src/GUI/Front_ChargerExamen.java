@@ -48,7 +48,7 @@ public class Front_ChargerExamen implements Initializable {
     @FXML
     private Pane pnl_abonnement;
 
-    private int idUser = 2;
+    private int idUser = 1;
     @FXML
     private TableView<Ligne_Examen> tableviewExamen;
     @FXML
@@ -174,7 +174,6 @@ public class Front_ChargerExamen implements Initializable {
         stage.show();
     }
 
-    @FXML
     private void Co_StudyingAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("List_CoStudying_Front.fxml"));
         Scene scene = new Scene(root);
@@ -233,6 +232,19 @@ public class Front_ChargerExamen implements Initializable {
             }
         });
         confirmation.showAndWait();
+    }
+
+    @FXML
+    private void ClassAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void ExamAction(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("Front_ChargerExamen.fxml"));
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
     public class Ligne_Examen {
