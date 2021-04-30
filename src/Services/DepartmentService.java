@@ -5,6 +5,7 @@
  */
 package Services;
 import Entities.Department;
+import Entities.Teacher;
 import IServices.IDepartment;
 import Utils.DataBaseConnection;
 import java.sql.Connection;
@@ -161,8 +162,10 @@ public class DepartmentService implements IDepartment {
                     Department d = new Department();
                     d.setId(rs.getInt("id"));
                     d.setOwnerId(rs.getInt("ownerId"));
-                    d.setOwnername(rs.getString("ownername"));
-                    d.setOwnerlastname(rs.getString("ownerlastname"));
+                    TeacherService ts = new TeacherService();
+                    Teacher t = ts.getTeacherParSonId(rs.getInt("ownerId"));
+                    d.setOwnername(t.getName());
+                    d.setOwnerlastname(t.getLastname());
                     d.setName(rs.getString("name"));
                     d.setCreated_by(rs.getInt("created_by"));
                     d.setCreated_date(rs.getDate("created_date"));

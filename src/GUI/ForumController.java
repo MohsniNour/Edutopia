@@ -7,6 +7,7 @@ package GUI;
 
 import Entities.Course;
 import Entities.Forum;
+import Entities.User;
 import Services.CommentService;
 import Services.ForumService;
 import java.io.IOException;
@@ -55,6 +56,9 @@ public class ForumController implements Initializable {
     private String id_Forum;
     @FXML
     private Button backButton;
+    
+        User current_user = LoginController.CurrentUser;
+
 
     /**
      * Initializes the controller class.
@@ -93,7 +97,7 @@ public class ForumController implements Initializable {
     @FXML
     private void addAction(ActionEvent event) {
         ForumService fs = new ForumService();
-        Forum frm = new Forum(txtSubject.getText(),id_Course,2,java.sql.Date.valueOf(java.time.LocalDate.now()));
+        Forum frm = new Forum(txtSubject.getText(),id_Course,current_user.getId(),java.sql.Date.valueOf(java.time.LocalDate.now()));
         fs.add(frm);
         showForum();
     }
@@ -103,7 +107,7 @@ public class ForumController implements Initializable {
         Forum frm=TableView.getSelectionModel().getSelectedItem();
         frm.setSubject(txtSubject.getText());
         frm.setId_course(id_Course);
-        frm.setLast_updated_by(1);
+        frm.setLast_updated_by(current_user.getId());
         frm.setLast_updated_Date(java.sql.Date.valueOf(java.time.LocalDate.now()));
         ForumService fs = new ForumService();
         System.out.println(frm.getId());

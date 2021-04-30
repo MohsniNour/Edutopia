@@ -155,6 +155,7 @@ public class AdminClasseController implements Initializable {
     private TableColumn<Student, String> mailp;
     private ComboBox cobo;
     private Button ok;
+    User current_user = LoginController.CurrentUser;
 
     ObservableList<String> typelist = FXCollections.observableArrayList("Abscent", "Présent");
     private TableColumn<Student, Integer> idetud;
@@ -289,11 +290,10 @@ public class AdminClasseController implements Initializable {
                 c.setId(rst.getInt("id"));
                 c.setName(rst.getString("nom"));
                 c.setClasse_size(rst.getInt("classe_size"));
-                c.setCreated_by(rst.getInt("created_by"));
+                c.setCreated_by(current_user.getId());
                 c.setCreated_date(rst.getDate("created_date"));
-                c.setLast_update_by(rst.getInt("last_update_by"));
                 c.setLast_update_date(rst.getDate("last_update_date"));
-                c.setArchived_by(rst.getInt("archived_by"));
+                c.setArchived_by(current_user.getId());
                 c.setArchived_date(rst.getDate("archived_date"));
                 form = new classe(rst.getInt("id"), rst.getString("nom"), rst.getInt("classe_size"), rst.getInt("created_by"), rst.getDate("created_date"), rst.getInt("last_update_by"), rst.getDate("last_update_date"), rst.getInt("archived_by"), rst.getDate("archived_date"));
                 classes.add(c);
@@ -330,7 +330,7 @@ public class AdminClasseController implements Initializable {
         // Random random = new Random();
         // IntStream ints = random.ints(1,1,100);
 
-        query = "INSERT INTO classe (`name`, `classe_size`, `created_by`, `created_date`, `last_update_by`, `last_update_date`, `archived_by`, `archived_date`) VALUES ('" + tfnom.getText() + "','" + tfclasse_size.getText() + "','mounir ','2021-04-02',' AzizHelmi ','2021-04-02',' AzizHelmi ','2021-04-02')";
+        query = "INSERT INTO classe (`name`, `classe_size`, `created_by`, `created_date`, `last_update_by`, `last_update_date`, `archived_by`, `archived_date`) VALUES ('" + tfnom.getText() + "','" + tfclasse_size.getText() + "',"+current_user.getId()+",'2021-04-02',' AzizHelmi ','2021-04-02',' AzizHelmi ','2021-04-02')";
         executeQuery(query);
         showclasse();
     }
@@ -345,8 +345,8 @@ public class AdminClasseController implements Initializable {
         String query = "DELETE FROM classe WHERE id =" + tfid.getText() + "";
         executeQuery(query);
         showclasse();
-    }
 
+    }
     private void executeQuery(String query) {
 
         Connection conn = getConnection();

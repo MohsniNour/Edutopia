@@ -8,6 +8,7 @@ package Services;
 import IServices.ISpecialty;
 import Utils.DataBaseConnection;
 import Entities.Specialty;
+import Entities.Teacher;
 import java.sql.Connection;
 import java.sql.*;
 import javafx.collections.FXCollections;
@@ -119,8 +120,10 @@ public class SpecialtyService implements ISpecialty {
                 if (!"archived".equals(rs.getString("status"))) {
                     check = true;
                     s.setId_resp(rs.getInt("idTeacher"));
-                    s.setLastname(rs.getString("lastname"));
-                    s.setName(rs.getString("name"));
+                    TeacherService ts = new TeacherService();
+                    Teacher t = ts.getTeacherParSonId(rs.getInt("idTeacher"));
+                    s.setLastname(t.getLastname());
+                    s.setName(t.getName());
                     s.setSpecialty(rs.getString("specialty"));
                     s.setListNiveaux(rs.getString("niveau"));
                     s.setCreated_by(rs.getInt("created_by"));

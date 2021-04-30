@@ -7,6 +7,7 @@ package GUI;
 
 import Entities.Activity;
 import Entities.Course;
+import Entities.User;
 import Services.ActivityService;
 import java.io.File;
 import java.io.IOException;
@@ -82,6 +83,7 @@ public class Add_ActivityController implements Initializable {
     private TextField txtSearch;
     @FXML
     private TableColumn<Activity, String> url;
+    User current_user = LoginController.CurrentUser;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,7 +120,7 @@ public class Add_ActivityController implements Initializable {
         } else {
             System.out.println(String.valueOf(file));
             ActivityService sa = new ActivityService();
-            Activity act = new Activity(txtName.getText(), Date.valueOf(pkDeadline.getValue()), String.valueOf(to), id_Course, 2, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            Activity act = new Activity(txtName.getText(), Date.valueOf(pkDeadline.getValue()), String.valueOf(to), id_Course, current_user.getId(), java.sql.Date.valueOf(java.time.LocalDate.now()));
             Files.copy(from, to);
             System.out.print(to);
             sa.add(act);
@@ -165,7 +167,7 @@ public class Add_ActivityController implements Initializable {
         act.setDeadline(Date.valueOf(pkDeadline.getValue()));
         act.setId_Course(id_Course);
         act.setWork_todo(String.valueOf(to));
-        act.setLast_updated_by(1);
+        act.setLast_updated_by(current_user.getId());
         act.setLast_updated_Date(java.sql.Date.valueOf(java.time.LocalDate.now()));
         ActivityService as = new ActivityService();
         System.out.println(act.getId());

@@ -83,7 +83,7 @@ public class FXMLSubjectForAdminController implements Initializable {
     ObservableList<Integer> idsClasse = FXCollections.observableArrayList();
     ObservableList<Integer> idsTeacher = FXCollections.observableArrayList();
     TeacherService ts = new TeacherService();
-    Teacher current_user = ts.getTeacherParSonId(26);
+    User current_user = LoginController.CurrentUser;
     @FXML
     private VBox vboxdrawer1;
     @FXML

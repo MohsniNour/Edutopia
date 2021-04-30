@@ -92,6 +92,8 @@ public class ComplaintAddController implements Initializable {
     private Button btn_Course1;
     @FXML
     private Button stats;
+        User current_user = LoginController.CurrentUser;
+
 
     /**
      * Initializes the controller class.

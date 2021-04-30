@@ -99,6 +99,8 @@ public class EnseignantClasseController implements Initializable {
     ObservableList<String> typelist = FXCollections.observableArrayList("Abscent", "Présent");
     @FXML
     private Button btnajouter11;
+        User current_user = LoginController.CurrentUser;
+
 
     /**
      * Initializes the controller class.

@@ -101,7 +101,7 @@ public class FXMLDepartmentController implements Initializable {
     private Button btnstat;
 
     TeacherService ts = new TeacherService();
-    Teacher current_user = ts.getTeacherParSonId(26);
+    User current_user = LoginController.CurrentUser;
     @FXML
     private Button btnAjouterSpécialité;
     @FXML
@@ -189,7 +189,7 @@ public class FXMLDepartmentController implements Initializable {
             ObservableList<String> ol = ccb.getCheckModel().getCheckedItems();
             d.setList(ol.toString());
             d.setCreated_date(java.sql.Date.valueOf(java.time.LocalDate.now()));
-            d.setCreated_by(current_user.getId());
+            d.setCreated_by(1);
             ds.create(d);
             d.setId(ds.getIdDep(d));
         }

@@ -100,7 +100,7 @@ public class FXMLSpecialtyController implements Initializable {
     private Button btnhist;
 
     TeacherService ts = new TeacherService();
-    Teacher current_user = ts.getTeacherParSonId(26);
+    User current_user = LoginController.CurrentUser;
     @FXML
     private VBox vboxdrawer1;
     @FXML
